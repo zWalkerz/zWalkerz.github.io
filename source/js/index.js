@@ -39,9 +39,10 @@ var playlist = {
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
         alert("La tua sessione e' scaduta, effettuare nuovamente login");
-        window.location.replace("login.htm");
+        window.location.replace("login/login.htm");
 
     }
+
 })();
 
 
