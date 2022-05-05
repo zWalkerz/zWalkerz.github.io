@@ -40,7 +40,7 @@ async function signup() {
 
 
     localStorage.setItem("accounts", JSON.stringify(accounts));
-    location.replace("login.htm");
+    location.replace("../login/index.htm");
 
 
 }

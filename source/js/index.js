@@ -29,7 +29,7 @@ var playlist = {
     if(!window.localStorage.getItem("accounts")){
 
         alert("Browser incompatibile");
-        window.location.replace("signup/signup.htm");
+        window.location.replace("signup/index.htm");
 
     }
 
@@ -39,7 +39,7 @@ var playlist = {
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
         alert("La tua sessione e' scaduta, effettuare nuovamente login");
-        window.location.replace("login/login.htm");
+        window.location.replace("login/index.htm");
 
     }
 
