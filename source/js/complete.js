@@ -24,8 +24,7 @@ var accounts = JSON.parse(window.localStorage.getItem("accounts"));
 
 })();
 
-//FETCH CONTINUO - Faccio un fetch ogni volta che si scrive qualcosa sull'elemento di input
-
+/* Adding an event listener to the artist input field. */
 artist = document.getElementById("artist");
 artist.addEventListener('keyup', e => {
     if(e.target.value.replace(/\s/g, "").length != 0){
