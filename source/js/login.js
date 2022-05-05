@@ -91,6 +91,7 @@ async function login() {
         } else {
 
             location.replace("../complete/index.htm");
+            console.log("porcodio")
 
         }
 
