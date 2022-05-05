@@ -27,7 +27,7 @@ var playlist = {
 
 (function () {
 
-    if(accounts == null) {
+    if(!window.localStorage.getItem("accounts")) {
 
     alert("Non hai ancora un account o il tuo browser e' incompatibile");
     window.location.replace("signup/signup.htm");
