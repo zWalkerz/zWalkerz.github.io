@@ -90,7 +90,7 @@ async function login() {
 
         } else {
 
-            location.replace("../complete/");
+            location.replace("../complete/complete.htm");
 
         }
 
