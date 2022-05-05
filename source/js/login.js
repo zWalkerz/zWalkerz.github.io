@@ -86,11 +86,11 @@ async function login() {
 
         if(foundUser.completed == "yes"){
 
-            location.replace("index.htm");
+            location.replace("../index.htm");
 
         } else {
 
-            location.replace("complete.htm");
+            location.replace("../complete/complete.htm");
 
         }
 
