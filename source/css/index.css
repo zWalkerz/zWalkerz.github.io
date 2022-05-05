@@ -1,0 +1,296 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600i&display=swap');
+body::-webkit-scrollbar { display: none; }
+body { overflow: -moz-scrollbars-none; }
+body { -ms-overflow-style: none; }
+
+
+body {
+  background: #181818;
+  font-family: 'Montserrat', sans-serif !important;
+}
+body a {
+  color: #aaaaaa;
+}
+
+
+
+.artist__header {
+  border-bottom: 1px solid #282828;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 15px;
+}
+.artist__header ul {
+  border: none;
+}
+.artist__header ul li {
+  padding: 0 15px;
+  margin:auto;
+}
+.artist__header ul li a {
+  padding: 15px 0;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.4s ease;
+  border-bottom: 4px solid rgba(0, 0, 0, 0);
+}
+
+
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+  border: none;
+  color: white;
+  transition: color 0.4s ease;
+}
+.navbar-dark .navbar-nav .nav-link.active {
+  color: white;
+  background: none;
+  border: none;
+  border-bottom: 4px solid #1ed760;
+}
+.navbar-dark .navbar-nav .nav-link.active:hover {
+  border-bottom: 4px solid #1ed760;
+}
+
+
+
+.searched {
+  margin-bottom: 30px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.searched__art {
+  width: 75px;
+}
+ .searched__art img {
+  width: 75px;
+  height: 75px;
+}
+ .searched__song {
+  width: calc(100% - 75px);
+  padding: 10px 15px;
+  background: #282828;
+  color: #aaaaaa;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+ }
+ .searched__song__title {
+  color: #c8c8c8;
+}
+.searched button[type="submit"] {
+
+  border-radius: 0%;
+  background-color: #282828;
+
+}
+
+
+.tracks {
+  display: flex;
+  flex-flow: column wrap;
+  margin-bottom: 15px;
+}
+.tracks .track {
+  border-top: 1px solid #282828;
+  height: 42px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.tracks .track:hover {
+  background: #282828;
+}
+.tracks .track:last-child {
+  border-bottom: 1px solid #282828;
+}
+.tracks .track__art img {
+  width: 42px;
+  height: 42px;
+}
+.track .track__title {
+  color: white;
+  margin-left: 10px;
+  margin-right: auto;
+  width:20%;
+}
+.tracks .track__plays {
+  color: #aaaaaa;
+  left: 100%;
+  margin-right: 10px;
+  margin-left: auto;
+}
+
+
+
+#form1 {
+
+background-color: #181818;
+border-radius: 20px;
+transition: 0.25s;
+border: 2px solid #ccc;
+color:white;
+width:70%;
+margin: auto;
+
+}
+#form1:focus{
+
+    box-shadow: none;
+    border-color: #1ed760;
+    width: 100%;
+
+}
+#form1:hover{
+
+    border-color:#1ed760;
+
+}
+.form-outline {
+
+
+    padding: 15px;
+    color: #aaaaaa;
+    transition: 0.25s;
+
+
+}
+.section-title {
+
+display: flex;
+justify-content: space-between;
+align-items: center;
+color: #c8c8c8;
+font-weight: 600;
+font-size: 20px
+
+
+}
+ul.nav.nav-tabs {
+
+width:100%;
+
+}
+ul.nav.nav-tabs li:last-child{
+
+    float:right;
+
+}
+.nav-link{
+
+color : #aaaaaa;
+
+}
+.nav-link:focus {
+
+border:none;
+
+}
+.navbar-toggler:focus {
+
+box-shadow: none;
+
+}
+
+
+
+
+button[type="submit"] {
+
+  border: solid 2px #2ecc71; 
+  border-radius: 0%;
+  color:white;
+  transition: 0.25s;
+  margin-left: auto;
+
+}
+button[type="submit"]:hover {
+
+background-color: #2ecc71;
+border-color: #2ecc71; 
+
+}
+.controls {
+
+margin-left: auto;
+
+}
+
+.label {
+
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #ffffff5e;
+  width: 20vw;
+  margin: 0 auto;
+  font-size: 13px;
+
+}
+
+.add {
+
+font-size: 40px;
+
+}
+
+.add:hover {
+
+color:#2ecc71;
+
+}
+@media screen and (max-width: 480px) {
+
+  .section-title {
+
+    font-size: 4vw;
+
+  }
+  .searched__song__title{
+
+    font-size: 2.5vw;
+
+  }
+  .searched__song__date{
+
+    font-size: 3vw;
+
+  }
+  .track__title{
+
+    font-size: 3vw
+
+  }
+  .label{
+
+    font-size: 2.5vw;
+
+  }
+
+}
+
+@media screen and (max-width: 768px){
+
+  button[type= "submit"] {
+
+    font-size: 2vw;
+
+  }
+  .label{
+
+    width: 10vw;
+
+  }
+
+}

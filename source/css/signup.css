@@ -1,0 +1,74 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600i&display=swap');
+
+body {
+
+    font-family: 'Montserrat', sans-serif !important;
+    background-color: #181818 !important;
+
+}
+
+input[type="text"], input[type="password"] {
+    border: 0;
+    border: 2px solid #3498db;
+    background: none;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    width: 80%;
+    margin:auto;
+    color:white;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    width: 100%;
+    border-color: #2ecc71;
+    box-shadow: none;
+    background-color: transparent;
+    color:white;
+}
+
+button[type="submit"] {
+
+    border: solid 2px #2ecc71; 
+    border-radius: 24px;
+    color:white;
+    transition: 0.25s;
+
+}
+
+button[type="submit"]:hover {
+
+background-color: #2ecc71;
+border-color: #2ecc71; 
+
+}
+
+p[class="mb-0"] {
+
+margin-top: 10%;
+
+}
+
+div.card.bg-dark.text-white {
+
+background-color: #181818 !important;
+
+}
+
+.form-control + small {
+    color: red;
+    opacity: 0;
+    height: 0;
+    transition: opacity .4s ease-out;
+  }
+
+.form-control.invalid + small {
+    opacity: 1;
+    height: auto;
+    margin-bottom: 20px;
+    transition: opacity .4s ease-out;
+  }
+
+
+  

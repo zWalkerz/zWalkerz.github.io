@@ -1,0 +1,196 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600i&display=swap');
+
+body {
+
+    font-family: 'Montserrat', sans-serif !important;
+    background-color: #181818 !important;
+
+}
+
+input[type="text"], input[type="password"], input[type="search"] {
+    border: 0;
+    border: 2px solid #3498db;
+    background: none;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    width: 80%;
+    margin:auto;
+    color:white;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="search"]:focus {
+    width: 100%;
+    border-color: #2ecc71;
+    box-shadow: none;
+    background-color: transparent;
+    color:white;
+}
+
+button[type="submit"] {
+
+    border: solid 2px #2ecc71; 
+    border-radius: 24px;
+    color:white;
+    transition: 0.25s;
+
+}
+
+button[type="submit"]:hover {
+
+background-color: #2ecc71;
+border-color: #2ecc71; 
+
+}
+
+p[class="mb-0"] {
+
+margin-top: 10%;
+
+}
+
+div.card.bg-dark.text-white {
+
+background-color: #181818 !important;
+
+}
+
+.artists {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.artist {
+	width: 190px;
+	height: 180px;
+	margin: 15px;
+	position: relative;
+	min-width: 190px;
+}
+.artist:hover .overlayer {
+	visibility: visible;
+}
+.artist img {
+	width: 100%;
+	height: 100%;
+}
+.artist .title  {
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	margin-top: 180px;
+}
+
+.artist .title a {
+	top: -175px;
+	color: #fff;
+	position: relative;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+.artist .overlayer {
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: rgba(0,0,0,0.6);
+	text-align: center;
+	visibility: hidden;
+}
+
+/*Sovrascrivo alcuni fra attributi e classi del dropdown menù per mantenermi coerente con il design*/
+button[type="button"] {
+
+	background: none;
+    border: solid 2px #3498db; 
+    border-radius: 24px;
+    color:white;
+    transition: 0.25s;
+
+}
+
+button[type="button"]:hover {
+
+border-color: #2ecc71; 
+background: none;
+color: white
+
+}
+
+
+.dropdown-menu{
+
+background-color: #222121;
+overflow: hidden;
+
+}
+
+.dropdown-item{
+
+	color:white
+	
+}
+
+.dropdown-item:hover{
+
+	background-color: #2ecc71;
+	
+}
+
+.dropdown-item.active{
+
+	color:white;
+	background: none;
+
+}
+
+.dropdown-item.active:hover{
+
+	color:black;
+	background-color: #2ecc71;
+
+}
+
+.dropdown {
+
+display: block  !important;
+margin: auto !important;
+
+}
+
+/* FINE Dropdown */
+
+/*.form-text{
+
+	color: green;
+	visibility:hidden;
+
+}*/
+
+.alert{
+
+	opacity: 0%;
+	transition: opacity 0.5s ease-in-out;
+
+}
+
+
+small.form-text {
+    color: red;
+    opacity: 0;
+    height: 0;
+    transition: opacity .4s ease-out;
+  }
+
+small.invalid {
+    opacity: 1;
+    height: auto;
+    margin-bottom: 20px;
+    transition: opacity .4s ease-out;
+  }
+
+
+  
