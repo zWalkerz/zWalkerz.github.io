@@ -18,7 +18,7 @@ var accounts = JSON.parse(window.localStorage.getItem("accounts"));
     } else if(user.completed == "yes"){
 
         alert("Il tuo profilo e' gia' stato completato");
-        window.location.replace("../complete/index.htm");
+        window.location.replace("../index.htm");
 
     }
 
