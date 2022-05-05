@@ -1,5 +1,6 @@
 const token = localStorage.getItem("token");
 const urlTrack = "https://api.spotify.com/v1/search?type=track";
+
 var accounts = JSON.parse(window.localStorage.getItem("accounts"));
 var user = accounts.find(e => e.token == token);
 
@@ -26,13 +27,20 @@ var playlist = {
 
 (function () {
 
-    let user = accounts.find((e) => e.token == token);
+    if(accounts == undefined) {
+
+    alert("Non hai ancora un account o il tuo browser e' incompatibile");
+    window.location.replace("signup/signup.htm");
+
+    }
+
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
         alert("La tua sessione e' scaduta, effettuare nuovamente login");
-        window.location.replace("login.htm");
+        window.location.replace("login/login.htm");
 
     }
+
 })();
 
 
