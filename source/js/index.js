@@ -31,8 +31,7 @@ var playlist = {
         alert("Registrarsi prima");
         window.location.replace("signup/index.htm");
 
-    }
-    if(!window.localStorage.getItem("token")){
+    } else if(!window.localStorage.getItem("token")){
 
         alert("Effettuare login");
         window.location.replace("login/index.htm");
@@ -51,6 +50,22 @@ var playlist = {
     }
 
     
+
+})();
+
+
+(function() {
+
+    user.playlists.foreach(e => {
+
+        let block = document.createElement("div");
+        block.setAttribute("class", "track");
+        block.innerHTML = "<div class='track__title'>" + e.name + "</div> <input type='text' class='label' value='" + e.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + e.tag + "' readonly spellcheck='false'><div class='controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
+        let playlists = document.getElementById("2");
+        playlists.appendChild(block);
+
+    });
+
 
 })();
 
@@ -131,14 +146,15 @@ function newPlaylist(){
     user.playlists.push(JSON.parse(JSON.stringify(playlist)));
     localStorage.setItem("accounts", JSON.stringify(accounts));
 
-    alert(accounts);
+    console.log(accounts);
 
 }
 
-function deletePlaylist(){
+function deletePlaylist(e){
 
-
-
+    let parent = e.closest();
+    let toDelete = parent.getElementsByClassName("track__title")[0];
+    toDelete.remove();
 
 }
 
