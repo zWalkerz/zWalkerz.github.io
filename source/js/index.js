@@ -1,4 +1,4 @@
-const token = localStorage.getItem("token");
+var token;
 const urlTrack = "https://api.spotify.com/v1/search?type=track";
 var accounts;
 var user;
@@ -28,11 +28,18 @@ var playlist = {
 
     if(!window.localStorage.getItem("accounts")){
 
-        alert("Browser incompatibile");
+        alert("Registrarsi prima");
         window.location.replace("signup/index.htm");
 
     }
+    if(!window.localStorage.getItem("token")){
 
+        alert("Effettuare login");
+        window.location.replace("login/index.htm");
+
+    }
+
+    token = window.localStorage.getItem("token");
     accounts = JSON.parse(window.localStorage.getItem("accounts"));
     user = accounts.find((e) => e.token == token);
 
@@ -42,6 +49,8 @@ var playlist = {
         window.location.replace("login/index.htm");
 
     }
+
+    
 
 })();
 

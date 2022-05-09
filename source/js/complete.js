@@ -163,7 +163,7 @@ function checkData(user) {
         window.localStorage.setItem("accounts", JSON.stringify(accounts));
 
         alert("Profilo completo!");
-        window.location.replace("index.htm");
+        window.location.replace("../index.htm");
 
     }
 }
