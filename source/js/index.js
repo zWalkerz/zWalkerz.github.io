@@ -152,7 +152,7 @@ function newPlaylist(){
 
 function deletePlaylist(e){
 
-    let parent = e.closest("track");
+    let parent = e.closest(".track");
     console.log(parent)
     let toDelete = parent.getElementsByClassName("track__title")[0];
     toDelete.remove();
