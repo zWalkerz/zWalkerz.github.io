@@ -120,8 +120,9 @@ function newPlaylist(){
     playlists.appendChild(block)
 
     user.playlists.push(JSON.parse(JSON.stringify(playlist)));
+    localStorage.setItem("accounts", JSON.stringify(accounts));
 
-    console.log(user);
+    console.log(accounts);
 
 }
 
