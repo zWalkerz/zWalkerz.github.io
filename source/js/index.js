@@ -154,8 +154,8 @@ function deletePlaylist(e){
 
     let parent = e.closest(".track");
     console.log(parent)
-    let toDelete = parent.getElementsByClassName("track__title")[0];
-    toDelete.remove();
+    let toDelete = parent.getElementsByClassName("track__title")[0].innerHTML;
+    parent.remove();
 
 }
 
