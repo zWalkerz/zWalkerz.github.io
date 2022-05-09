@@ -153,15 +153,14 @@ function newPlaylist(){
 function deletePlaylist(e){
 
     let parent = e.closest(".track");
-    console.log(parent)
     let toDelete = parent.getElementsByClassName("track__title")[0].innerHTML;
     parent.remove();
-    user.playlists.forEach(e => {
+    user.playlists.forEach(function(e, index) {
 
         if(e.name == toDelete) {
 
-            console.log(delete(e));
-
+            delete(user.playlists[index]);
+            
         }
 
     })
