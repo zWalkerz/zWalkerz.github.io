@@ -156,7 +156,15 @@ function deletePlaylist(e){
     console.log(parent)
     let toDelete = parent.getElementsByClassName("track__title")[0].innerHTML;
     parent.remove();
-    delete(user.playlists[toDelete]);
+    user.playlists.forEach(e => {
+
+        if(e.name == toDelete) {
+
+            delete(e);
+
+        }
+
+    })
     window.localStorage.setItem("accounts",JSON.stringify(accounts));
 
 }
