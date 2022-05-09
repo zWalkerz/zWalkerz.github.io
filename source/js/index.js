@@ -160,7 +160,7 @@ function deletePlaylist(e){
 
         if(e.name == toDelete) {
 
-            delete(e);
+            console.log(delete(e));
 
         }
 
