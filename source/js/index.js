@@ -131,7 +131,7 @@ function newPlaylist(){
     user.playlists.push(JSON.parse(JSON.stringify(playlist)));
     localStorage.setItem("accounts", JSON.stringify(accounts));
 
-    console.log(accounts);
+    alert(accounts);
 
 }
 
