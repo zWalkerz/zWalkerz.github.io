@@ -56,7 +56,7 @@ var playlist = {
 
 (function() {
 
-    user.playlists.foreach(e => {
+    user.playlists.forEach(e => {
 
         let block = document.createElement("div");
         block.setAttribute("class", "track");
