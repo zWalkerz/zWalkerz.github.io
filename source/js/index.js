@@ -155,19 +155,19 @@ function deletePlaylist(e){
     let parent = e.closest(".track");
     let toDelete = parent.getElementsByClassName("track__title")[0].innerHTML;
     parent.remove();
-    let index;
+
     user.playlists.forEach(function(e, index) {
 
         if(e.name == toDelete) {
 
-            index = this.index;
+            user.playlists.splice(index, 1);
             
         }
 
     })
-    delete(user.playlists[index]);
+    
     console.log(user)
-    window.localStorage.setItem("accounts",JSON.stringify(accounts));
+    //window.localStorage.setItem("accounts",JSON.stringify(accounts));
 
 }
 
