@@ -148,8 +148,7 @@ function newPlaylist(){
         error = true;
         alert("Nome e descrizione devono contenere almeno un valore")
 
-    }
-    if(!checkTag(playlist.tag)){
+    } else if(checkTag(playlist.tag) == false){
 
         error = true;
         alert("I tag devono succedere un cancelletto (#) e non possono iniziare con numeri o caratteri alfanumerici");
