@@ -208,10 +208,11 @@ function sharePlaylist(){
 
 function checkTag(e) {
 
-    let errPattern = /^#[a-b\d]$/i;
+    let errPattern = /^#[a-b\d]/i;
     e = e.replace(/s/g, "");
 
     let check = errPattern.test(e);
+    console.log(check)
 
     if(check){
 
