@@ -167,7 +167,7 @@ function deletePlaylist(e){
     })
     
     console.log(user)
-    //window.localStorage.setItem("accounts",JSON.stringify(accounts));
+    window.localStorage.setItem("accounts",JSON.stringify(accounts));
 
 }
 
