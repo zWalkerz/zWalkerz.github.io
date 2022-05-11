@@ -129,13 +129,34 @@ function Add() {
 
 function newPlaylist(){
 
-    var playlist = {
+    let error;
+
+    do{
+
+        error = false;
+
+    playlist = {
 
     name : prompt("Inserisci il nome della playlist"),
     desc : prompt("Inserisci una descrizione della playlist"),
     tag : prompt("Inserisci una serie di tag per la playlist")
 
     };
+
+    if(playlist.name == null || playlist.desc == null) {
+
+        error = true;
+        alert("Nome e descrizione devono contenere almeno un valore")
+
+    }
+    if(!checkTag(playlist.tag)){
+
+        error = true;
+        alert("I tag devono succedere un cancelletto (#) e non possono iniziare con numeri o caratteri alfanumerici");
+
+    }
+
+} while(error);
 
     let block = document.createElement("div");
     block.setAttribute("class", "track");
@@ -180,6 +201,29 @@ function editPlaylist(){
 
 function sharePlaylist(){
 
+
+
+
+}
+
+function checkTag(e) {
+
+    let errPattern = /^#[a-b\d]$/i;
+    e = e.replace(/s/g, "");
+
+    let check = errPattern.test(e);
+
+    if(check){
+
+        let newTags = e.split("#");
+        playlist.tag = newTags;
+        return check;
+
+    } else {
+
+        return check;
+
+    }
 
 
 

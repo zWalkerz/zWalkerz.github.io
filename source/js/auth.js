@@ -86,8 +86,7 @@ function checkData(event) {
     const patterns = {
         username: /^[a-z\d]{5,12}$/i,
         password: /^[\d\w@-]{8,20}$/i,
-        email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
-        phone: /^\d{3}-\d{3}-\d{4}$/
+        email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/i,
     };
 
     inputs.forEach((input) => {
