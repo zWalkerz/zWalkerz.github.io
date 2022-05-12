@@ -131,7 +131,6 @@ function newPlaylist(){
 
     let error;
 
-    do{
 
         error = false;
 
@@ -153,10 +152,9 @@ function newPlaylist(){
 
         error = true;
         alert("I tag devono succedere un cancelletto (#) e non possono iniziare con numeri o caratteri alfanumerici");
-
+        return
     }
 
-} while(error);
 
     let block = document.createElement("div");
     block.setAttribute("class", "track");
