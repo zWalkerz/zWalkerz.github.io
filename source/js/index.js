@@ -207,21 +207,18 @@ function sharePlaylist(){
 
 function checkTag(e) {
 
-    let errPattern = /^#[a-b\d]/i;
-    e = e.replace(/s/g, "");
+    let errPattern = /.*?(#\w+)|.+/i;
+    e = e.match();
+    console.log(e)
 
-    let check = errPattern.test(e);
-    console.log(check)
+    if(e.length > 0){
 
-    if(check){
-
-        let newTags = e.split("#");
-        playlist.tag = newTags;
-        return check;
+        playlist.tag = e;
+        return true
 
     } else {
 
-        return check;
+        return false
 
     }
 
