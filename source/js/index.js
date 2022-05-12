@@ -147,6 +147,7 @@ function newPlaylist(){
 
         error = true;
         alert("Nome e descrizione devono contenere almeno un valore")
+        return 
 
     } else if(checkTag(playlist.tag) == false){
 
