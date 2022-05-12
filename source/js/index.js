@@ -207,7 +207,7 @@ function sharePlaylist(){
 
 function checkTag(e) {
 
-    let errPattern = /.*?(#\w+)|.+/i;
+    let errPattern = /.*?(#\w+)|.+/gm;
     e = e.match();
     console.log(e)
 
