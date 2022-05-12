@@ -208,7 +208,7 @@ function checkTag(e) {
 
     let errPattern = /.*?(#\w+)|.+/gm;
     e = e.matchAll(errPattern);
-    console.log(e[0])
+    console.log(e)
 
     if(e.length > 0){
 
