@@ -211,7 +211,7 @@ function checkTag(e) {
 
     if(e.length > 0){
 
-        playlist.tag = e;
+        e.forEach(e => playlist.tag.push(e));
         return true
 
     } else {
