@@ -250,7 +250,7 @@ font-size: 40px;
 color:#2ecc71;
 
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
 
   .section-title {
 
@@ -267,7 +267,7 @@ color:#2ecc71;
     font-size: 3vw;
 
   }
-  .track .track__title {
+  .track__title {
 
     font-size: 3vw
 
