@@ -206,7 +206,7 @@ function checkTag(e) {
 
     if(e.length > 0){
 
-        
+        playlist.tag = e;
         return true
 
     } else {
