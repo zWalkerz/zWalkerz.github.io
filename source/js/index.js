@@ -129,11 +129,6 @@ function Add() {
 
 function newPlaylist(){
 
-    let error;
-
-
-        error = false;
-
     playlist = {
 
     name : prompt("Inserisci il nome della playlist"),
@@ -206,12 +201,12 @@ function sharePlaylist(){
 function checkTag(e) {
 
     let errPattern = /(#\w+)/gm;
-    e = [...e.matchAll(errPattern)];
+    e = e.match(errPattern);
     console.log(e)
 
     if(e.length > 0){
 
-        e.forEach(e => playlist.tag.push(e));
+        
         return true
 
     } else {
