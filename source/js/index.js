@@ -267,6 +267,8 @@ function checkTag(e) {
 
     let errPattern = /(#\w+)/gm;
     e = e.match(errPattern);
+    console.log(e, e.length);
+    
     if(e.length > 0){
 
         playlist.tag = e;
