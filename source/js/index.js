@@ -196,18 +196,21 @@ function sharePlaylist(e){
     let parent = e.closest(".track");
     let toShare = parent.getElementsByClassName("track__title")[0].innerHTML;
 
-    let sharedSection = document.getElementById("3");
-    sharedSection.appendChild(parent);
-    user.shared = [];
-    user.playlists.forEach(function(el) {
+    user.playlists.forEach(function(e) {
 
-        if(el.name == toShare) {
+        if(e.name == toShare) {
 
-            user.shared.push(el);
+            user.shared.push(e);
             
         }
 
     })
+
+    let block = document.createElement("div");
+    block.setAttribute("class", "track");
+    block.innerHTML = "<div class='track__title'>" + playlist.name + "</div> <input type='text' class='label' value='" + playlist.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + playlist.tag.join() + "' readonly spellcheck='false'><div class='controls'> <button onclick='noShare(this);' class='btn btn-outline-success' type='submit'>No share</button></div>"
+    let sharedSection = document.getElementById("3");
+    sharedSection.appendChild(block)
 
     console.log(accounts);
 
@@ -240,8 +243,6 @@ function checkTag(e) {
 
     let errPattern = /(#\w+)/gm;
     e = e.match(errPattern);
-    console.log(e)
-
     if(e.length > 0){
 
         playlist.tag = e;
