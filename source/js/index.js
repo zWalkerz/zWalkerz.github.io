@@ -69,6 +69,21 @@ var playlist = {
 
 })();
 
+(function() {
+
+    user.shared.forEach(e => {
+
+        let block = document.createElement("div");
+        block.setAttribute("class", "track");
+        block.innerHTML = "<div class='track__title'>" + e.name + "</div> <input type='text' class='label' value='" + e.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + e.tag + "' readonly spellcheck='false'><div class='controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
+        let sharedSection = document.getElementById("3");
+        sharedSection.appendChild(block);
+
+    });
+
+
+})();
+
 
 
 //FETCH CONTINUO - Faccio un fetch ogni volta che si scrive qualcosa sull'elemento di input
@@ -228,7 +243,7 @@ function noShare(e){
     let toDelete = parent.getElementsByClassName("track__title")[0].innerHTML;
     parent.remove();
 
-    user.playlists.forEach(function(e, index) {
+    user.shared.forEach(function(e, index) {
 
         if(e.name == toDelete) {
 
