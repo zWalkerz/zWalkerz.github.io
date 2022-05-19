@@ -208,7 +208,7 @@ function sharePlaylist(e){
 
     let block = document.createElement("div");
     block.setAttribute("class", "track");
-    block.innerHTML = "<div class='track__title'>" + playlist.name + "</div> <input type='text' class='label' value='" + playlist.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + playlist.tag.join() + "' readonly spellcheck='false'><div class='controls'> <button onclick='noShare(this);' class='btn btn-outline-success' type='submit'>No share</button></div>"
+    block.innerHTML = "<div class='track__title'>" + user.shared.name + "</div> <input type='text' class='label' value='" + user.shared.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + user.shared.tag.join() + "' readonly spellcheck='false'><div class='controls'> <button onclick='noShare(this);' class='btn btn-outline-success' type='submit'>No share</button></div>"
     let sharedSection = document.getElementById("3");
     sharedSection.appendChild(block)
 
