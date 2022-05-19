@@ -193,6 +193,8 @@ function editPlaylist(){
 
 function sharePlaylist(e){
 
+    let shared;
+
     let parent = e.closest(".track");
     let toShare = parent.getElementsByClassName("track__title")[0].innerHTML;
 
@@ -200,7 +202,7 @@ function sharePlaylist(e){
 
         if(e.name == toShare) {
 
-            user.shared.push(e);
+            shared = e;
             
         }
 
@@ -208,9 +210,11 @@ function sharePlaylist(e){
 
     let block = document.createElement("div");
     block.setAttribute("class", "track");
-    block.innerHTML = "<div class='track__title'>" + user.shared.name + "</div> <input type='text' class='label' value='" + user.shared.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + user.shared.tag.join() + "' readonly spellcheck='false'><div class='controls'> <button onclick='noShare(this);' class='btn btn-outline-success' type='submit'>No share</button></div>"
+    block.innerHTML = "<div class='track__title'>" + shared.name + "</div> <input type='text' class='label' value='" + shared.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + shared.tag.join() + "' readonly spellcheck='false'><div class='controls'> <button onclick='noShare(this);' class='btn btn-outline-success' type='submit'>No share</button></div>"
     let sharedSection = document.getElementById("3");
     sharedSection.appendChild(block)
+
+    user.shared.push(shared);
 
     console.log(accounts);
 
