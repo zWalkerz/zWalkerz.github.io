@@ -191,9 +191,47 @@ function editPlaylist(){
 
 }
 
-function sharePlaylist(){
+function sharePlaylist(e){
+
+    let parent = e.closest(".track");
+    let toShare = parent.getElementsByClassName("track__title")[0].innerHTML;
+
+    let sharedSection = document.getElementById("3");
+    sharedSection.appendChild(parent);
+    user.shared = [];
+    user.playlists.forEach(function(el) {
+
+        if(el.name == toShare) {
+
+            user.shared.push(el);
+            
+        }
+
+    })
+
+    console.log(accounts);
 
 
+}
+
+
+function noShare(e){
+
+    let parent = e.closest(".track");
+    let toDelete = parent.getElementsByClassName("track__title")[0].innerHTML;
+    parent.remove();
+
+    user.playlists.forEach(function(e, index) {
+
+        if(e.name == toDelete) {
+
+            user.shared.splice(index, 1);
+            
+        }
+
+    })
+    
+    window.localStorage.setItem("accounts",JSON.stringify(accounts));
 
 
 }
