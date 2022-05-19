@@ -156,6 +156,36 @@
 
           </div>
         </div>
+        <div class="col-12 col-lg-12">
+          <div class="section-title">
+
+            <span>My playlists</span>
+            <i  onclick="newPlaylist();" class="bi bi-plus add"></i>
+
+          </div>
+
+
+          <div class="tracks" id="2">
+
+            <div class="track">
+
+
+              <div class="track__title">Title</div>
+
+
+              <input type="text" class="label" value="Descrizione" spellcheck="false" readonly>
+              <input type="text" class="label" value="#Tag" spellcheck="false" readonly>
+
+
+              <div class=" controls">
+                <button onclick="editPlaylist(this);" class="btn btn-outline-success" type="submit">Edit</button>
+                <button onclick="deletePlaylist(this);" class="btn btn-outline-success" type="submit">Delete</button>
+                <button onclick="sharePlaylist(this);" class="btn btn-outline-success" type="submit">Share</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
 
 
