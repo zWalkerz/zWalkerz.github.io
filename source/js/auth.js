@@ -24,8 +24,10 @@ async function signup() {
         password: document.getElementById("password").value,
         artists: [],
         genres: [],
-        completed: "no",
-        playlists: []
+        playlists: [],
+        shared: [],
+        completed: "no"
+
     }
 
     if (accounts.some(e => e.email == user.email)) {
