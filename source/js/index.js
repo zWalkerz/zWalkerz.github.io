@@ -304,6 +304,10 @@ function updateShared() {
                 section.appendChild(block);
                 globalShared.push(el)
 
+            } else {
+
+                globalShared.filter(ell => ell == el);
+
             }
         })
 
