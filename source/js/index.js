@@ -15,25 +15,27 @@ var song = {
 
 var playlist = {
 
-    name : null,
-    desc : null,
-    tag : null
+    name: null,
+    desc: null,
+    tag: null
 
-    };
+};
 
 
 
-//CHECK - Controllo che il token (la sessione dunque) non sia scaduta
+
+/* It's a self-invoking function that checks if the user is logged in and if the session is still
+valid. If it's not, it redirects the user to the login page. */
 
 (function () {
 
 
-    if(!window.localStorage.getItem("accounts")){
+    if (!window.localStorage.getItem("accounts")) {
 
         alert("Registrarsi prima");
         window.location.replace("signup/index.htm");
 
-    } else if(!window.localStorage.getItem("token")){
+    } else if (!window.localStorage.getItem("token")) {
 
         alert("Effettuare login");
         window.location.replace("login/index.htm");
@@ -53,12 +55,15 @@ var playlist = {
     }
 
 
-    
+
 
 })();
 
 
-(function() {
+/* A self-invoking function that creates a block for each playlist and adds it to the playlists
+section of the page everytime the site is loaded. */
+
+(function () {
 
     user.playlists.forEach(e => {
 
@@ -73,7 +78,10 @@ var playlist = {
 
 })();
 
-(function() {
+/* A self-invoking function that creates a block for each shared playlist and adds it to the shared
+section of the page everytime the site is loaded. */
+
+(function () {
 
     user.shared.forEach(e => {
 
@@ -90,19 +98,28 @@ var playlist = {
 
 
 
-//FETCH CONTINUO - Faccio un fetch ogni volta che si scrive qualcosa sull'elemento di input
+
+
+/* Adding an event listener to the search bar, so that when the user types something, the function
+fetchTrack is called. */
 
 var search = document.getElementById("form1");
 search.addEventListener("keyup", e => {
 
-    if(e.target.value.replace(/\s/g, "").length != 0){    //Uso una regular expression per togliere gli spazi ed evitare fetch a vuoto
-    fetchTrack(e.target.value);
+    if (e.target.value.replace(/\s/g, "").length != 0) {    //Uso una regular expression per togliere gli spazi ed evitare fetch a vuoto
+        fetchTrack(e.target.value);
     }
 
 });
 
 
-//STAMPA - Creo una struttura json rappresentante l'elemento e poi la utilizzo per aggiornare la pagina. 
+/**
+ * It takes a track name as input, it fetches the track from the Spotify API, it creates a json object
+ * with the track's name, album art, release date and explicit status, and it updates the page with the
+ * new information
+ * @param track - the name of the song you want to search for
+ * @returns the song object.
+ */
 
 async function fetchTrack(track) {
 
@@ -114,25 +131,25 @@ async function fetchTrack(track) {
     });
 
     let json = await response.json();
-    
+
     if (json.tracks.items.length != 0) {
-    song = {
+        song = {
 
-        name: json.tracks.items[0].artists[0].name + " - " + json.tracks.items[0].name,
-        art: json.tracks.items[0].album.images[0].url,
-        release_date: json.tracks.items[0].album.release_date,
-        explicit: json.tracks.items[0].explicit
+            name: json.tracks.items[0].artists[0].name + " - " + json.tracks.items[0].name,
+            art: json.tracks.items[0].album.images[0].url,
+            release_date: json.tracks.items[0].album.release_date,
+            explicit: json.tracks.items[0].explicit
 
-    };
+        };
 
-    document.getElementsByClassName("searched__art")[0].children[0].src = song.art;
-    document.getElementsByClassName("searched__song__title")[0].innerHTML = song.name;
-    document.getElementsByClassName("searched__song__date")[0].children[0].innerHTML = song.release_date;
-    
+        document.getElementsByClassName("searched__art")[0].children[0].src = song.art;
+        document.getElementsByClassName("searched__song__title")[0].innerHTML = song.name;
+        document.getElementsByClassName("searched__song__date")[0].children[0].innerHTML = song.release_date;
+
     } else {
 
-    alert("Il brano cercato non esiste");
-    return
+        alert("Il brano cercato non esiste");
+        return
 
     }
 }
@@ -147,40 +164,44 @@ function Add() {
 
 
 
-function newPlaylist(){
+/**
+ * It creates a new playlist and adds it to the user's playlists section
+ * @returns the value of the variable error.
+ */
+function newPlaylist() {
 
     playlist = {
 
-    name : prompt("Inserisci il nome della playlist"),
-    desc : prompt("Inserisci una descrizione della playlist"),
-    tag : prompt("Inserisci una serie di tag per la playlist")
+        name: prompt("Inserisci il nome della playlist"),
+        desc: prompt("Inserisci una descrizione della playlist"),
+        tag: prompt("Inserisci una serie di tag per la playlist")
 
     };
 
-    if(playlist.name == null || playlist.desc == null) {
+    if (playlist.name == null || playlist.desc == null) {
 
         error = true;
         alert("Nome e descrizione devono contenere almeno un valore")
-        return 
+        return
 
-    } else if(checkTag(playlist.tag) == false){
+    } else if (checkTag(playlist.tag) == false) {
 
         error = true;
         alert("I tag devono succedere un cancelletto (#) e non possono iniziare con numeri o caratteri alfanumerici");
         return
     }
 
-    if(user.playlists.some(e => e.name == playlist.name) == false){
-    let block = document.createElement("div");
-    block.setAttribute("class", "track");
-    block.innerHTML = "<div class='track__title'>" + playlist.name + "</div> <input type='text' class='label' value='" + playlist.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + playlist.tag.join() + "' readonly spellcheck='false'><div class='controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
-    let playlists = document.getElementById("2");
-    playlists.appendChild(block)
+    if (user.playlists.some(e => e.name == playlist.name) == false) {
+        let block = document.createElement("div");
+        block.setAttribute("class", "track");
+        block.innerHTML = "<div class='track__title'>" + playlist.name + "</div> <input type='text' class='label' value='" + playlist.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + playlist.tag.join() + "' readonly spellcheck='false'><div class='controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
+        let playlists = document.getElementById("2");
+        playlists.appendChild(block)
 
-    user.playlists.push(JSON.parse(JSON.stringify(playlist)));
-    localStorage.setItem("accounts", JSON.stringify(accounts));
+        user.playlists.push(JSON.parse(JSON.stringify(playlist)));
+        localStorage.setItem("accounts", JSON.stringify(accounts));
 
-    console.log(accounts);
+        console.log(accounts);
 
     } else {
 
@@ -189,92 +210,109 @@ function newPlaylist(){
     }
 }
 
-function deletePlaylist(e){
+/**
+ * It deletes the playlist from the DOM and from the user's account
+ * @param e - the event that was triggered
+ */
+function deletePlaylist(e) {
 
     let parent = e.closest(".track");
     let toDelete = parent.getElementsByClassName("track__title")[0].innerHTML;
     parent.remove();
 
-    user.playlists.forEach(function(e, index) {
+    user.playlists.forEach(function (e, index) {
 
-        if(e.name == toDelete) {
+        if (e.name == toDelete) {
 
             user.playlists.splice(index, 1);
-            
+
         }
 
     })
-    
-    window.localStorage.setItem("accounts",JSON.stringify(accounts));
+
+    window.localStorage.setItem("accounts", JSON.stringify(accounts));
 
 }
 
-function editPlaylist(){
+function editPlaylist() {
 
 
 
 
 }
 
-function sharePlaylist(e){
+/**
+ * It takes the playlist that the user wants to share, and adds it to the shared section of the page.
+ * @param e - the element that was clicked
+ */
+function sharePlaylist(e) {
 
     let shared;
 
     let parent = e.closest(".track");
     let toShare = parent.getElementsByClassName("track__title")[0].innerHTML;
-    if(user.shared.some(e => e.name == toShare) == false) {
-    user.playlists.forEach(function(e) {
+    if (user.shared.some(e => e.name == toShare) == false) {
+        user.playlists.forEach(function (e) {
 
-        if(e.name == toShare) {
+            if (e.name == toShare) {
 
-            shared = e;
-            
-        }
+                shared = e;
 
-    })
+            }
 
-    let block = document.createElement("div");
-    block.setAttribute("class", "track");
-    block.innerHTML = "<div class='track__title'>" + shared.name + "</div> <input type='text' class='label' value='" + shared.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + shared.tag.join() + "' readonly spellcheck='false'><div class='controls'> <button onclick='noShare(this);' class='btn btn-outline-success' type='submit'>No share</button></div>"
-    let sharedSection = document.getElementById("3");
-    sharedSection.appendChild(block)
+        })
 
-    user.shared.push(shared);
-    window.localStorage.setItem("accounts",JSON.stringify(accounts))
+        let block = document.createElement("div");
+        block.setAttribute("class", "track");
+        block.innerHTML = "<div class='track__title'>" + shared.name + "</div> <input type='text' class='label' value='" + shared.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + shared.tag.join() + "' readonly spellcheck='false'><div class='controls'> <button onclick='noShare(this);' class='btn btn-outline-success' type='submit'>No share</button></div>"
+        let sharedSection = document.getElementById("3");
+        sharedSection.appendChild(block)
+
+        user.shared.push(shared);
+        window.localStorage.setItem("accounts", JSON.stringify(accounts))
 
     }
 }
 
 
-function noShare(e){
+/**
+ * It removes the track from the shared list and deletes it from the local storage
+ * @param e - the event that was triggered
+ */
+function noShare(e) {
 
     let parent = e.closest(".track");
     let toDelete = parent.getElementsByClassName("track__title")[0].innerHTML;
     parent.remove();
 
-    user.shared.forEach(function(e, index) {
+    user.shared.forEach(function (e, index) {
 
-        if(e.name == toDelete) {
+        if (e.name == toDelete) {
 
             user.shared.splice(index, 1);
-            
+
         }
 
     })
-    
-    window.localStorage.setItem("accounts",JSON.stringify(accounts));
+
+    window.localStorage.setItem("accounts", JSON.stringify(accounts));
     deleteUpdatedShare(toDelete);
 
 
 
 }
 
+/**
+ * It takes a string, checks if it contains a hashtag, and if it does, it returns the hashtag
+ * @param e - the string to be checked
+ * @returns a boolean value.
+ */
 function checkTag(e) {
 
     let errPattern = /(#\w+)/gm;
     e = e.match(errPattern);
 
-    if(e != null){
+    if (e != null) {
 
         playlist.tag = e;
         return true
@@ -289,11 +327,14 @@ function checkTag(e) {
 
 }
 
+/**
+ * It updates the shared playlists page
+ */
 function updateShared() {
 
-   globalShared = globalShared.filter(e => {
+    globalShared = globalShared.filter(e => {
 
-        if(user.shared.some(el => el == e)){
+        if (user.shared.some(el => el == e)) {
 
             return true
 
@@ -328,27 +369,30 @@ function updateShared() {
 }
 
 
-//TODO
-function deleteUpdatedShare(e){
+
+/**
+ * It deletes the shared playlists from the list of shares in the "Shared playlist" section of the page
+ * @param e - the name of the playlist to be deleted
+ */
+
+function deleteUpdatedShare(e) {
 
     let toDelete;
     let section = document.getElementById("4");
     let list = section.childNodes;
-    for(var i = 1; i < list.length; i++){
-      
-      if(list[i].firstChild.textContent == e){
-        
-        console.log("Eureka")
-        toDelete = list[i];
-        break;
+    for (var i = 1; i < list.length; i++) {
 
-      }
-      
+        if (list[i].firstChild.textContent == e) {
+
+            console.log("Eureka")
+            toDelete = list[i];
+            break;
+
+        }
+
     }
 
     section.removeChild(toDelete);
-
-
 
 }
 
