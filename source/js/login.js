@@ -82,6 +82,8 @@ async function login() {
         } else {
 
             window.localStorage.setItem('token', foundUser.token);
+            window.localStorage.setItem("gloablShared", undefined);
+
         }
 
         if(foundUser.completed == "yes"){

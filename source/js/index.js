@@ -1,7 +1,9 @@
-var token;
 const urlTrack = "https://api.spotify.com/v1/search?type=track";
 var accounts;
 var user;
+var token;
+var gloablShared;
+
 var song = {
 
     name: null,
@@ -41,6 +43,7 @@ var playlist = {
     token = window.localStorage.getItem("token");
     accounts = JSON.parse(window.localStorage.getItem("accounts"));
     user = accounts.find((e) => e.token == token);
+    alreadyShared = window.localStorage.getItem("globalShared");
 
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
@@ -48,6 +51,7 @@ var playlist = {
         window.location.replace("login/index.htm");
 
     }
+
 
     
 
@@ -287,15 +291,13 @@ function checkTag(e) {
 
 function updateShared() {
 
-    var alreadyShared = [];
     var block;
     var section = document.getElementById("4");
     accounts.forEach(e => {
 
         e.shared.forEach(el => {
 
-            if (!alreadyShared.some(ell => JSON.stringify(ell) == JSON.stringify(el))) {
-                console.log(alreadyShared.some(ell => JSON.stringify(ell) == JSON.stringify(el)), JSON.stringify(ell), JSON.stringify(el))
+            if (!alreadyShared.some(ell => ell == el)) {
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
