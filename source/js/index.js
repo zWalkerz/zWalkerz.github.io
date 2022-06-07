@@ -285,30 +285,31 @@ function checkTag(e) {
 
 }
 
-function updateShared(){
+function updateShared() {
 
     var alreadyShared = [];
-    var block; 
+    var block;
     var section = document.getElementById("4");
-        accounts.forEach(e => {
+    accounts.forEach(e => {
 
-            e.shared.forEach(el => {
+        e.shared.forEach(el => {
 
-                if(alreadyShared.some(ell => ell == el) == false){
-
+            if (!alreadyShared.some(ell => ell == el)) {
+                
+                console.log(alreadyShared, el, alreadyShared.some(ell => ell == el))
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
                 section.appendChild(block);
                 alreadyShared.push(el)
 
-                }
-            })
-        
-
+            }
         })
 
-        window.localStorage.setItem("globalShared", JSON.stringify(alreadyShared));
+
+    })
+
+    window.localStorage.setItem("globalShared", JSON.stringify(alreadyShared));
 
 }
 
