@@ -294,9 +294,8 @@ function updateShared() {
 
         e.shared.forEach(el => {
 
-            if (!alreadyShared.some(ell => ell == el)) {
+            if (!alreadyShared.some(ell => JSON.stringify(ell) === JSON.stringify(el))) {
                 
-                console.log(alreadyShared, el, alreadyShared.some(ell => ell == el))
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
