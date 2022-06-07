@@ -242,8 +242,6 @@ function sharePlaylist(e){
     user.shared.push(shared);
     window.localStorage.setItem("accounts",JSON.stringify(accounts))
 
-    console.log(accounts);
-
     }
 }
 
@@ -265,7 +263,8 @@ function noShare(e){
     })
     
     window.localStorage.setItem("accounts",JSON.stringify(accounts));
-    updateShared();
+    deleteUpdatedShare(toDelete);
+
 
 
 }
@@ -325,6 +324,31 @@ function updateShared() {
     })
 
     window.localStorage.setItem("globalShared", JSON.stringify(globalShared));
+
+}
+
+
+//TODO
+function deleteUpdatedShare(e){
+
+    let toDelete;
+    let section = document.getElementById("4");
+    let list = section.childNodes;
+    for(var i = 1; i < list.length; i++){
+      
+      if(list[i].firstChild.textContent == e){
+        
+        console.log("Eureka")
+        toDelete = list[i];
+        break;
+
+      }
+      
+    }
+
+    section.removeChild(toDelete);
+
+
 
 }
 
