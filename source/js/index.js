@@ -2,7 +2,7 @@ const urlTrack = "https://api.spotify.com/v1/search?type=track";
 var accounts;
 var user;
 var token;
-var gloablShared;
+var globalShared;
 
 var song = {
 
@@ -43,7 +43,7 @@ var playlist = {
     token = window.localStorage.getItem("token");
     accounts = JSON.parse(window.localStorage.getItem("accounts"));
     user = accounts.find((e) => e.token == token);
-    alreadyShared = window.localStorage.getItem("globalShared");
+    globalShared = window.localStorage.getItem("globalShared");
 
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
@@ -297,12 +297,12 @@ function updateShared() {
 
         e.shared.forEach(el => {
 
-            if (!alreadyShared.some(ell => ell == el)) {
+            if (!globalShared.some(ell => ell == el)) {
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
                 section.appendChild(block);
-                alreadyShared.push(el)
+                globalShared.push(el)
 
             }
         })
@@ -310,7 +310,7 @@ function updateShared() {
 
     })
 
-    window.localStorage.setItem("globalShared", JSON.stringify(alreadyShared));
+    window.localStorage.setItem("globalShared", JSON.stringify(globalShared));
 
 }
 
