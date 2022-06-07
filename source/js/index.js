@@ -265,6 +265,7 @@ function noShare(e){
     })
     
     window.localStorage.setItem("accounts",JSON.stringify(accounts));
+    updateShared();
 
 
 }
@@ -298,7 +299,7 @@ function updateShared() {
             return true
 
         }
-        
+
         return false
 
     })
