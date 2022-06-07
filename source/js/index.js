@@ -284,7 +284,7 @@ function checkTag(e) {
 
 }
 
-    var alreadyShared;
+    var alreadyShared = [];
     var block; 
     var section = document.getElementById("4");
     var update = document.getElementById("shared");
@@ -301,7 +301,7 @@ function checkTag(e) {
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
                 section.appendChild(block);
                 alreadyShared.push(e.shared)
-                
+
                 }
             })
         
