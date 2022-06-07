@@ -294,7 +294,7 @@ function updateShared() {
 
         e.shared.forEach(el => {
 
-            if (!alreadyShared.some(ell => JSON.stringify(ell) === JSON.stringify(el))) {
+            if (!alreadyShared.some(ell => JSON.stringify(ell) == JSON.stringify(el))) {
                 
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
