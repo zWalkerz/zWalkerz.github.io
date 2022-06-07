@@ -82,7 +82,7 @@ async function login() {
         } else {
 
             window.localStorage.setItem('token', foundUser.token);
-            window.localStorage.setItem("gloablShared", undefined);
+            window.localStorage.setItem("globalShared", undefined);
 
         }
 
