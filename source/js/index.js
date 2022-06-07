@@ -236,6 +236,7 @@ function sharePlaylist(e){
     sharedSection.appendChild(block)
 
     user.shared.push(shared);
+    window.localStorage.setItem("accounts",JSON.stringify(accounts))
 
     console.log(accounts);
 
@@ -284,12 +285,11 @@ function checkTag(e) {
 
 }
 
+function updateShared(){
+
     var alreadyShared = [];
     var block; 
     var section = document.getElementById("4");
-    var update = document.getElementById("shared");
-    update.addEventListener("click", () => {
-
         accounts.forEach(e => {
 
             e.shared.forEach(el => {
@@ -308,6 +308,8 @@ function checkTag(e) {
 
         })
 
+        window.localStorage.setItem("globalShared", JSON.stringify(alreadyShared));
 
-    })
+}
+
 
