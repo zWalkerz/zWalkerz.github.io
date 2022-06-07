@@ -291,6 +291,18 @@ function checkTag(e) {
 
 function updateShared() {
 
+   globalShared = globalShared.filter(e => {
+
+        if(user.shared.some(e)){
+
+            return true
+
+        }
+        return false
+
+    })
+
+
     var block;
     var section = document.getElementById("4");
     accounts.forEach(e => {
@@ -303,10 +315,6 @@ function updateShared() {
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
                 section.appendChild(block);
                 globalShared.push(el)
-
-            } else {
-
-                globalShared.filter(ell => ell == el);
 
             }
         })
