@@ -43,7 +43,7 @@ var playlist = {
     token = window.localStorage.getItem("token");
     accounts = JSON.parse(window.localStorage.getItem("accounts"));
     user = accounts.find((e) => e.token == token);
-    globalShared = window.localStorage.getItem("globalShared");
+    globalShared = JSON.parse(window.localStorage.getItem("globalShared"));
 
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
