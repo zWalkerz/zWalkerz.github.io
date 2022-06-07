@@ -294,7 +294,7 @@ function updateShared(){
 
             e.shared.forEach(el => {
 
-                if(!alreadyShared.some(ell => ell == el)){
+                if(alreadyShared.some(ell => ell == el) == false){
 
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
