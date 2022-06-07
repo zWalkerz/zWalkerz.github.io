@@ -293,11 +293,12 @@ function updateShared() {
 
    globalShared = globalShared.filter(e => {
 
-        if(user.shared.some(e)){
+        if(user.shared.some(el => el == e)){
 
             return true
 
         }
+        
         return false
 
     })
