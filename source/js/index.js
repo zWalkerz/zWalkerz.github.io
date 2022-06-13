@@ -142,6 +142,8 @@ async function fetchTrack(track) {
 
         };
 
+        console.log(json.tracks.items[0]);
+
         document.getElementsByClassName("searched__art")[0].children[0].src = song.art;
         document.getElementsByClassName("searched__song__title")[0].innerHTML = song.name;
         document.getElementsByClassName("searched__song__date")[0].children[0].innerHTML = song.release_date;
@@ -246,7 +248,7 @@ function editPlaylist(e) {
         user.playlists.forEach(e => {
 
             if (e.name == toEdit){
-            window.localStorage.setItem("Editing", JSON.stringify(e));
+            window.localStorage.setItem("editing", JSON.stringify(e));
             }
         })
 
@@ -285,6 +287,9 @@ function sharePlaylist(e) {
         window.localStorage.setItem("accounts", JSON.stringify(accounts))
 
     }
+
+    updateShared()
+
 }
 
 
@@ -345,6 +350,8 @@ function checkTag(e) {
  */
 function updateShared() {
 
+/* It's filtering the globalShared array, and returning only the elements that are in the user's shared
+array. */
     globalShared = globalShared.filter(e => {
 
         if (user.shared.some(el => el == e)) {
@@ -406,6 +413,30 @@ function deleteUpdatedShare(e) {
     }
 
     section.removeChild(toDelete);
+
+}
+
+function editing() {
+
+    let section = document.getElementById("1");
+    let currentPlaylist = JSON.parse(localStorage.getItem("editing"));
+
+    if(currentPlaylist.songs.length == 0) {
+
+        section.innerHTML = "<span class = 'label'>No songs </span>";
+
+    }
+    else {
+
+        block = document.createElement("div");
+        block.setAttribute("class", "track");
+        block.innerHTML = "<div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name;
+        section.appendChild(block);
+
+
+    }
+
+
 
 }
 
