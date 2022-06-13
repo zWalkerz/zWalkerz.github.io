@@ -246,7 +246,7 @@ function editPlaylist(e) {
         user.playlists.forEach(e => {
 
             if (e.name == toEdit){
-            window.localStorage.setItem("Editing", e);
+            window.localStorage.setItem("Editing", JSON.stringify(e));
             }
         })
 
