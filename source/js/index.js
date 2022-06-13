@@ -235,11 +235,23 @@ function deletePlaylist(e) {
 
 }
 
-function editPlaylist() {
+function editPlaylist(e) {
+
+    let edited;
+
+    let parent = e.closest(".track");
+    let toEdit = parent.getElementsByClassName("track__title")[0].innerHTML;
+    if(user.playlists.some(e => e.name == toEdit)) {
+
+        user.playlists.forEach(e => {
+
+            if (e.name == toEdit){
+            window.localStorage.setItem("Editing", e);
+            }
+        })
 
 
-
-
+    }
 }
 
 /**
