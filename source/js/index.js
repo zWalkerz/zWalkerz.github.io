@@ -254,6 +254,9 @@ function editPlaylist(e) {
 
 
     }
+
+    editing();
+
 }
 
 /**
@@ -350,21 +353,6 @@ function checkTag(e) {
  */
 function updateShared() {
 
-/* It's filtering the globalShared array, and returning only the elements that are in the user's shared
-array. */
-    globalShared = globalShared.filter(e => {
-
-        if (user.shared.some(el => el == e)) {
-
-            return true
-
-        }
-
-        return false
-
-    })
-
-
     var block;
     var section = document.getElementById("4");
     accounts.forEach(e => {
@@ -396,6 +384,21 @@ array. */
  */
 
 function deleteUpdatedShare(e) {
+
+/* It's filtering the globalShared array, and returning only the elements that are in the user's shared
+array. */
+
+    globalShared = globalShared.filter(e => {
+
+        if (user.shared.some(el => el == e)) {
+
+            return true
+
+        }
+
+        return false
+
+    })
 
     let toDelete;
     let section = document.getElementById("4");
