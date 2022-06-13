@@ -174,7 +174,8 @@ function newPlaylist() {
 
         name: prompt("Inserisci il nome della playlist"),
         desc: prompt("Inserisci una descrizione della playlist"),
-        tag: prompt("Inserisci una serie di tag per la playlist")
+        tag: prompt("Inserisci una serie di tag per la playlist"),
+        songs: []
 
     };
 
