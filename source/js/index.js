@@ -454,7 +454,7 @@ array. */
 function editing() {
 
     let section = document.getElementById("1");
-    let title = document.querySelector("#manage-playlist .section-title :nth-child(2)");
+    let title = document.querySelectorAll("#manage-playlist .section-title")[1];
 
     if(currentPlaylist == null) {
 
