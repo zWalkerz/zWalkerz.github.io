@@ -455,8 +455,17 @@ function editing() {
 
     let section = document.getElementById("1");
 
-    if(currentPlaylist.songs.length == 0 || currentPlaylist == null) {
+    if(currentPlaylist == null) {
 
+        let title = document.querySelector("#manage-playlist .section-title");
+        title.innerHTML = "No playlist is selected";
+        section.innerHTML = "<div class='track'><span class = 'label'>No songs </span></div>";
+
+    }
+    else if(currentPlaylist.songs.length == 0) {
+
+        let title = document.querySelector("#manage-playlist .section-title");
+        title.innerHTML = "Current playlist: " + currentPlaylist.name;
         section.innerHTML = "<div class='track'><span class = 'label'>No songs </span></div>";
 
     }
