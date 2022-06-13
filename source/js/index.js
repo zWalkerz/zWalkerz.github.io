@@ -416,6 +416,7 @@ array. */
     }
 
     section.removeChild(toDelete);
+    window.localStorage.setItem("globalShared", JSON.stringify(globalShared));
 
 }
 
