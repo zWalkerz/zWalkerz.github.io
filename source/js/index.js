@@ -3,6 +3,7 @@ var accounts;
 var user;
 var token;
 var globalShared;
+var currentPlaylist;
 
 var song = {
 
@@ -46,6 +47,7 @@ valid. If it's not, it redirects the user to the login page. */
     accounts = JSON.parse(window.localStorage.getItem("accounts"));
     user = accounts.find((e) => e.token == token);
     globalShared = JSON.parse(window.localStorage.getItem("globalShared"));
+    currentPlaylist = JSON.parse(localStorage.getItem("editing"));
 
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
@@ -62,6 +64,14 @@ valid. If it's not, it redirects the user to the login page. */
 
 /* A self-invoking function that creates a block for each playlist and adds it to the playlists
 section of the page everytime the site is loaded. */
+
+(function () {
+
+    editing();
+
+
+})();
+
 
 (function () {
 
@@ -444,16 +454,17 @@ array. */
 function editing() {
 
     let section = document.getElementById("1");
-    let currentPlaylist = JSON.parse(localStorage.getItem("editing"));
 
-    if(currentPlaylist.songs.length == 0) {
+    if(currentPlaylist.songs.length == 0 || currentPlaylist == null) {
 
         section.innerHTML = "<div class='track'><span class = 'label'>No songs </span></div>";
 
     }
     else {
 
-        block = document.createElement("div");
+        let title = document.querySelector("#manage-playlist .section-title");
+        title.innerHTML = "Current playlist: " + currentPlaylist.name;
+        let block = document.createElement("div");
         block.setAttribute("class", "track");
         block.innerHTML = "<div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name;
         section.appendChild(block);
