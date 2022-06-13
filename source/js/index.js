@@ -46,9 +46,6 @@ valid. If it's not, it redirects the user to the login page. */
     token = window.localStorage.getItem("token");
     accounts = JSON.parse(window.localStorage.getItem("accounts"));
     user = accounts.find((e) => e.token == token);
-    globalShared = JSON.parse(window.localStorage.getItem("globalShared"));
-    currentPlaylist = JSON.parse(window.localStorage.getItem("editing"));
-
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
         alert("La tua sessione e' scaduta, effettuare nuovamente login");
@@ -270,8 +267,6 @@ function deletePlaylist(e) {
 
 function editPlaylist(e) {
 
-    let edited;
-
     let parent = e.closest(".track");
     let toEdit = parent.getElementsByClassName("track__title")[0].innerHTML;
     if(user.playlists.some(e => e.name == toEdit)) {
@@ -384,6 +379,7 @@ function checkTag(e) {
  */
 function updateShared() {
 
+    globalShared = JSON.parse(window.localStorage.getItem("globalShared"));
     var block;
     var section = document.getElementById("4");
     accounts.forEach(e => {
@@ -419,6 +415,8 @@ function deleteUpdatedShare(e) {
 /* It's filtering the globalShared array, and returning only the elements that are in the user's shared
 array. */
 
+    globalShared = JSON.parse(window.localStorage.getItem("globalShared"));
+
     globalShared = globalShared.filter(e => {
 
         if (user.shared.some(el => el == e)) {
@@ -452,6 +450,8 @@ array. */
 }
 
 function editing() {
+
+    currentPlaylist = JSON.parse(window.localStorage.getItem("editing"));
 
     let section = document.getElementById("1");
     let title = document.querySelectorAll("#manage-playlist .section-title")[1];
