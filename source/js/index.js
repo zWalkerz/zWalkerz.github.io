@@ -47,7 +47,7 @@ valid. If it's not, it redirects the user to the login page. */
     accounts = JSON.parse(window.localStorage.getItem("accounts"));
     user = accounts.find((e) => e.token == token);
     globalShared = JSON.parse(window.localStorage.getItem("globalShared"));
-    currentPlaylist = JSON.parse(localStorage.getItem("editing"));
+    currentPlaylist = JSON.parse(window.localStorage.getItem("editing"));
 
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
