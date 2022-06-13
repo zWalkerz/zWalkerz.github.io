@@ -427,7 +427,7 @@ function editing() {
 
     if(currentPlaylist.songs.length == 0) {
 
-        section.innerHTML = "<span class = 'label'>No songs </span>";
+        section.innerHTML = "<div class='track'><span class = 'label'>No songs </span></div>";
 
     }
     else {
