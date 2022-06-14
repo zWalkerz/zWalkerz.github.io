@@ -95,7 +95,7 @@ section of the page everytime the site is loaded. */
 
         e.shared.forEach(el => {
 
-            if (globalShared.some(ell => JSON.stringify(ell) === JSON.stringify(el)) == false) {
+            if (globalShared.some(ell => JSON.stringify(ell) === JSON.stringify(el))) {
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
@@ -422,7 +422,7 @@ array. */
 
     globalShared = globalShared.filter(e => {
 
-        if (user.shared.some(el => el == e)) {
+        if (user.shared.some(el => JSON.stringify(el) === JSON.stringify(e) )) {
 
             return true
 
