@@ -389,6 +389,7 @@ function updateShared() {
         e.shared.forEach(el => {
 
             if (!globalShared.some(ell => ell == el)) {
+                console.log(globalShared.some(ell => ell == el));
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
