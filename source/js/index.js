@@ -91,19 +91,13 @@ section of the page everytime the site is loaded. */
 
 (function () {
 
-    accounts.forEach(e => {
+    globalShared.forEach(el => {
 
-        e.shared.forEach(el => {
-
-            if (globalShared.some(ell => JSON.stringify(ell) === JSON.stringify(el))) {
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
                 let section = document.getElementById("4");
                 section.appendChild(block);
-            }
-        })
-
 
     })
 
