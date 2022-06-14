@@ -295,7 +295,7 @@ function sharePlaylist(e) {
 
     let parent = e.closest(".track");
     let toShare = parent.getElementsByClassName("track__title")[0].innerHTML;
-    if (user.shared.some(e => e.name == toShare) == false) {
+    if (user.shared.some(e => e.name.trim() == toShare.trim()) == false) {
         user.playlists.forEach(function (e) {
 
             if (e.name == toShare) {
