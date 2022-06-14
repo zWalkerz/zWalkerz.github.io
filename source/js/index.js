@@ -46,6 +46,8 @@ valid. If it's not, it redirects the user to the login page. */
     token = window.localStorage.getItem("token");
     accounts = JSON.parse(window.localStorage.getItem("accounts"));
     user = accounts.find((e) => e.token == token);
+    globalShared = JSON.parse(window.localStorage.getItem("globalShared"));
+
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
         alert("La tua sessione e' scaduta, effettuare nuovamente login");
