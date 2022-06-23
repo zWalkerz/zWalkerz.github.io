@@ -309,8 +309,25 @@ function deletePlaylist(e) {
 
     })
 
+    document.getElementById("3").getElementsByClassName("track").forEach(e => {
+
+        e.getElementsByClassName("track__title").forEach(el => {
+
+            if(ell.textContent == toDelete) {
+
+                e.getElementsByClassName("controls").children[0].click();
+
+            }
+
+        })
+
+    })
+
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
     window.sessionStorage.removeItem("editing");
+
+    //QUANDO CANCELLO LA PLAYLIST SI DEVE ANCHE RIMUOVERE DAI SHARED
+
 }
 
 
