@@ -351,7 +351,7 @@ function noShare(e) {
 
 
 /**
- * It updates the shared playlists page
+ * It updates the globally shared playlists page
  */
 function globalShared() {
 
@@ -362,8 +362,7 @@ function globalShared() {
 
         e.shared.forEach(el => {
 
-            if (updated.some(ell => JSON.stringify(ell) === JSON.stringify(el)) == false) {
-                console.log(updated.some(ell => ell == el));
+            if (!updated.some(ell => JSON.stringify(ell) == JSON.stringify(el))) {
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
