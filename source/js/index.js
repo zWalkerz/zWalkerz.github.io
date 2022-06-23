@@ -183,17 +183,24 @@ async function fetchTrack(track) {
 
 function Add(song) {
 
-    /*let song = {
+    if(song){
 
-        name: document.getElementsByClassName("searched__song__title")[0],
-        art: document.getElementsByClassName("searched__art")[0].children[0],
-        release_date: document.getElementsByClassName("searched__song__date")[0].children[0].innerHTML,
-        explicit: null
-    }*/
+    let editing = JSON.parse(window.sessionStorage.getItem("editing"));
+    editing.songs.push(song);
+    user.playlists.forEach(e => {
 
+        if(e.name == editing.name) {
 
-    //let editing = JSON.parse(window.sessionStorage.getItem("editing"));
-    console.log(song);
+            e = editing;
+
+        }
+
+    });
+
+    window.sessionStorage.setItem("editing", JSON.stringify(editing));
+    window.localStorage.setItem("accounts", JSON.stringify(accounts));
+
+    }
 }
 
 
