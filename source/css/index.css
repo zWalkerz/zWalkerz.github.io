@@ -69,12 +69,8 @@ body a {
   display: flex;
   flex-flow: row nowrap;
 }
-.searched__art {
-  width: 75px;
-}
  .searched__art img {
   width: 75px;
-  height: 75px;
 }
  .searched__song {
   width: calc(100% - 75px);

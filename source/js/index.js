@@ -3,15 +3,6 @@ var accounts;
 var user;
 var token;
 
-var song = {
-
-    name: null,
-    art: null,
-    release_date: null,
-    explicit: null
-
-};
-
 var playlist = {
 
     name: null,
@@ -133,7 +124,7 @@ var search = document.getElementById("form1");
 search.addEventListener("keyup", e => {
 
     if (e.target.value.replace(/\s/g, "").length != 0) {    //Uso una regular expression per togliere gli spazi ed evitare fetch a vuoto
-        fetchTrack(e.target.value);
+        var addWrap = fetchTrack(e.target.value);
     }
 
 });
@@ -159,7 +150,7 @@ async function fetchTrack(track) {
     let json = await response.json();
 
     if (json.tracks.items.length != 0) {
-        song = {
+        let song = {
 
             name: json.tracks.items[0].artists[0].name + " - " + json.tracks.items[0].name,
             art: json.tracks.items[0].album.images[0].url,
@@ -174,6 +165,12 @@ async function fetchTrack(track) {
         document.getElementsByClassName("searched__song__title")[0].innerHTML = song.name;
         document.getElementsByClassName("searched__song__date")[0].children[0].innerHTML = song.release_date;
 
+        return function() {
+
+            Add(song);
+
+        }
+
     } else {
 
         alert("Il brano cercato non esiste");
@@ -184,10 +181,19 @@ async function fetchTrack(track) {
 
 //ADD TRACK - Aggiorno la playlist inserendovi la track
 
-function Add() {
+function Add(song) {
 
+    /*let song = {
+
+        name: document.getElementsByClassName("searched__song__title")[0],
+        art: document.getElementsByClassName("searched__art")[0].children[0],
+        release_date: document.getElementsByClassName("searched__song__date")[0].children[0].innerHTML,
+        explicit: null
+    }*/
+
+
+    //let editing = JSON.parse(window.sessionStorage.getItem("editing"));
     console.log(song);
-
 }
 
 
