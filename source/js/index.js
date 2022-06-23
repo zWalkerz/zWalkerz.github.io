@@ -191,6 +191,7 @@ function Add(song) {
 
         if(e.name == editing.name) {
 
+            console.log(e.name, editing.name)
             e = editing;
 
         }
