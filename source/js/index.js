@@ -483,7 +483,7 @@ function editing() {
         title.innerHTML = "Current playlist: " + currentPlaylist.name;
         let block = document.createElement("div");
         block.setAttribute("class", "track");
-        block.innerHTML = "<div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name;
+       // block.innerHTML = "<div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name;
         section.appendChild(block);
 
     }
