@@ -88,18 +88,21 @@ section of the page everytime the site is loaded. */
 
 (function () {
 
+    let updated = [];
+
     accounts.forEach(e => {
         e.shared.forEach(el => {
 
-                block = document.createElement("div");
+                let block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
                 let section = document.getElementById("4");
                 section.appendChild(block);
-
+                updated.push(el);
     })
 })
 
+    window.sessionStorage.setItem("globalShared", updated);
 
 })();
 
@@ -282,7 +285,7 @@ function deletePlaylist(e) {
     })
 
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
-
+    window.sessionStorage.removeItem("editing");
 }
 
 
@@ -358,15 +361,7 @@ function globalShared() {
     let block;
     let section = document.getElementById("4");
 
-    if(localStorage.getItem("globalShared")){
-
-        updated = JSON.parse(localStorage.getItem("globalShared"))
-
-    } else {
-
-        updated = [];
-
-    }
+    updated = JSON.parse(sessionStorage.getItem("globalShared"));
     accounts.forEach(e => {
 
         e.shared.forEach(el => {
@@ -385,7 +380,7 @@ function globalShared() {
 
     })
 
-    window.localStorage.setItem("globalShared", JSON.stringify(updated));
+    window.sessionStorage.setItem("globalShared", JSON.stringify(updated));
 
 }
 
@@ -401,7 +396,7 @@ function deleteGlobalShared(e) {
 /* It's filtering the globalShared array, and returning only the elements that are in the user's shared
 array. */
 
-    let updated = JSON.parse(window.localStorage.getItem("globalShared"));
+    let updated = JSON.parse(window.sessionStorage.getItem("globalShared"));
 
     updated = updated.filter(e => {
 
@@ -431,7 +426,7 @@ array. */
     }
 
     section.removeChild(toDelete);
-    window.localStorage.setItem("globalShared", JSON.stringify(updated));
+    window.sessionStorage.setItem("globalShared", JSON.stringify(updated));
 
 }
 
