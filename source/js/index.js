@@ -442,7 +442,7 @@ function editPlaylist(e) {
         user.playlists.forEach(e => {
 
             if (e.name == toEdit){
-            window.localStorage.setItem("editing", JSON.stringify(e));
+            window.sessionStorage.setItem("editing", JSON.stringify(e));
             }
         });
 
@@ -452,7 +452,7 @@ function editPlaylist(e) {
 
 function editing() {
 
-    let currentPlaylist = JSON.parse(window.localStorage.getItem("editing"));
+    let currentPlaylist = JSON.parse(window.sessionStorage.getItem("editing"));
 
     let section = document.getElementById("1");
     let title = document.querySelectorAll("#manage-playlist .section-title")[1];
