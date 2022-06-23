@@ -2,7 +2,6 @@ const urlTrack = "https://api.spotify.com/v1/search?type=track";
 var accounts;
 var user;
 var token;
-var globalShared;
 var currentPlaylist;
 
 var song = {
@@ -46,7 +45,6 @@ valid. If it's not, it redirects the user to the login page. */
     token = window.localStorage.getItem("token");
     accounts = JSON.parse(window.localStorage.getItem("accounts"));
     user = accounts.find((e) => e.token == token);
-    globalShared = JSON.parse(window.localStorage.getItem("globalShared"));
 
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
@@ -91,7 +89,8 @@ section of the page everytime the site is loaded. */
 
 (function () {
 
-    globalShared.forEach(el => {
+    accounts.forEach(e => {
+        e.shared.forEach(el => {
 
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
@@ -100,6 +99,7 @@ section of the page everytime the site is loaded. */
                 section.appendChild(block);
 
     })
+})
 
 
 })();
@@ -238,6 +238,31 @@ function newPlaylist() {
 }
 
 /**
+ * It takes a string, checks if it contains a hashtag, and if it does, it returns the hashtag
+ * @param e - the string to be checked
+ * @returns a boolean value.
+ */
+ function checkTag(e) {
+
+    let errPattern = /(#\w+)/gm;
+    e = e.match(errPattern);
+
+    if (e != null) {
+
+        playlist.tag = e;
+        return true
+
+    } else {
+
+        return false
+
+    }
+
+
+
+}
+
+/**
  * It deletes the playlist from the DOM and from the user's account
  * @param e - the event that was triggered
  */
@@ -261,25 +286,6 @@ function deletePlaylist(e) {
 
 }
 
-function editPlaylist(e) {
-
-    let parent = e.closest(".track");
-    let toEdit = parent.getElementsByClassName("track__title")[0].innerHTML;
-    if(user.playlists.some(e => e.name == toEdit)) {
-
-        user.playlists.forEach(e => {
-
-            if (e.name == toEdit){
-            window.localStorage.setItem("editing", JSON.stringify(e));
-            }
-        })
-
-
-    }
-
-    editing();
-
-}
 
 /**
  * It takes the playlist that the user wants to share, and adds it to the shared section of the page.
@@ -313,7 +319,7 @@ function sharePlaylist(e) {
 
     }
 
-    updateShared()
+    globalShared()
 
 }
 
@@ -339,56 +345,30 @@ function noShare(e) {
     })
 
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
-    deleteUpdatedShare(toDelete);
-
-
+    deleteGlobalShared(toDelete);
 
 }
 
-/**
- * It takes a string, checks if it contains a hashtag, and if it does, it returns the hashtag
- * @param e - the string to be checked
- * @returns a boolean value.
- */
-function checkTag(e) {
-
-    let errPattern = /(#\w+)/gm;
-    e = e.match(errPattern);
-
-    if (e != null) {
-
-        playlist.tag = e;
-        return true
-
-    } else {
-
-        return false
-
-    }
-
-
-
-}
 
 /**
  * It updates the shared playlists page
  */
-function updateShared() {
+function globalShared() {
 
-    globalShared = JSON.parse(window.localStorage.getItem("globalShared"));
-    var block;
-    var section = document.getElementById("4");
+    let updated = [];
+    let block;
+    let section = document.getElementById("4");
     accounts.forEach(e => {
 
         e.shared.forEach(el => {
 
-            if (globalShared.some(ell => JSON.stringify(ell) === JSON.stringify(el)) == false) {
-                console.log(globalShared.some(ell => ell == el));
+            if (updated.some(ell => JSON.stringify(ell) === JSON.stringify(el)) == false) {
+                console.log(updated.some(ell => ell == el));
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
                 section.appendChild(block);
-                globalShared.push(el)
+                updated.push(el)
 
             }
         })
@@ -396,7 +376,7 @@ function updateShared() {
 
     })
 
-    window.localStorage.setItem("globalShared", JSON.stringify(globalShared));
+    window.localStorage.setItem("globalShared", JSON.stringify(updated));
 
 }
 
@@ -407,16 +387,16 @@ function updateShared() {
  * @param e - the name of the playlist to be deleted
  */
 
-function deleteUpdatedShare(e) {
+function deleteGlobalShared(e) {
 
 /* It's filtering the globalShared array, and returning only the elements that are in the user's shared
 array. */
 
-    globalShared = JSON.parse(window.localStorage.getItem("globalShared"));
+    let updated = JSON.parse(window.localStorage.getItem("globalShared"));
 
-    globalShared = globalShared.filter(e => {
+    updated = updated.filter(e => {
 
-        if (user.shared.some(el => JSON.stringify(el) === JSON.stringify(e) )) {
+        if (user.shared.some(el => JSON.stringify(el) == JSON.stringify(e))) {
 
             return true
 
@@ -442,7 +422,27 @@ array. */
     }
 
     section.removeChild(toDelete);
-    window.localStorage.setItem("globalShared", JSON.stringify(globalShared));
+    window.localStorage.setItem("globalShared", JSON.stringify(updated));
+
+}
+
+function editPlaylist(e) {
+
+    let parent = e.closest(".track");
+    let toEdit = parent.getElementsByClassName("track__title")[0].innerHTML;
+    if(user.playlists.some(e => e.name == toEdit)) {
+
+        user.playlists.forEach(e => {
+
+            if (e.name == toEdit){
+            window.localStorage.setItem("editing", JSON.stringify(e));
+            }
+        })
+
+
+    }
+
+    editing();
 
 }
 
