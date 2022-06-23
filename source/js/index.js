@@ -124,7 +124,7 @@ var search = document.getElementById("form1");
 search.addEventListener("keyup", e => {
 
     if (e.target.value.replace(/\s/g, "").length != 0) {    //Uso una regular expression per togliere gli spazi ed evitare fetch a vuoto
-        addWrap = await fetchTrack(e.target.value);
+        (async() => {addWrap = await fetchTrack(e.target.value);})();
     }
 
 });
