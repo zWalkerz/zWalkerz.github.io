@@ -2,7 +2,6 @@ const urlTrack = "https://api.spotify.com/v1/search?type=track";
 var accounts;
 var user;
 var token;
-var currentPlaylist;
 
 var song = {
 
@@ -440,17 +439,12 @@ function editPlaylist(e) {
 
     let parent = e.closest(".track");
     let toEdit = parent.getElementsByClassName("track__title")[0].innerHTML;
-    if(user.playlists.some(e => e.name == toEdit)) {
-
         user.playlists.forEach(e => {
 
             if (e.name == toEdit){
             window.localStorage.setItem("editing", JSON.stringify(e));
             }
-        })
-
-
-    }
+        });
 
     editing();
 
@@ -458,7 +452,7 @@ function editPlaylist(e) {
 
 function editing() {
 
-    currentPlaylist = JSON.parse(window.localStorage.getItem("editing"));
+    let currentPlaylist = JSON.parse(window.localStorage.getItem("editing"));
 
     let section = document.getElementById("1");
     let title = document.querySelectorAll("#manage-playlist .section-title")[1];
@@ -482,7 +476,6 @@ function editing() {
         block.setAttribute("class", "track");
         block.innerHTML = "<div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name;
         section.appendChild(block);
-
 
     }
 
