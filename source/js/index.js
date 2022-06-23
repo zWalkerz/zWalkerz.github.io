@@ -102,7 +102,7 @@ section of the page everytime the site is loaded. */
     })
 })
 
-    window.sessionStorage.setItem("globalShared", updated);
+    window.sessionStorage.setItem("globalShared", JSON.stringify(updated));
 
 })();
 
