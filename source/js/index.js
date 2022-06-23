@@ -355,14 +355,25 @@ function noShare(e) {
  */
 function globalShared() {
 
-    let updated = [];
+    let updated;
     let block;
     let section = document.getElementById("4");
+
+    if(localStorage.getItem("globalShared")){
+
+        updated = JSON.parse(localStorage.getItem("globalShared"))
+
+    } else {
+
+        updated = [];
+
+    }
     accounts.forEach(e => {
 
         e.shared.forEach(el => {
 
             if (!updated.some(ell => JSON.stringify(ell) == JSON.stringify(el))) {
+                console.log(updated.some(ell => JSON.stringify(ell) == JSON.stringify(el)))
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
