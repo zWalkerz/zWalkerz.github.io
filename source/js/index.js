@@ -196,19 +196,19 @@ function Add(song) {
     })
 
     if(flag) {
+    let ind;
     editing.songs.push(song);
-    user.playlists.forEach(e => {
+    user.playlists.forEach((e, index) => {
 
         if(e.name == editing.name) {
 
-            e = editing;
-            console.log(e);
+            ind = index;
 
         }
 
-        console.log(user);
-
     });
+
+    user.playlists[index] = editing;
 }
     window.sessionStorage.setItem("editing", JSON.stringify(editing));
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
