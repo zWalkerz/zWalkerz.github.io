@@ -208,7 +208,7 @@ function Add(song) {
 
     });
 
-    user.playlists[index] = editing;
+    user.playlists[ind] = editing;
 }
     window.sessionStorage.setItem("editing", JSON.stringify(editing));
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
