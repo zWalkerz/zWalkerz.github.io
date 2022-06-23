@@ -124,7 +124,7 @@ var search = document.getElementById("form1");
 search.addEventListener("keyup", e => {
 
     if (e.target.value.replace(/\s/g, "").length != 0) {    //Uso una regular expression per togliere gli spazi ed evitare fetch a vuoto
-        (async() => {addWrap = await fetchTrack(e.target.value);})();
+        async() => {addWrap = await fetchTrack(e.target.value);};
     }
 
 });
@@ -183,9 +183,19 @@ async function fetchTrack(track) {
 
 function Add(song) {
 
-    if(song){
-
+    let flag = true;
     let editing = JSON.parse(window.sessionStorage.getItem("editing"));
+    editing.songs.forEach(e => {
+
+        if(e.name == song.name) {
+
+            flag = false;
+
+        }
+
+    })
+
+    if(flag) {
     editing.songs.push(song);
     user.playlists.forEach(e => {
 
@@ -193,18 +203,16 @@ function Add(song) {
 
             e = editing;
             console.log(e);
-            console.log(editing);
 
         }
 
         console.log(user);
 
     });
-
+}
     window.sessionStorage.setItem("editing", JSON.stringify(editing));
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
 
-    }
 }
 
 
