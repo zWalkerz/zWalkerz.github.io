@@ -309,19 +309,17 @@ function deletePlaylist(e) {
 
     })
 
-    document.getElementById("3").getElementsByClassName("track").forEach(e => {
+    let list = document.querySelectorAll("#\\33 .track");
+    for(let i = 0; i < list.length; i++){
 
-        e.getElementsByClassName("track__title").forEach(el => {
+        if(list[i].getElementsByClassName("track__title").innerHTML == toDelete){
 
-            if(ell.textContent == toDelete) {
+            list[i].getElementsByClassName("controls").children[0].click();
 
-                e.getElementsByClassName("controls").children[0].click();
+        }
 
-            }
-
-        })
-
-    })
+    }
+    
 
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
     window.sessionStorage.removeItem("editing");
