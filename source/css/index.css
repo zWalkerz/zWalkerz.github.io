@@ -1,11 +1,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600i&display=swap');
-body::-webkit-scrollbar { display: none; }
-body { overflow: -moz-scrollbars-none; }
-body { -ms-overflow-style: none; }
-
 
 body {
+  min-height: 100vh;
   background: #181818;
   font-family: 'Montserrat', sans-serif !important;
 }
@@ -117,8 +114,6 @@ body a {
 }
 .track .track__title {
   color: white;
-  margin-left: 10px;
-  margin-right: auto;
   width:20%;
 }
 .tracks .track__plays {
@@ -229,8 +224,6 @@ margin-left: auto;
   outline: none;
   border: none;
   color: #ffffff5e;
-  width: 20vw;
-  margin: 0 auto;
   font-size: 13px;
 
 }
