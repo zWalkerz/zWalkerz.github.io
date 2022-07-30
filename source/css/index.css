@@ -5,7 +5,7 @@ body {
   min-height: 100vh;
   background: #181818;
   font-family: 'Montserrat', sans-serif !important;
-  font-size: calc(12px + (23 - 12) * ((100vw - 300px) / (1920 - 300)));
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1920 - 300))) !important;
 }
 body a {
   color: #aaaaaa;
@@ -229,7 +229,7 @@ margin-left: auto;
 
 .add {
 
-font-size: 40px;
+font-size: 30px;
 
 }
 
