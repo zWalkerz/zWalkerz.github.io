@@ -49,9 +49,7 @@ valid. If it's not, it redirects the user to the login page. */
 })();
 
 
-/* A self-invoking function that creates a block for each playlist and adds it to the playlists
-section of the page everytime the site is loaded. */
-
+/* Calling the function editing() */
 (function () {
 
     editing();
@@ -60,6 +58,7 @@ section of the page everytime the site is loaded. */
 })();
 
 
+/* Creating a div element for each playlist in the user object. */
 (function () {
 
     user.playlists.forEach(e => {
@@ -77,6 +76,8 @@ section of the page everytime the site is loaded. */
 
 
 
+
+/* Creating a div element for each element in the array. */
 (function () {
 
     let updated = [];
@@ -98,6 +99,7 @@ section of the page everytime the site is loaded. */
 })();
 
 
+/* Creating a div element with the class track and appending it to the sharedSection. */
 (function () {
 
     user.shared.forEach(e => {
@@ -179,8 +181,10 @@ async function fetchTrack(track) {
     }
 }
 
-//ADD TRACK - Aggiorno la playlist inserendovi la track
-
+/**
+ * It adds a song to a playlist.
+ * @param song - {
+ */
 function Add(song) {
 
     let flag = true;
@@ -309,7 +313,7 @@ function deletePlaylist(e) {
 
     })
 
-    let list = document.querySelectorAll("#\\33 .track");
+    let list = document.querySelectorAll("#\\33  .track");
     for(let i = 0; i < list.length; i++){
 
         if(list[i].getElementsByClassName("track__title").innerHTML == toDelete){
