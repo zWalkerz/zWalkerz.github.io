@@ -5,6 +5,7 @@ body {
   min-height: 100vh;
   background: #181818;
   font-family: 'Montserrat', sans-serif !important;
+  font-size: calc(12px + (23 - 12) * ((100vw - 300px) / (1920 - 300)));
 }
 body a {
   color: #aaaaaa;
@@ -164,8 +165,6 @@ justify-content: space-between;
 align-items: center;
 color: #c8c8c8;
 font-weight: 600;
-font-size: 20px
-
 
 }
 ul.nav.nav-tabs {
@@ -175,7 +174,7 @@ width:100%;
 }
 ul.nav.nav-tabs li:last-child{
 
-    float:right;
+  float:right;
 
 }
 .nav-link{
@@ -220,11 +219,11 @@ margin-left: auto;
 
 .label {
 
+  width: 10vw;
   background-color: transparent;
   outline: none;
   border: none;
   color: #ffffff5e;
-  font-size: 13px;
 
 }
 
@@ -239,47 +238,4 @@ font-size: 40px;
 color:#2ecc71;
 
 }
-@media screen and (max-width: 600px) {
 
-  .section-title {
-
-    font-size: 4vw;
-
-  }
-  .searched__song__title{
-
-    font-size: 2.5vw;
-
-  }
-  .searched__song__date{
-
-    font-size: 3vw;
-
-  }
-  .track__title {
-
-    font-size: 3vw
-
-  }
-  .label{
-
-    font-size: 2.5vw;
-
-  }
-
-}
-
-@media screen and (max-width: 800px){
-
-  button[type= "submit"] {
-
-    font-size: 2vw;
-
-  }
-  .label{
-
-    width: 10vw;
-
-  }
-
-}
