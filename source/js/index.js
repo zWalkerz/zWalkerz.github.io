@@ -498,13 +498,13 @@ function editing() {
     if(currentPlaylist == null) {
 
         title.innerHTML = "No playlist is selected";
-        section.innerHTML = "<div class='track'><span class = 'label'>No songs </span></div>";
+        section.innerHTML = "<div class='track'><span class = 'label'>No songs</span></div>";
 
     }
     else if(currentPlaylist.songs.length == 0) {
 
         title.innerHTML = "Current playlist: " + currentPlaylist.name;
-        section.innerHTML = "<div class='track'><span class = 'label'>No songs </span></div>";
+        section.innerHTML = "<div class='track'><span class = 'label'>No songs</span></div>";
 
     }
     else {

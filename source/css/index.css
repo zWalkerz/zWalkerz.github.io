@@ -187,6 +187,13 @@ color : #aaaaaa;
 border:none;
 
 }
+
+.navbar-toggler {
+
+  border-color: transparent;
+  
+  }
+
 .navbar-toggler:focus {
 
 box-shadow: none;
