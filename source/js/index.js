@@ -67,7 +67,7 @@ valid. If it's not, it redirects the user to the login page. */
         let block = document.createElement("div");
         block.setAttribute("class", "track");
         block.innerHTML = "<div class='track__title'>" + e.name + "</div> <input type='text' class='label' value='" + e.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + e.tag + "' readonly spellcheck='false'><div class ='controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
-        let playlists = document.getElementById("2");
+        let playlists = document.getElementById("two");
         playlists.appendChild(block);
 
     });
@@ -90,7 +90,7 @@ valid. If it's not, it redirects the user to the login page. */
                 let block = document.createElement("div");
                 block.setAttribute("class", "track");
                 block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
-                let section = document.getElementById("4");
+                let section = document.getElementById("four");
                 section.appendChild(block);
                 updated.push(el);
     })
@@ -109,7 +109,7 @@ valid. If it's not, it redirects the user to the login page. */
         let block = document.createElement("div");
         block.setAttribute("class", "track");
         block.innerHTML = "<div class='track__title'>" + e.name + "</div> <input type='text' class='label' value='" + e.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + e.tag + "' readonly spellcheck='false'><div class ='controls'> <button onclick='noShare(this);' class='btn btn-outline-success' type='submit'>No share</button></div>"
-        let sharedSection = document.getElementById("3");
+        let sharedSection = document.getElementById("three");
         sharedSection.appendChild(block);
 
     });
@@ -252,7 +252,7 @@ function newPlaylist() {
         let block = document.createElement("div");
         block.setAttribute("class", "track");
         block.innerHTML = "<div class='track__title'>" + playlist.name + "</div> <input type='text' class='label' value='" + playlist.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + playlist.tag.join() + "' readonly spellcheck='false'><div class = 'controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
-        let playlists = document.getElementById("2");
+        let playlists = document.getElementById("two");
         playlists.appendChild(block)
 
         user.playlists.push(JSON.parse(JSON.stringify(playlist)));
@@ -313,7 +313,7 @@ function deletePlaylist(e) {
 
     })
 
-    let list = document.querySelectorAll("#\\33  .track");
+    let list = document.querySelectorAll("#three  .track");
     for(let i = 0; i < list.length; i++){
 
         if(list[i].getElementsByClassName("track__title")[0].innerHTML == toDelete){
@@ -355,7 +355,7 @@ function sharePlaylist(e) {
         let block = document.createElement("div");
         block.setAttribute("class", "track");
         block.innerHTML = "<div class='track__title'>" + shared.name + "</div> <input type='text' class='label' value='" + shared.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + shared.tag.join() + "' readonly spellcheck='false'><div class ='controls'> <button onclick='noShare(this);' class='btn btn-outline-success' type='submit'>No share</button></div>"
-        let sharedSection = document.getElementById("3");
+        let sharedSection = document.getElementById("three");
         sharedSection.appendChild(block)
 
         user.shared.push(shared);
@@ -401,7 +401,7 @@ function globalShared() {
 
     let updated;
     let block;
-    let section = document.getElementById("4");
+    let section = document.getElementById("four");
 
     updated = JSON.parse(sessionStorage.getItem("globalShared"));
     accounts.forEach(e => {
@@ -453,7 +453,7 @@ array. */
     })
 
     let toDelete;
-    let section = document.getElementById("4");
+    let section = document.getElementById("four");
     let list = section.childNodes;
     for (var i = 1; i < list.length; i++) {
 
@@ -491,7 +491,7 @@ function editing() {
 
     let currentPlaylist = JSON.parse(window.sessionStorage.getItem("editing"));
 
-    let section = document.getElementById("1");
+    let section = document.getElementById("one");
     let title = document.querySelectorAll("#manage-playlist .section-title")[1];
 
     if(currentPlaylist == null) {
