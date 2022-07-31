@@ -515,7 +515,7 @@ function editing() {
         block.setAttribute("class", "track");
         currentPlaylist.songs.forEach(e => {
 
-            block.innerHTML += "<div class='track__title'>" + e.name + "</div> <input type='text' class='label' value='" + e.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + e.tag.join() + "' readonly spellcheck='false'><div class ='controls'> <button onclick='removeSong(this);' class='btn btn-outline-success' type='submit'>Remove</button></div>"
+            block.innerHTML = "<div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='track__explicit'><span class='label'>" + e.explicit + "</span> </div>";
 
         }
 
