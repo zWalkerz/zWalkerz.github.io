@@ -209,6 +209,7 @@ box-shadow: none;
 
 button[type="submit"] {
 
+  font-size: inherit;
   border: solid 2px #2ecc71; 
   border-radius: 0%;
   color:white;
