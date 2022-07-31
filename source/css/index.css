@@ -124,6 +124,13 @@ body a {
   margin-left: auto;
 }
 
+#1 .track__title {
+
+  margin-left: 20px;
+  margin-right: auto;
+
+}
+
 
 
 #form1 {
@@ -228,6 +235,7 @@ margin-left: auto;
   outline: none;
   border: none;
   color: #ffffff5e;
+  white-space: nowrap;
 
 }
 

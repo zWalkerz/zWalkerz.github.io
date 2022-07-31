@@ -50,7 +50,7 @@ valid. If it's not, it redirects the user to the login page. */
 
 
 /* Calling the function editing() */
-(function () {
+(function () {  
 
     editing();
 
@@ -58,8 +58,9 @@ valid. If it's not, it redirects the user to the login page. */
 })();
 
 
-/* Creating a div element for each playlist in the user object. */
-(function () {
+/* Creating a div element for each playlist in the user's playlist array. */
+
+(function () {  
 
     user.playlists.forEach(e => {
 
@@ -77,8 +78,9 @@ valid. If it's not, it redirects the user to the login page. */
 
 
 
+
 /* Creating a div element for each element in the array. */
-(function () {
+(function () { 
 
     let updated = [];
 
@@ -100,7 +102,7 @@ valid. If it's not, it redirects the user to the login page. */
 
 
 /* Creating a div element with the class track and appending it to the sharedSection. */
-(function () {
+(function () {  
 
     user.shared.forEach(e => {
 
@@ -117,16 +119,18 @@ valid. If it's not, it redirects the user to the login page. */
 
 
 
-
-
-/* Adding an event listener to the search bar, so that when the user types something, the function
-fetchTrack is called. */
+/* Listening for a keyup event on the search input. When the event is triggered, it checks if the input
+is not empty. If it is not empty, it calls the fetchTrack function. */
 
 var search = document.getElementById("form1");
 search.addEventListener("keyup", e => {
 
-    if (e.target.value.replace(/\s/g, "").length != 0) {    //Uso una regular expression per togliere gli spazi ed evitare fetch a vuoto
-        (async() => {addWrap = await fetchTrack(e.target.value);})();
+    if (e.target.value.replace(/\s/g, "").length != 0) {    // Checking if the input is not empty
+
+       /* Fetching the track from the API and returning an instantiating a wrap ready to use */
+
+        (async() => {addWrap = await fetchTrack(e.target.value);})();  
+        
     }
 
 });
@@ -137,7 +141,7 @@ search.addEventListener("keyup", e => {
  * with the track's name, album art, release date and explicit status, and it updates the page with the
  * new information
  * @param track - the name of the song you want to search for
- * @returns the song object.
+ * @returns a function with the song in it as input
  */
 
 async function fetchTrack(track) {
@@ -152,6 +156,7 @@ async function fetchTrack(track) {
     let json = await response.json();
 
     if (json.tracks.items.length != 0) {
+
         let song = {
 
             name: json.tracks.items[0].artists[0].name + " - " + json.tracks.items[0].name,
@@ -181,11 +186,8 @@ async function fetchTrack(track) {
     }
 }
 
-/**
- * It adds a song to a playlist.
- * @param song - {
- */
-function Add(song) {
+
+function Add(song) {  // Function for adding a song to the playlist
 
     let flag = true;
     let editing = JSON.parse(window.sessionStorage.getItem("editing"));
@@ -219,13 +221,10 @@ function Add(song) {
 
 }
 
-
-
 /**
  * It creates a new playlist and adds it to the user's playlists section
- * @returns the value of the variable error.
  */
-function newPlaylist() {
+function newPlaylist() {  
 
     playlist = {
 
@@ -398,7 +397,7 @@ function noShare(e) {
 /**
  * It updates the globally shared playlists page
  */
-function globalShared() {
+function globalShared() {  
 
     let updated;
     let block;
