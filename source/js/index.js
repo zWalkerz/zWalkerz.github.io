@@ -293,9 +293,10 @@ function newPlaylist() {
 
 }
 
+
 /**
- * It deletes the playlist from the DOM and from the user's account
- * @param e - the event that was triggered
+ * It deletes a playlist from the user's account, and then deletes the playlist from the page (every section).
+ * @param e - the element that was clicked
  */
 function deletePlaylist(e) {
 
@@ -327,8 +328,6 @@ function deletePlaylist(e) {
 
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
     window.sessionStorage.removeItem("editing");
-
-    //QUANDO CANCELLO LA PLAYLIST SI DEVE ANCHE RIMUOVERE DAI SHARED
 
 }
 
