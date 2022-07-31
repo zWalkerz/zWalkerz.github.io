@@ -5,7 +5,7 @@ body {
   min-height: 100vh;
   background: #181818;
   font-family: 'Montserrat', sans-serif !important;
-  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1920 - 300))) !important;
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1920 - 300)));
 }
 body a {
   color: #aaaaaa;

@@ -5,7 +5,8 @@ body {
 
     font-family: 'Montserrat', sans-serif !important;
     background-color: #181818 !important;
-
+    min-height: 100vh;
+    font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1920 - 300)));
 }
 
 input[type="text"], input[type="password"] {
