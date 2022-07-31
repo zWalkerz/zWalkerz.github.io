@@ -392,6 +392,7 @@ function noShare(e) {
 
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
     deleteGlobalShared(toDelete);
+    editing();
 
 }
 
