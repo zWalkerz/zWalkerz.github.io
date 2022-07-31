@@ -50,7 +50,7 @@ valid. If it's not, it redirects the user to the login page. */
 
 
 /* Calling the function editing() */
-(function () {  
+(function () {
 
     editing();
 
@@ -60,7 +60,7 @@ valid. If it's not, it redirects the user to the login page. */
 
 /* Creating a div element for each playlist in the user's playlist array. */
 
-(function () {  
+(function () {
 
     user.playlists.forEach(e => {
 
@@ -80,21 +80,21 @@ valid. If it's not, it redirects the user to the login page. */
 
 
 /* Creating a div element for each element in the array. */
-(function () { 
+(function () {
 
     let updated = [];
 
     accounts.forEach(e => {
         e.shared.forEach(el => {
 
-                let block = document.createElement("div");
-                block.setAttribute("class", "track");
-                block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
-                let section = document.getElementById("four");
-                section.appendChild(block);
-                updated.push(el);
+            let block = document.createElement("div");
+            block.setAttribute("class", "track");
+            block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
+            let section = document.getElementById("four");
+            section.appendChild(block);
+            updated.push(el);
+        })
     })
-})
 
     window.sessionStorage.setItem("globalShared", JSON.stringify(updated));
 
@@ -102,7 +102,7 @@ valid. If it's not, it redirects the user to the login page. */
 
 
 /* Creating a div element with the class track and appending it to the sharedSection. */
-(function () {  
+(function () {
 
     user.shared.forEach(e => {
 
@@ -127,10 +127,10 @@ search.addEventListener("keyup", e => {
 
     if (e.target.value.replace(/\s/g, "").length != 0) {    // Checking if the input is not empty
 
-       /* Fetching the track from the API and returning an instantiating a wrap ready to use */
+        /* Fetching the track from the API and returning an instantiating a wrap ready to use */
 
-        (async() => {addWrap = await fetchTrack(e.target.value);})();  
-        
+        (async () => { addWrap = await fetchTrack(e.target.value); })();
+
     }
 
 });
@@ -172,7 +172,7 @@ async function fetchTrack(track) {
         document.getElementsByClassName("searched__song__title")[0].innerHTML = song.name;
         document.getElementsByClassName("searched__song__date")[0].children[0].innerHTML = song.release_date;
 
-        return function() {
+        return function () {
 
             Add(song);
 
@@ -193,7 +193,7 @@ function Add(song) {  // Function for adding a song to the playlist
     let editing = JSON.parse(window.sessionStorage.getItem("editing"));
     editing.songs.forEach(e => {
 
-        if(e.name == song.name) {
+        if (e.name == song.name) {
 
             flag = false;
 
@@ -201,30 +201,32 @@ function Add(song) {  // Function for adding a song to the playlist
 
     })
 
-    if(flag) {
-    let ind;
-    editing.songs.push(song);
-    user.playlists.forEach((e, index) => {
+    if (flag) {
+        let ind;
+        editing.songs.push(song);
+        user.playlists.forEach((e, index) => {
 
-        if(e.name == editing.name) {
+            if (e.name == editing.name) {
 
-            ind = index;
+                ind = index;
 
-        }
+            }
 
-    });
+        });
 
-    user.playlists[ind] = editing;
-}
+        user.playlists[ind] = editing;
+    }
     window.sessionStorage.setItem("editing", JSON.stringify(editing));
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
+
+    editing();
 
 }
 
 /**
  * It creates a new playlist and adds it to the user's playlists section
  */
-function newPlaylist() {  
+function newPlaylist() {
 
     playlist = {
 
@@ -272,7 +274,7 @@ function newPlaylist() {
  * @param e - the string to be checked
  * @returns a boolean value.
  */
- function checkTag(e) {
+function checkTag(e) {
 
     let errPattern = /(#\w+)/gm;
     e = e.match(errPattern);
@@ -314,16 +316,16 @@ function deletePlaylist(e) {
     })
 
     let list = document.querySelectorAll("#three  .track");
-    for(let i = 0; i < list.length; i++){
+    for (let i = 0; i < list.length; i++) {
 
-        if(list[i].getElementsByClassName("track__title")[0].innerHTML == toDelete){
+        if (list[i].getElementsByClassName("track__title")[0].innerHTML == toDelete) {
 
             list[i].getElementsByClassName("controls")[0].children[0].click();
 
         }
 
     }
-    
+
 
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
     window.sessionStorage.removeItem("editing");
@@ -397,7 +399,7 @@ function noShare(e) {
 /**
  * It updates the globally shared playlists page
  */
-function globalShared() {  
+function globalShared() {
 
     let updated;
     let block;
@@ -435,8 +437,8 @@ function globalShared() {
 
 function deleteGlobalShared(e) {
 
-/* It's filtering the globalShared array, and returning only the elements that are in the user's shared
-array. */
+    /* It's filtering the globalShared array, and returning only the elements that are in the user's shared
+    array. */
 
     let updated = JSON.parse(window.sessionStorage.getItem("globalShared"));
 
@@ -476,12 +478,12 @@ function editPlaylist(e) {
 
     let parent = e.closest(".track");
     let toEdit = parent.getElementsByClassName("track__title")[0].innerHTML;
-        user.playlists.forEach(e => {
+    user.playlists.forEach(e => {
 
-            if (e.name == toEdit){
+        if (e.name == toEdit) {
             window.sessionStorage.setItem("editing", JSON.stringify(e));
-            }
-        });
+        }
+    });
 
     editing();
 
@@ -494,13 +496,13 @@ function editing() {
     let section = document.getElementById("one");
     let title = document.querySelectorAll("#manage-playlist .section-title")[1];
 
-    if(currentPlaylist == null) {
+    if (currentPlaylist == null) {
 
         title.innerHTML = "No playlist is selected";
         section.innerHTML = "<div class='track'><span class = 'label'>No songs</span></div>";
 
     }
-    else if(currentPlaylist.songs.length == 0) {
+    else if (currentPlaylist.songs.length == 0) {
 
         title.innerHTML = "Current playlist: " + currentPlaylist.name;
         section.innerHTML = "<div class='track'><span class = 'label'>No songs</span></div>";
@@ -511,7 +513,14 @@ function editing() {
         title.innerHTML = "Current playlist: " + currentPlaylist.name;
         let block = document.createElement("div");
         block.setAttribute("class", "track");
-       // block.innerHTML = "<div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name;
+        currentPlaylist.songs.forEach(e => {
+
+            block.innerHTML += "<div class='track__title'>" + e.name + "</div> <input type='text' class='label' value='" + e.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + e.tag.join() + "' readonly spellcheck='false'><div class ='controls'> <button onclick='removeSong(this);' class='btn btn-outline-success' type='submit'>Remove</button></div>"
+
+        }
+
+        )
+
         section.appendChild(block);
 
     }
@@ -519,5 +528,7 @@ function editing() {
 
 
 }
+
+
 
 
