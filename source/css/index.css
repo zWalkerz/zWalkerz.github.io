@@ -131,9 +131,14 @@ body a {
   width: auto;
 
 }
-#one .label {
+.label.track__release_date {
 
-  margin: auto
+  margin-right: 10vw;
+
+}
+.label.track__explicit {
+
+  margin: 0;
 
 }
 

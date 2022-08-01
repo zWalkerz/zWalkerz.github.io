@@ -517,7 +517,7 @@ function editing() {
         block.setAttribute("class", "track");
         currentPlaylist.songs.forEach(e => {
 
-            block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='label'><span>" + e.release_date + "</span></div><div class='track__explicit'><span class='label'>" + (e.explicit ? 'Explicit': 'Not Explicit') + "</span> </div></div>";
+            block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='label track__release_date'><span>" + e.release_date + "</span></div><div class='label track__explicit'><span>" + (e.explicit ? 'Explicit': 'Not Explicit') + "</span> </div></div>";
         }
 
         );
