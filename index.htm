@@ -14,7 +14,7 @@
 
 
 
-  
+
 <body translate="no">
 
 
@@ -31,27 +31,29 @@
 
       <ul class="nav nav-tabs navbar-nav" role="tablist" id="myTab">
 
-        <li role="presentation" class="nav-item">
+        <li class="nav-item">
           <a aria-controls="manage-playlist" id="manage" aria-selected="true" role="tab" class="nav-link active"
             data-bs-toggle="tab" href="#manage-playlist">Manage playlist</a>
         </li>
 
-        <li role="presentation" class="nav-item">
+        <li class="nav-item">
           <a aria-controls="my-playlists" id="playlist" aria-selected="false" role="tab" class="nav-link"
             data-bs-toggle="tab" href="#my-playlists">My playlists</a>
         </li>
 
-        <li role="presentation" class="nav-item">
+        <li class="nav-item">
           <a aria-controls="shared-ones" id="shared" aria-selected="false" role="tab" class="nav-link"
             data-bs-toggle="tab" href="#shared-ones">Shared Playlists</a>
         </li>
 
-        <li>
-
+        <li class="nav-item">
           <div class="form-outline">
             <input type="search" id="form1" class="form-control" placeholder="Search">
           </div>
+        </li>
 
+        <li class="nav-item">
+          <i class="bi bi-power logout"></i>
         </li>
       </ul>
 
@@ -112,7 +114,7 @@
           <div class="section-title">
 
             <span>My playlists</span>
-            <i  onclick="newPlaylist();" class="bi bi-plus add"></i>
+            <i onclick="newPlaylist();" class="bi bi-plus add"></i>
 
           </div>
 
@@ -129,7 +131,7 @@
               <input type="text" class="label" value="#Tag" spellcheck="false" readonly>
 
 
-              <div class = "controls">
+              <div class="controls">
                 <button class="btn btn-outline-success" type="submit">Edit</button>
                 <button class="btn btn-outline-success" type="submit">Delete</button>
                 <button class="btn btn-outline-success" type="submit">Share</button>
@@ -159,14 +161,14 @@
 
 
         <div class="col-12 col-lg-12">
-        <div class="section-title">Shared playlist</div>
+          <div class="section-title">Shared playlist</div>
 
-        <div class="tracks" id="four">
+          <div class="tracks" id="four">
+
+          </div>
 
         </div>
 
-      </div>
-        
       </div>
 
 
