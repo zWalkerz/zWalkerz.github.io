@@ -487,6 +487,8 @@ function editPlaylist(e) {
         }
     });
 
+    editing();
+
 }
 
 function editing() {
