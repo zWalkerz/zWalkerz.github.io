@@ -463,7 +463,6 @@ function deleteGlobalShared(e) {
 
         if (list[i].firstChild.textContent == e) {
 
-            console.log("Eureka")
             toDelete = list[i];
             break;
 

@@ -262,4 +262,16 @@ font-size: 30px;
 color:#2ecc71;
 
 }
+ 
+.logout {
 
+color: #c8c8c8;
+font-size:20px;
+
+}
+
+.logout:hover {
+
+color:#dd3636;
+
+}
