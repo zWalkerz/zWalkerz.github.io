@@ -330,6 +330,8 @@ function deletePlaylist(e) {
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
     window.sessionStorage.removeItem("editing");
 
+    editing();
+
 }
 
 
@@ -392,7 +394,6 @@ function noShare(e) {
 
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
     deleteGlobalShared(toDelete);
-    editing();
 
 }
 
@@ -486,8 +487,6 @@ function editPlaylist(e) {
         }
     });
 
-    editing();
-
 }
 
 function editing() {
@@ -522,7 +521,7 @@ function editing() {
 
         )
 
-        section.appendChild(block);
+        section.innerHTML = block;
 
     }
 
