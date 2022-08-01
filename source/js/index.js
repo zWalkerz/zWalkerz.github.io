@@ -190,8 +190,8 @@ async function fetchTrack(track) {
 function Add(song) {  // Function for adding a song to the playlist
 
     let flag = true;
-    let editing = JSON.parse(window.sessionStorage.getItem("editing"));
-    editing.songs.forEach(e => {
+    let editing_storage = JSON.parse(window.sessionStorage.getItem("editing"));
+    editing_storage.songs.forEach(e => {
 
         if (e.name == song.name) {
 
@@ -203,7 +203,7 @@ function Add(song) {  // Function for adding a song to the playlist
 
     if (flag) {
         let ind;
-        editing.songs.push(song);
+        editing_storage.songs.push(song);
         user.playlists.forEach((e, index) => {
 
             if (e.name == editing.name) {
@@ -214,9 +214,9 @@ function Add(song) {  // Function for adding a song to the playlist
 
         });
 
-        user.playlists[ind] = editing;
+        user.playlists[ind] = editing_storage;
     }
-    window.sessionStorage.setItem("editing", JSON.stringify(editing));
+    window.sessionStorage.setItem("editing", JSON.stringify(editing_storage));
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
 
     editing();
