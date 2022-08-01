@@ -523,7 +523,7 @@ function editing() {
 
         )
 
-        section.innerHTML = block;
+        section.innerHTML = block.innerHTML;
 
     }
 
