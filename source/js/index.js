@@ -206,7 +206,7 @@ function Add(song) {  // Function for adding a song to the playlist
         editing_storage.songs.push(song);
         user.playlists.forEach((e, index) => {
 
-            if (e.name == editing.name) {
+            if (e.name == editing_storage.name) {
 
                 ind = index;
 
