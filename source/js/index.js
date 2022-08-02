@@ -132,20 +132,20 @@ search.addEventListener("keyup", e => {
             /* Fetching the track from the API and returning an instantiating a wrap ready to use */
 
             (async () => { addWrap = await fetchTrack(e.target.value); })();
-        }
-    } else if (tab.id == "shared-ones") {
+        } else if (tab.id == "shared-ones") {
 
-        let globalSharedSection = document.getElementById("four");
-        let filter, tracks, title, i, txtValue;
-        filter = e.target.value.toUpperCase();
-        tracks = globalSharedSection.getElementsByClassName("track");
-        for (i = 0; i < tracks.length; i++) {
-             title = tracks[i].getElementsByClassName("track__title")[0];
-             txtValue = title.innerHTML;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tracks[i].style.display = "";
-            } else {
-                tracks[i].style.display = "none";
+            let globalSharedSection = document.getElementById("four");
+            let filter, tracks, title, i, txtValue;
+            filter = e.target.value.toUpperCase();
+            tracks = globalSharedSection.getElementsByClassName("track");
+            for (i = 0; i < tracks.length; i++) {
+                title = tracks[i].getElementsByClassName("track__title")[0];
+                txtValue = title.innerHTML;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tracks[i].style.display = "";
+                } else {
+                    tracks[i].style.display = "none";
+                }
             }
         }
         /*
