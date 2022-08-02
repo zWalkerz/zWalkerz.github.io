@@ -528,6 +528,14 @@ function editing() {
 
 }
 
+function logout() {
+
+    window.localStorage.removeItem("token");
+    window.sessionStorage.clear();
+    window.location.href = "index.html";
+
+}
+
 
 
 
