@@ -118,24 +118,26 @@ valid. If it's not, it redirects the user to the login page. */
 })();
 
 
-let tab = document.querySelector(".nav-link");
+let tabs = document.querySelectorAll(".nav-link");
+tabs.forEach(tab => {
 tab.addEventListener("click", e => { 
 
-    if (tab.id == "manage-playlist") { 
+    if (e.target.id == "manage-playlist") { 
 
         search.placeholder = "Search a song";
 
-    } else if (tab.id == "my-playlists") { 
+    } else if (e.target.id == "my-playlists") { 
 
         search.style.display = "none";
 
-    } else if (tab.id == "shared-ones") { 
+    } else if (e.target.id == "shared-ones") { 
 
         search.placeholder = "Search for a playlist";
 
     }
 
 
+});
 });
 
 
