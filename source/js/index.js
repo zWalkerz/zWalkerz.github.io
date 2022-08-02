@@ -125,13 +125,15 @@ is not empty. If it is not empty, it calls the fetchTrack function. */
 var search = document.getElementById("form1");
 search.addEventListener("keyup", e => {
 
-    if (e.target.value.replace(/\s/g, "").length != 0) {    // Checking if the input is not empty
 
         let tab = document.querySelector(".tab-pane.active");
         if (tab.id == "manage-playlist") {
+            if (e.target.value.replace(/\s/g, "").length != 0) {  // Checking if the input is not empty
+
             /* Fetching the track from the API and returning an instantiating a wrap ready to use */
 
             (async () => { addWrap = await fetchTrack(e.target.value); })();
+        }
         } else if (tab.id == "shared-ones") {
 
             let globalSharedSection = document.getElementById("four");
@@ -160,7 +162,7 @@ search.addEventListener("keyup", e => {
         */
 
 
-    }
+    
 
 });
 
