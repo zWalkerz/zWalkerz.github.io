@@ -530,9 +530,13 @@ function editing() {
 
 function logout() {
 
+    if(confirm("You're going to logout. Click 'Continue' for going on.")){
     window.localStorage.removeItem("token");
     window.sessionStorage.clear();
-    window.location.href = "index.html";
+    window.location.replace("login/index.htm")
+}
+
+return false; 
 
 }
 
