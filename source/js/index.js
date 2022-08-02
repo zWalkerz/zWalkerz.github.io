@@ -118,7 +118,7 @@ valid. If it's not, it redirects the user to the login page. */
 })();
 
 
-let tab = document.querySelector(".tab-pane.active");
+let tab = document.querySelector(".tab-pane");
 tab.addEventListener("click", e => { 
 
     if (tab.id == "manage-playlist") { 
