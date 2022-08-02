@@ -128,6 +128,9 @@ search.addEventListener("keyup", e => {
 
         let tab = document.querySelector(".tab-pane.active");
         if (tab.id == "manage-playlist") {
+
+            e.target.placeholder="Search a song";
+
             if (e.target.value.replace(/\s/g, "").length != 0) {  // Checking if the input is not empty
 
             /* Fetching the track from the API and returning an instantiating a wrap ready to use */
@@ -136,6 +139,7 @@ search.addEventListener("keyup", e => {
         }
         } else if (tab.id == "shared-ones") {
 
+            e.target.placeholder = "Search a shared playlist"; 
             let globalSharedSection = document.getElementById("four");
             let filter, tracks, title, i, txtValue;
             filter = e.target.value.toUpperCase();
@@ -149,6 +153,10 @@ search.addEventListener("keyup", e => {
                     tracks[i].style.display = "none";
                 }
             }
+        } else if (tab.id == "my-playlists") {
+
+            e.target.style.display= "none";
+
         }
         /*
         if (globalShared.some(playlist => playlist.name == e.target.value)) {
