@@ -127,9 +127,38 @@ search.addEventListener("keyup", e => {
 
     if (e.target.value.replace(/\s/g, "").length != 0) {    // Checking if the input is not empty
 
-        /* Fetching the track from the API and returning an instantiating a wrap ready to use */
+        let tab = document.querySelector(".tab-pane.active");
+        if (tab.id == "manage-playlist") {
+            /* Fetching the track from the API and returning an instantiating a wrap ready to use */
 
-        (async () => { addWrap = await fetchTrack(e.target.value); })();
+            (async () => { addWrap = await fetchTrack(e.target.value); })();
+        }
+    } else if (tab.id == "shared-ones") {
+
+        let globalSharedSection = document.getElementById("four");
+        let filter, tracks, title, i, txtValue;
+        filter = e.target.value.toUpperCase();
+        tracks = globalSharedSection.getElementsByClassName("track");
+        for (i = 0; i < tracks.length; i++) {
+             title = tracks[i].getElementsByClassName("track__title")[0];
+             txtValue = title.innerHTML;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tracks[i].style.display = "";
+            } else {
+                tracks[i].style.display = "none";
+            }
+        }
+        /*
+        if (globalShared.some(playlist => playlist.name == e.target.value)) {
+
+            let found = globalShared.find(playlist => playlist.name == e.target.value);
+            let block = document.createElement("div");
+            block.setAttribute("class", "track");
+            block.innerHTML = "<div class='track__title'>" + found.name + "</div> <input type='text' class='label' value='" + found.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + found.tag.join() + "' readonly spellcheck='false'>"
+            globalSharedSection.innerHTML = block.innerHTML;
+        }
+        */
+
 
     }
 
@@ -516,7 +545,7 @@ function editing() {
         block.setAttribute("class", "track");
         currentPlaylist.songs.forEach(e => {
 
-            block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='label track__release_date'><span>" + e.release_date + "</span></div><div class='label track__explicit'><span>" + (e.explicit ? 'Explicit': 'Not Explicit') + "</span> </div></div>";
+            block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='label track__release_date'><span>" + e.release_date + "</span></div><div class='label track__explicit'><span>" + (e.explicit ? 'Explicit' : 'Not Explicit') + "</span> </div></div>";
         }
 
         );
@@ -530,13 +559,13 @@ function editing() {
 
 function logout() {
 
-    if(confirm("You're going to logout. Click 'Continue' for going on.")){
-    window.localStorage.removeItem("token");
-    window.sessionStorage.clear();
-    window.location.replace("login/index.htm")
-}
+    if (confirm("You're going to logout. Click 'Ok' for going on.")) {
+        window.localStorage.removeItem("token");
+        window.sessionStorage.clear();
+        window.location.replace("login/index.htm")
+    }
 
-return false; 
+    return false;
 
 }
 

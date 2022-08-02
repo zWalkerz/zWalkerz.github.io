@@ -60,7 +60,12 @@ function validate(field, regex) {
     }
 }
 
-async function login() {
+/**
+ * It checks if the user exists in the database, if it does, it checks if the token is expired, if it
+ * is, it refreshes it, if it isn't, it sets the token in the local storage and redirects the user to
+ * the index.htm page
+ */
+async function login() {  
 
     user = {
         email: document.getElementById('email').value,
@@ -82,7 +87,6 @@ async function login() {
         } else {
 
             window.localStorage.setItem('token', foundUser.token);
-            window.localStorage.setItem("globalShared", undefined);
 
         }
 
@@ -101,7 +105,7 @@ async function login() {
 }
 
 
-     async function refresh(user) {
+async function refresh(user) {
 
         if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
@@ -120,5 +124,5 @@ async function login() {
 
         return false;
 
-    }
+}
 
