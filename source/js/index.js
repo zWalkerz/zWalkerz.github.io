@@ -118,18 +118,38 @@ valid. If it's not, it redirects the user to the login page. */
 })();
 
 
+let tab = document.querySelector(".tab-pane.active");
+tab.addEventListener("click", e => { 
 
-/* Listening for a keyup event on the search input. When the event is triggered, it checks if the input
-is not empty. If it is not empty, it calls the fetchTrack function. */
+    if (tab.id == "manage-playlist") { 
 
-var search = document.getElementById("form1");
+        search.placeholder = "Search a song";
+
+    } else if (tab.id == "my-playlists") { 
+
+        search.style.display = "none";
+
+    } else if (tab.id == "shared-ones") { 
+
+        search.placeholder = "Search for a playlist";
+
+    }
+
+
+});
+
+
+
+/* Adding an event listener to the search input. When the user types something, it checks if the active
+tab is the "manage-playlist" one. If it is, it calls the fetchTrack function and passes the value of
+the input as a parameter. If it is not, it filters the tracks in the "shared-ones" tab. */
+
+let search = document.getElementById("form1");
 search.addEventListener("keyup", e => {
 
 
         let tab = document.querySelector(".tab-pane.active");
         if (tab.id == "manage-playlist") {
-
-            e.target.placeholder="Search a song";
 
             if (e.target.value.replace(/\s/g, "").length != 0) {  // Checking if the input is not empty
 
@@ -139,7 +159,6 @@ search.addEventListener("keyup", e => {
         }
         } else if (tab.id == "shared-ones") {
 
-            e.target.placeholder = "Search a shared playlist"; 
             let globalSharedSection = document.getElementById("four");
             let filter, tracks, title, i, txtValue;
             filter = e.target.value.toUpperCase();
@@ -153,25 +172,7 @@ search.addEventListener("keyup", e => {
                     tracks[i].style.display = "none";
                 }
             }
-        } else if (tab.id == "my-playlists") {
-
-            e.target.style.display= "none";
-
         }
-        /*
-        if (globalShared.some(playlist => playlist.name == e.target.value)) {
-
-            let found = globalShared.find(playlist => playlist.name == e.target.value);
-            let block = document.createElement("div");
-            block.setAttribute("class", "track");
-            block.innerHTML = "<div class='track__title'>" + found.name + "</div> <input type='text' class='label' value='" + found.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + found.tag.join() + "' readonly spellcheck='false'>"
-            globalSharedSection.innerHTML = block.innerHTML;
-        }
-        */
-
-
-    
-
 });
 
 
