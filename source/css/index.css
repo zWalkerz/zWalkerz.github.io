@@ -31,7 +31,7 @@ body a {
   border: none;
 }
 .artist__header ul li {
-  padding: 0 15px;
+  padding: 0 15px; 
   margin:auto;
 }
 .artist__header ul li a {

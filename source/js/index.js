@@ -118,26 +118,31 @@ valid. If it's not, it redirects the user to the login page. */
 })();
 
 
-let tabs = document.querySelectorAll(".nav-link");
+/* Adding an event listener to each tab. When a tab is clicked, it checks the id of the tab and changes
+the placeholder of the search bar accordingly. */
+tabs = document.querySelectorAll(".nav-link");
 tabs.forEach(tab => {
-tab.addEventListener("click", e => { 
+  
+  tab.addEventListener("click", e => {
+    
+		console.log(e.target.id)
+    if(e.target.id=="manage"){
+      
+				search.style.display = "";
+        search.placeholder="Seach a song";
 
-    if (e.target.id == "manage-playlist") { 
-
-        search.placeholder = "Search a song";
-
-    } else if (e.target.id == "my-playlists") { 
-
-        search.style.display = "none";
-
-    } else if (e.target.id == "shared-ones") { 
-
-        search.placeholder = "Search for a playlist";
-
+    } else if(e.target.id=="playlist"){
+      
+      search.style.display = "none";
+      
+    } else if(e.target.id == "shared") {
+      
+      search.style.display = "";
+      search.placeholder = "Search a playlist";
+      
     }
+  });
 
-
-});
 });
 
 
