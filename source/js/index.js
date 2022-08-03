@@ -456,9 +456,7 @@ function addShared(e) {
     let parent = e.closest(".track");
     let toAdd = parent.getElementsByClassName("track__title")[0].innerHTML;
 
-    accounts.forEach(users => {
-
-        users.forEach(person => {
+    accounts.forEach(person => {
 
             person.playlists.forEach(e => {
 
@@ -470,9 +468,6 @@ function addShared(e) {
                 }
 
             })
-
-        })
-
 
     });
 
@@ -486,9 +481,7 @@ function viewShared(e) {
     let parent = e.closest(".track");
     let toView = parent.getElementsByClassName("track__title")[0].innerHTML;
 
-    accounts.forEach(users => {
-
-        users.forEach(person => {
+    accounts.forEach(person => {
 
             person.playlists.forEach(e => {
 
@@ -508,9 +501,7 @@ function viewShared(e) {
 
                 }
 
-            })
-
-        })
+        });
 
     });
 }
