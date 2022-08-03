@@ -122,26 +122,26 @@ valid. If it's not, it redirects the user to the login page. */
 the placeholder of the search bar accordingly. */
 tabs = document.querySelectorAll(".nav-link");
 tabs.forEach(tab => {
-  
-  tab.addEventListener("click", e => {
-    
-		console.log(e.target.id)
-    if(e.target.id=="manage"){
-      
-				search.style.display = "";
-        search.placeholder="Seach a song";
 
-    } else if(e.target.id=="playlist"){
-      
-      search.style.display = "none";
-      
-    } else if(e.target.id == "shared") {
-      
-      search.style.display = "";
-      search.placeholder = "Search a playlist";
-      
-    }
-  });
+    tab.addEventListener("click", e => {
+
+        console.log(e.target.id)
+        if (e.target.id == "manage") {
+
+            search.style.display = "";
+            search.placeholder = "Seach a song";
+
+        } else if (e.target.id == "playlist") {
+
+            search.style.display = "none";
+
+        } else if (e.target.id == "shared") {
+
+            search.style.display = "";
+            search.placeholder = "Search a playlist";
+
+        }
+    });
 
 });
 
@@ -155,31 +155,31 @@ let search = document.getElementById("form1");
 search.addEventListener("keyup", e => {
 
 
-        let tab = document.querySelector(".tab-pane.active");
-        if (tab.id == "manage-playlist") {
+    let tab = document.querySelector(".tab-pane.active");
+    if (tab.id == "manage-playlist") {
 
-            if (e.target.value.replace(/\s/g, "").length != 0) {  // Checking if the input is not empty
+        if (e.target.value.replace(/\s/g, "").length != 0) {  // Checking if the input is not empty
 
             /* Fetching the track from the API and returning an instantiating a wrap ready to use */
 
             (async () => { addWrap = await fetchTrack(e.target.value); })();
         }
-        } else if (tab.id == "shared-ones") {
+    } else if (tab.id == "shared-ones") {
 
-            let globalSharedSection = document.getElementById("four");
-            let filter, tracks, title, i, txtValue;
-            filter = e.target.value.toUpperCase();
-            tracks = globalSharedSection.getElementsByClassName("track");
-            for (i = 0; i < tracks.length; i++) {
-                title = tracks[i].getElementsByClassName("track__title")[0];
-                txtValue = title.innerHTML;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tracks[i].style.display = "";
-                } else {
-                    tracks[i].style.display = "none";
-                }
+        let globalSharedSection = document.getElementById("four");
+        let filter, tracks, title, i, txtValue;
+        filter = e.target.value.toUpperCase();
+        tracks = globalSharedSection.getElementsByClassName("track");
+        for (i = 0; i < tracks.length; i++) {
+            title = tracks[i].getElementsByClassName("track__title")[0];
+            txtValue = title.innerHTML;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tracks[i].style.display = "";
+            } else {
+                tracks[i].style.display = "none";
             }
         }
+    }
 });
 
 
@@ -234,8 +234,14 @@ async function fetchTrack(track) {
 }
 
 
-function Add(song) {  // Function for adding a song to the playlist
+/**
+ * It adds a song to the playlist that is currently being edited.
+ * @param song - {name: "song name", artist: "artist name", album: "album name", duration: "duration",
+ * url: "url"}
+ */
+function Add(song) {
 
+    /* Checking if the song is already in the playlist. */
     let flag = true;
     let editing_storage = JSON.parse(window.sessionStorage.getItem("editing"));
     editing_storage.songs.forEach(e => {
@@ -393,6 +399,7 @@ function sharePlaylist(e) {
     let parent = e.closest(".track");
     let toShare = parent.getElementsByClassName("track__title")[0].innerHTML;
     if (user.shared.some(e => e.name.trim() == toShare.trim()) == false) {
+        /* Checking if the playlist name is the same as the one to share. */
         user.playlists.forEach(function (e) {
 
             if (e.name == toShare) {
@@ -444,7 +451,69 @@ function noShare(e) {
 
 }
 
+function addShared(e) {
 
+    let parent = e.closest(".track");
+    let toAdd = parent.getElementsByClassName("track__title")[0].innerHTML;
+
+    accounts.forEach(users => {
+
+        users.forEach(person => {
+
+            person.playlists.forEach(e => {
+
+                if (e.name == toAdd) {
+
+                    user.playlists.push(e)
+                    window.localStorage.setItem("accounts", JSON.stringify(accounts));
+
+                }
+
+            })
+
+        })
+
+
+    });
+
+    window.localStorage.setItem("accounts", JSON.stringify(accounts));
+    globalShared();
+
+}
+
+function viewShared(e) {
+    let section = document.getElementById("four");
+    let parent = e.closest(".track");
+    let toView = parent.getElementsByClassName("track__title")[0].innerHTML;
+
+    accounts.forEach(users => {
+
+        users.forEach(person => {
+
+            person.playlists.forEach(e => {
+
+                if (e.name == toView) {
+
+                    let block = document.createElement("div");
+                    block.setAttribute("id", "viewPlaylist");
+                    e.songs.forEach(song => {
+
+                        block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name + "</div><div class='label track__release_date'><span>" + song.release_date + "</span></div><div class='label track__explicit'><span>" + (song.explicit ? 'Explicit' : 'Not Explicit') + "</span> </div></div>";
+                    }
+
+                    );
+
+                    section.appendChild(block);
+
+
+                }
+
+            })
+
+        })
+
+    });
+}
 /**
  * It updates the globally shared playlists page
  */
@@ -463,7 +532,7 @@ function globalShared() {
                 console.log(updated.some(ell => JSON.stringify(ell) == JSON.stringify(el)))
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
-                block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
+                block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'> <div class='controls'> <button onclick='addShared();' class='btn btn-outline-success' type='submit'>Add</button><button onclick='viewShared();' class='btn btn-outline-success' type='submit' data-bs-toggle='collapse' data-bs-target = '#viewPlaylist'>View</button></div>"
                 section.appendChild(block);
                 updated.push(el)
 
