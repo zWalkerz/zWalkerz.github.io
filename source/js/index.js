@@ -482,8 +482,9 @@ function addShared(e) {
 }
 
 function viewShared(e) {
-    let toFill = e.nextSibling;
+
     let parent = e.closest(".track");
+    let toFill = parent.nextSibling;
     let toView = parent.getElementsByClassName("track__title")[0].innerHTML;
 
     accounts.forEach(person => {
