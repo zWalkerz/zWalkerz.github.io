@@ -527,7 +527,7 @@ function globalShared() {
             if (!updated.some(ell => JSON.stringify(ell) == JSON.stringify(el))) {
                 console.log(updated.some(ell => JSON.stringify(ell) == JSON.stringify(el)))
                 block = document.createElement("div");
-                block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'> <div class='controls'> <button onclick='addShared(this);' class='btn btn-outline-success' type='submit'>Add</button><button onclick='viewShared(this);' class='btn btn-outline-success' type='submit' data-bs-toggle='collapse' data-bs-target = '#viewPlaylist'>View</button></div> </div><div id='viewPlaylist'> </div>"
+                block.innerHTML = "<div class = 'track'><div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'> <div class='controls'> <button onclick='addShared(this);' class='btn btn-outline-success' type='submit'>Add</button><button onclick='viewShared(this);' class='btn btn-outline-success' type='submit' data-bs-toggle='collapse' data-bs-target = '#viewPlaylist'>View</button></div> </div><div id='viewPlaylist'> </div>"
                 section.appendChild(block);
                 updated.push(el)
 
