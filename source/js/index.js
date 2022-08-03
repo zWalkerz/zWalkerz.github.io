@@ -462,8 +462,13 @@ function addShared(e) {
 
                 if (e.name == toAdd) {
 
+                /* Checking if the playlist name is already in the user's playlist. If it is not, it will add it to the
+                user's playlist. */
+                    if(user.playlists.some(playlist => playlist.name == toAdd) == false){
+
                     user.playlists.push(e)
                     window.localStorage.setItem("accounts", JSON.stringify(accounts));
+                    }
 
                 }
 
@@ -477,7 +482,7 @@ function addShared(e) {
 }
 
 function viewShared(e) {
-    let section = document.getElementById("four");
+    let toFill = e.nextSibling;
     let parent = e.closest(".track");
     let toView = parent.getElementsByClassName("track__title")[0].innerHTML;
 
@@ -488,7 +493,6 @@ function viewShared(e) {
                 if (e.name == toView) {
 
                     let block = document.createElement("div");
-                    block.setAttribute("id", "viewPlaylist");
                     e.songs.forEach(song => {
 
                         block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name + "</div><div class='label track__release_date'><span>" + song.release_date + "</span></div><div class='label track__explicit'><span>" + (song.explicit ? 'Explicit' : 'Not Explicit') + "</span> </div></div>";
@@ -496,7 +500,8 @@ function viewShared(e) {
 
                     );
 
-                    section.appendChild(block);
+
+                    toFill.innerHTML = block.innerHTML;
 
 
                 }
@@ -523,7 +528,7 @@ function globalShared() {
                 console.log(updated.some(ell => JSON.stringify(ell) == JSON.stringify(el)))
                 block = document.createElement("div");
                 block.setAttribute("class", "track");
-                block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'> <div class='controls'> <button onclick='addShared();' class='btn btn-outline-success' type='submit'>Add</button><button onclick='viewShared();' class='btn btn-outline-success' type='submit' data-bs-toggle='collapse' data-bs-target = '#viewPlaylist'>View</button></div>"
+                block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'> <div class='controls'> <button onclick='addShared(this);' class='btn btn-outline-success' type='submit'>Add</button><button onclick='viewShared(this);' class='btn btn-outline-success' type='submit' data-bs-toggle='collapse' data-bs-target = '#viewPlaylist'>View</button></div> <div id='viewPlaylist'> </div>"
                 section.appendChild(block);
                 updated.push(el)
 
