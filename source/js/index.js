@@ -96,8 +96,10 @@ var count = 0;
             let block = document.createElement("div");
             block.setAttribute("class", "track");
             block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'> <div class='controls'> <button onclick='addShared(this);' class='btn btn-outline-success' type='submit'>Add</button><button onclick='viewShared(this);' class='btn btn-outline-success' type='submit' data-bs-toggle='collapse' data-bs-target = '#viewPlaylist" + count + "'>View</button></div>";
-            block.insertAdjacentHTML("afterend", "<div id='viewPlaylist" + count +"'></div>");
             section.appendChild(block);
+            let menu = document.createElement("div");
+            menu.setAttribute("id", "viewPlaylist" + count);
+            section.appendChild(menu);
             updated.push(el);
         })
     })
