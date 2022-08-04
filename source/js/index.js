@@ -89,7 +89,7 @@ valid. If it's not, it redirects the user to the login page. */
 
             let block = document.createElement("div");
             block.setAttribute("class", "track");
-            block.innerHTML = "<div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'>"
+            block.innerHTML = "<div class = 'track'><div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'> <div class='controls'> <button onclick='addShared(this);' class='btn btn-outline-success' type='submit'>Add</button><button onclick='viewShared(this);' class='btn btn-outline-success' type='submit' data-bs-toggle='collapse' data-bs-target = '#viewPlaylist'>View</button></div> </div><div id='viewPlaylist'> </div>"
             let section = document.getElementById("four");
             section.appendChild(block);
             updated.push(el);
@@ -514,6 +514,8 @@ function viewShared(e) {
 /**
  * It updates the globally shared playlists page
  */
+
+var count = 0;
 function globalShared() {
 
     let updated;
@@ -528,7 +530,7 @@ function globalShared() {
             if (!updated.some(ell => JSON.stringify(ell) == JSON.stringify(el))) {
                 console.log(updated.some(ell => JSON.stringify(ell) == JSON.stringify(el)))
                 block = document.createElement("div");
-                block.innerHTML = "<div class = 'track'><div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'> <div class='controls'> <button onclick='addShared(this);' class='btn btn-outline-success' type='submit'>Add</button><button onclick='viewShared(this);' class='btn btn-outline-success' type='submit' data-bs-toggle='collapse' data-bs-target = '#viewPlaylist'>View</button></div> </div><div id='viewPlaylist'> </div>"
+                block.innerHTML = "<div class = 'track'><div class='track__title'>" + el.name + "</div> <input type='text' class='label' value='" + el.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + el.tag.join() + "' readonly spellcheck='false'> <div class='controls'> <button onclick='addShared(this);' class='btn btn-outline-success' type='submit'>Add</button><button onclick='viewShared(this);' class='btn btn-outline-success' type='submit' data-bs-toggle='collapse' data-bs-target = '#viewPlaylist" + count + "'>View</button></div> </div><div id='viewPlaylist"+ count+1 +"'> </div>";
                 section.appendChild(block);
                 updated.push(el)
 
