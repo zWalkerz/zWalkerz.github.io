@@ -134,7 +134,6 @@ tabs.forEach(tab => {
 
     tab.addEventListener("click", e => {
 
-        console.log(e.target.id)
         if (e.target.id == "manage") {
 
             search.style.display = "";
@@ -169,24 +168,48 @@ search.addEventListener("keyup", e => {
 
         if (e.target.value.replace(/\s/g, "").length != 0) {  // Checking if the input is not empty
 
-            /* Fetching the track from the API and returning an instantiating a wrap ready to use */
+            /* Fetching the track from the API and returning a wrap ready to use */
 
             (async () => { addWrap = await fetchTrack(e.target.value); })();
         }
     } else if (tab.id == "shared-ones") {
+        
+/* Searching for the tracks in the playlist and if it finds the track it will display it. */
 
+        let flag = false;
         let globalSharedSection = document.getElementById("four");
         let filter, tracks, title, i, txtValue;
         filter = e.target.value.toUpperCase();
-        tracks = globalSharedSection.getElementsByClassName("track");
+        tracks = globalSharedSection.querySelectorAll(".tracks>.track");
+
         for (i = 0; i < tracks.length; i++) {
+
             title = tracks[i].getElementsByClassName("track__title")[0];
             txtValue = title.innerHTML;
+
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 tracks[i].style.display = "";
-            } else {
+                flag = true;
+            }
+
+            
+            for(let j = 0; j < tracks[i].nextSibling.children.length || flag; j++){
+
+                if(tracks[i].nextSibling.children[j].getElementsByClassName("track__title")[0].innerHTML.toUpperCase().indexOf(filter) > -1){
+
+                    tracks[i].style.display = "";
+                    flag = true;
+                }
+
+
+            }
+
+            if(!flag){
+
                 tracks[i].style.display = "none";
             }
+        
+
         }
     }
 });
@@ -475,7 +498,7 @@ function addShared(e) {
                 user's playlist. */
                     if(user.playlists.some(playlist => playlist.name == toAdd) == false){
 
-                    user.playlists.push(e)
+                    user.playlists.push(toAdd)
                     window.localStorage.setItem("accounts", JSON.stringify(accounts));
                     }
 
@@ -599,6 +622,7 @@ function deleteGlobalShared(e) {
 
     }
 
+    section.removeChild(toDelete.nextSibling);
     section.removeChild(toDelete);
     window.sessionStorage.setItem("globalShared", JSON.stringify(updated));
 
