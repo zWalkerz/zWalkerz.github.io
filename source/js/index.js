@@ -253,8 +253,6 @@ async function fetchTrack(track) {
 
         };
 
-        console.log(json.tracks.items[0].genres[0]);
-
         document.getElementsByClassName("searched__art")[0].children[0].src = song.art;
         document.getElementsByClassName("searched__song__title")[0].innerHTML = song.name;
         document.getElementsByClassName("searched__song__date")[0].children[0].innerHTML = song.release_date;
