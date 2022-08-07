@@ -194,6 +194,14 @@ search.addEventListener("keyup", e => {
                 flag = true;
             }
 
+            if (tracks[i].getElementsByClassName("track__duration").innerHTML.toUpperCase().indexOf(filter) > -1) {
+                
+                tracks[i].style.display = "";
+                tracks[i].nextSibling.style.display = "";
+                flag = true;
+            }
+
+
             if(tracks[i].nextSibling.children.length != 0){
 
             for(j = 0; j < tracks[i].nextSibling.children.length && !flag; j++){
