@@ -249,8 +249,7 @@ async function fetchTrack(track) {
             art: json.tracks.items[0].album.images[0].url,
             release_date: json.tracks.items[0].album.release_date,
             explicit: json.tracks.items[0].explicit,
-            duration: json.tracks.items[0].duration_ms / 60000,
-            genre: json.tracks.items[0].genres[0],
+            duration: Math.floor(json.tracks.items[0].duration_ms / 1000 / 60) + ":" + Math.floor(json.tracks.items[0].duration_ms / 1000 % 60),
 
         };
 
@@ -259,6 +258,7 @@ async function fetchTrack(track) {
         document.getElementsByClassName("searched__art")[0].children[0].src = song.art;
         document.getElementsByClassName("searched__song__title")[0].innerHTML = song.name;
         document.getElementsByClassName("searched__song__date")[0].children[0].innerHTML = song.release_date;
+        document.getElementsByClassName("searched__song__duration")[0].children[0].innerHTML = song.duration;
 
         return function () {
 
@@ -537,7 +537,7 @@ function viewShared(e) {
                     let block = document.createElement("div");
                     e.songs.forEach(song => {
 
-                        block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name + "</div><div class='label track__release_date'><span>" + song.release_date + "</span></div><div class='label track__explicit'><span>" + (song.explicit ? 'Explicit' : 'Not Explicit') + "</span> </div></div>";
+                        block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name + "</div><div class='label track__release_date'><span>" + song.release_date + "</span></div><div class='label track__explicit'><span>" + song.duration + "</span> </div></div>";
                     }
 
                     );
@@ -678,7 +678,7 @@ function editing() {
         block.setAttribute("class", "track");
         currentPlaylist.songs.forEach(e => {
 
-            block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='label track__release_date'><span>" + e.release_date + "</span></div><div class='label track__explicit'><span>" + (e.explicit ? 'Explicit' : 'Not Explicit') + "</span> </div></div>";
+            block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='label track__release_date'><span>" + e.release_date + "</span></div><div class='label track__duration'><span>" + e.duration + "</span> </div></div>";
         }
 
         );
