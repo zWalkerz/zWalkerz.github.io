@@ -190,6 +190,7 @@ search.addEventListener("keyup", e => {
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 
                 tracks[i].style.display = "";
+                tracks[i].nextSibling.style.display = "";
                 flag = true;
             }
 
@@ -200,6 +201,7 @@ search.addEventListener("keyup", e => {
                 if(tracks[i].nextSibling.children[j].getElementsByClassName("track__title")[0].innerHTML.toUpperCase().indexOf(filter) > -1){
 
                     tracks[i].style.display = "";
+                    tracks[i].nextSibling.style.display = "";
                     flag = true;
                 }
 
