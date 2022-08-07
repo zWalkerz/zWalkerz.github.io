@@ -174,7 +174,7 @@ search.addEventListener("keyup", e => {
         }
     } else if (tab.id == "shared-ones") {
         
-/* Searching for the tracks in the playlist and if it finds the track it will display it. */
+        /* Searching for the tracks in the playlist and if it finds the track it will display it. */
 
         let flag
         let filter, tracks, title, i, txtValue;
@@ -248,11 +248,13 @@ async function fetchTrack(track) {
             name: json.tracks.items[0].artists[0].name + " - " + json.tracks.items[0].name,
             art: json.tracks.items[0].album.images[0].url,
             release_date: json.tracks.items[0].album.release_date,
-            explicit: json.tracks.items[0].explicit
+            explicit: json.tracks.items[0].explicit,
+            duration: json.tracks.items[0].duration_ms / 60000,
+            genre: json.tracks.items[0].genres[0],
 
         };
 
-        console.log(json.tracks.items[0]);
+        console.log(json.tracks.items[0].genres[0]);
 
         document.getElementsByClassName("searched__art")[0].children[0].src = song.art;
         document.getElementsByClassName("searched__song__title")[0].innerHTML = song.name;
