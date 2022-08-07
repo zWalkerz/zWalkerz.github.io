@@ -194,7 +194,7 @@ search.addEventListener("keyup", e => {
                 flag = true;
             }
 
-            if (tracks[i].getElementsByClassName("track__duration").innerHTML.toUpperCase().indexOf(filter) > -1) {
+            if (tracks[i].getElementsByTagName("input")[1].value.toUpperCase().indexOf(filter) > -1) {
                 
                 tracks[i].style.display = "";
                 tracks[i].nextSibling.style.display = "";
