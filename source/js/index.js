@@ -176,24 +176,26 @@ search.addEventListener("keyup", e => {
         
 /* Searching for the tracks in the playlist and if it finds the track it will display it. */
 
-        let flag = false;
-        let globalSharedSection = document.getElementById("four");
+        let flag
         let filter, tracks, title, i, txtValue;
         filter = e.target.value.toUpperCase();
-        tracks = globalSharedSection.querySelectorAll(".tracks>.track");
+        tracks = document.getElementById("four").querySelectorAll(".tracks>.track");
 
         for (i = 0; i < tracks.length; i++) {
 
+            flag = false;
             title = tracks[i].getElementsByClassName("track__title")[0];
             txtValue = title.innerHTML;
 
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                
                 tracks[i].style.display = "";
                 flag = true;
             }
 
-            
-            for(let j = 0; j < tracks[i].nextSibling.children.length || flag; j++){
+            if(tracks[i].nextSibling.children.length != 0){
+
+            for(j = 0; j < tracks[i].nextSibling.children.length && !flag; j++){
 
                 if(tracks[i].nextSibling.children[j].getElementsByClassName("track__title")[0].innerHTML.toUpperCase().indexOf(filter) > -1){
 
@@ -203,10 +205,13 @@ search.addEventListener("keyup", e => {
 
 
             }
+        }
 
             if(!flag){
 
                 tracks[i].style.display = "none";
+                tracks[i].nextSibling.style.display = "none";
+
             }
         
 
