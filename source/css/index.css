@@ -144,7 +144,7 @@ body a {
 
 
 
-.form{
+input[type = "search"] {
 
 background-color: #181818 !important;
 border-radius: 0px;
@@ -156,20 +156,27 @@ width:70%;
 margin: auto;
 
 }
-.form:focus{
+
+.bs-searchbox input[type = "search"] {
+
+  background-color: #222121 !important;
+  
+  }
+
+input[type = "search"]:focus{
 
     box-shadow: none;
     border-color: #1ed760;
     width: 100%;
 
 }
-.form:hover{
+input[type = "search"]:hover{
 
     border-color:#1ed760;
 
 }
 
-.form::placeholder {
+input[type = "search"]::placeholder {
   text-align: center; 
 }
 
