@@ -280,6 +280,31 @@ async function fetchTrack(track) {
     }
 }
 
+(async function(){
+
+    let genre = document.getElementById("genre");
+    let block = "";
+
+    let response = await fetch(urlGenres, {
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        },
+    });
+
+    let json = await response.json();
+
+    json.genres.forEach(genre => {
+
+        block = block + "<option>"+e+"</option>";
+
+    });
+
+    genre.innerHTML=block;
+    $('.my-select').selectpicker();
+
+})();
+
 
 /**
  * It adds a song to the playlist that is currently being edited.
