@@ -322,7 +322,7 @@ width: 30%;
 
 button[type="button"] {
 
-	background: none;
+	  background: none;
     border: solid 2px #2ecc71; 
     border-radius: 24px;
     color:white;
@@ -337,6 +337,13 @@ background: none;
 color: white
 
 }
+
+button[type="button"]:active {
+
+  border-color: #2ecc71; 
+  background-color: transparent;
+  
+  }
 
 
 .dropdown-menu{
