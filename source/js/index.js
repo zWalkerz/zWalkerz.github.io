@@ -1,4 +1,6 @@
 const urlTrack = "https://api.spotify.com/v1/search?type=track";
+const urlGenres = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
+
 var accounts;
 var user;
 var token;
