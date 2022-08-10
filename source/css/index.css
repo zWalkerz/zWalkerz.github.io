@@ -31,7 +31,6 @@ body a {
   border: none;
 }
 .artist__header ul li {
-  padding: 0 15px; 
   margin:auto;
 }
 .artist__header ul li a {
@@ -49,6 +48,7 @@ body a {
   border: none;
   color: white;
   transition: color 0.4s ease;
+  flex-wrap: nowrap;
 }
 .navbar-dark .navbar-nav .nav-link.active {
   color: white;
@@ -144,29 +144,35 @@ body a {
 
 
 
-#form1 {
+.form{
 
-background-color: #181818;
-border-radius: 20px;
+background-color: #181818 !important;
+border-radius: 0px;
 transition: 0.25s;
-border: 2px solid #ccc;
-color:white;
+border: none;
+border-bottom: 1px solid;
+color:white !important;
 width:70%;
 margin: auto;
 
 }
-#form1:focus{
+.form:focus{
 
     box-shadow: none;
     border-color: #1ed760;
     width: 100%;
 
 }
-#form1:hover{
+.form:hover{
 
     border-color:#1ed760;
 
 }
+
+.form::placeholder {
+  text-align: center; 
+}
+
 .form-outline {
 
 
@@ -183,6 +189,7 @@ justify-content: space-between;
 align-items: center;
 color: #c8c8c8;
 font-weight: 600;
+text-transform: uppercase;
 
 }
 ul.nav.nav-tabs {
@@ -266,11 +273,82 @@ color:#2ecc71;
 .logout {
 
 color: #c8c8c8;
+white-space: nowrap;
+text-transform: uppercase;
 
 }
+
 
 .logout:hover {
 
 color:#dd3636;
 
 }
+
+.profile {
+
+display: flex;
+flex-flow: column wrap;
+border: 1px;
+border-style: solid none;
+
+}
+
+.info {
+
+display: flex;
+flex-flow: row nowrap;
+width: 100%;
+justify-content: space-between;
+align-items: center;
+margin: 5px 0px;
+
+}
+
+.info_user {
+
+color: white;
+width: 30%;
+
+
+}
+
+.dropdown-menu{
+
+  background-color: #222121;
+  overflow: hidden;
+  
+  }
+  
+  .dropdown-item{
+  
+    color:white
+    
+  }
+  
+  .dropdown-item:hover{
+  
+    background-color: #2ecc71;
+    
+  }
+  
+  .dropdown-item.active{
+  
+    color:white;
+    background: none;
+  
+  }
+  
+  .dropdown-item.active:hover{
+  
+    color:black;
+    background-color: #2ecc71;
+  
+  }
+  
+  .dropdown {
+  
+  display: block  !important;
+  margin: auto !important;
+  
+  }
