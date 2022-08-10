@@ -294,7 +294,7 @@ async function fetchTrack(track) {
 
     let json = await response.json();
 
-    json.genres.forEach(genre => {
+    json.genres.forEach(e => {
 
         block = block + "<option>"+e+"</option>";
 
