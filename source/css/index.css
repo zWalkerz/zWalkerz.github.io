@@ -222,7 +222,7 @@ border:none;
 
 .navbar-toggler {
 
-  border-color: transparent;
+  border: none;
   
   }
 
@@ -344,6 +344,13 @@ button[type="button"]:active {
   background-color: transparent;
   
   }
+
+  button[type="button"]:focus {
+
+  border-color: #2ecc71; 
+  background-color: transparent;
+    
+    }
 
 
 .dropdown-menu{
