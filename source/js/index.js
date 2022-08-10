@@ -17,7 +17,7 @@ var playlist = {
 
 
 /* It's a self-invoking function that checks if the user is logged in and if the session is still
-valid. If it's not, it redirects the user to the login page. */
+valid. If it's not, it redirects the user to the login page.  */
 
 (function () {
 
