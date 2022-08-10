@@ -323,7 +323,7 @@ width: 30%;
 button[type="button"] {
 
 	background: none;
-    border: solid 2px #3498db; 
+    border: solid 2px #2ecc71; 
     border-radius: 24px;
     color:white;
     transition: 0.25s;
