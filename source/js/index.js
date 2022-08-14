@@ -303,7 +303,7 @@ async function fetchTrack(track) {
     });
 
     genre.innerHTML=block;
-    $('.my-select').selectpicker();
+    $('.my-select').selectpicker('render');
 
  
 
