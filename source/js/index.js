@@ -303,14 +303,15 @@ async function fetchTrack(track) {
     });
 
     genre.innerHTML=block;
-    $('.my-select').selectpicker('render');
+    $('.my-select').selectpicker('refresh');
 
  
 
 
 })();
 
-function addSelectedGenres() {
+
+(function addSelectedGenres() {
 
     let toSelect = document.getElementById("six").getElementsByClassName("text");
     let selected = user.genres;
@@ -321,7 +322,7 @@ function addSelectedGenres() {
 
     }
 
-}
+})();
 /**
  * It adds a song to the playlist that is currently being edited.
  * @param song - {name: "song name", artist: "artist name", album: "album name", duration: "duration",
