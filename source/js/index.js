@@ -303,7 +303,7 @@ async function fetchTrack(track) {
     });
 
     genre.innerHTML=block;
-    $('.my-select').selectpicker('refresh');
+    $('.my-select').selectpicker('refresh') ? addSelectedGenres() : console.log("Error");
 
  
 
@@ -311,7 +311,7 @@ async function fetchTrack(track) {
 })();
 
 
-(function addSelectedGenres() {
+function addSelectedGenres() {
 
     let toSelect = document.getElementById("six").getElementsByClassName("text");
     let selected = user.genres;
@@ -322,7 +322,7 @@ async function fetchTrack(track) {
 
     }
 
-})();
+}
 /**
  * It adds a song to the playlist that is currently being edited.
  * @param song - {name: "song name", artist: "artist name", album: "album name", duration: "duration",
