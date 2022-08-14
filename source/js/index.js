@@ -305,19 +305,23 @@ async function fetchTrack(track) {
     genre.innerHTML=block;
     $('.my-select').selectpicker();
 
-    let toSelect = document.getElementById("six").getElementsByClassName("text");
-    let selected = user.genres;
-
-    toSelect.forEach(e => {
-
-        selected.some(e.innerHTML) ? e.parentNode.click() : null;
-
-    })
+ 
 
 
 })();
 
+function addSelectedGenres() {
 
+    let toSelect = document.getElementById("six").getElementsByClassName("text");
+    let selected = user.genres;
+
+    for(i = 0; i < toSelect.length; i++) {
+
+        selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
+
+    }
+
+}
 /**
  * It adds a song to the playlist that is currently being edited.
  * @param song - {name: "song name", artist: "artist name", album: "album name", duration: "duration",
