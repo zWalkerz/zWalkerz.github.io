@@ -305,6 +305,16 @@ async function fetchTrack(track) {
     genre.innerHTML=block;
     $('.my-select').selectpicker();
 
+    let toSelect = document.getElementById("six").getElementsByClassName("text");
+    let selected = user.genres;
+
+    toSelect.forEach(e => {
+
+        selected.some(e.innerHTML) ? e.parentNode.click() : null;
+
+    })
+
+
 })();
 
 
