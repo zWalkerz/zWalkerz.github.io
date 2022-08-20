@@ -1,5 +1,7 @@
 const urlTrack = "https://api.spotify.com/v1/search?type=track";
 const urlGenres = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
+const urlArtists = "https://api.spotify.com/v1/search?type=artist";
+
 
 var accounts;
 var user;
@@ -149,6 +151,10 @@ tabs.forEach(tab => {
 
             search.style.display = "";
             search.placeholder = "Search a playlist";
+
+        } else if (e.target.id == "profile") {
+
+            search.style.display = "none";
 
         }
     });
@@ -302,8 +308,8 @@ async function fetchTrack(track) {
 
     });
 
-    genre.innerHTML=block;
-    $('.my-select').selectpicker('refresh') ? addSelectedGenres() : console.log("Error");
+    genre.innerHTML = block;
+    $('#genre').selectpicker('refresh') ? addSelectedGenres() : console.log("Error");
 
  
 
@@ -313,8 +319,49 @@ async function fetchTrack(track) {
 
 function addSelectedGenres() {
 
-    let toSelect = document.getElementById("six").getElementsByClassName("text");
+    let toSelect = document.getElementById("genres").getElementsByClassName("text");
     let selected = user.genres;
+
+    for(i = 0; i < toSelect.length; i++) {
+
+        selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
+
+    }
+
+}
+
+(async function(){
+
+    let artist = document.getElementById("artist");
+    let block = "";
+
+    let response = await fetch(urlArtists, {
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        },
+    });
+
+    let json = await response.json();
+
+    json.artists.items.forEach(e => {
+
+        block = block + "<option>"+e.name+"</option>";
+
+    });
+
+    artist.innerHTML = block;
+    $('#artist').selectpicker('refresh') ? addSelectedArtists() : console.log("Error");
+
+ 
+
+
+})();
+
+function addSelectedArtists() {
+
+    let toSelect = document.getElementById("artists").getElementsByClassName("text");
+    let selected = user.artists;
 
     for(i = 0; i < toSelect.length; i++) {
 
