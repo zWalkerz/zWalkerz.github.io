@@ -376,6 +376,7 @@ function addSelectedArtists() {
     for(i = 0; i < selected.length; i++) {
 
         searched.value = selected[i];
+        searched.dispatchEvent(new Event('input', {bubbles:true}));
         let toSelect = document.getElementById("genres").getElementsByClassName("text")[0];
         toSelect[i].parentNode.click();
 
