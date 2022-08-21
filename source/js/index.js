@@ -332,13 +332,15 @@ function addSelectedGenres() {
 
 (async function(){
 
-    $('#artist').selectpicker('refresh') ? addSelectedArtists() : console.log("Error");
+    $('#artist').selectpicker('refresh');
+    addSelectedArtists();
+
 
     })();
 
 
     searched = document.getElementById("artists").getElementsByTagName("input")[0];
-    searched.addEventListener("keyup", async e => {
+    searched.addEventListener("input", async e => {
 
         let artist = document.getElementById("artist");
         let block = "";
@@ -368,12 +370,15 @@ function addSelectedGenres() {
 
 function addSelectedArtists() {
 
-    let toSelect = document.getElementById("artists").getElementsByClassName("text");
+    let searched = document.getElementById("artists").getElementsByTagName("input")[0];
     let selected = user.artists;
 
-    for(i = 0; i < toSelect.length; i++) {
+    for(i = 0; i < selected.length; i++) {
 
-        selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
+        searched.value = selected[i];
+        let toSelect = document.getElementById("genres").getElementsByClassName("text")[0];
+        toSelect[i].parentNode.click();
+
 
     }
 
