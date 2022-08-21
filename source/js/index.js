@@ -338,7 +338,7 @@ function addSelectedGenres() {
     let block = "";
     let searched = document.getElementById("artists").getElementsByTagName("input")[0];
 
-    searched.addEventListener("keyup", e => {
+    searched.addEventListener("keyup", async e => {
 
         let response = await fetch(urlArtists + "&q=" + e.target.value + "&limit=3", {
             headers: {
