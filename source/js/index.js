@@ -334,12 +334,14 @@ function addSelectedGenres() {
 
     $('#artist').selectpicker('refresh') ? addSelectedArtists() : console.log("Error");
 
-    let artist = document.getElementById("artist");
-    let block = "";
-    let searched = document.getElementById("artists").getElementsByTagName("input")[0];
+    });
 
+
+    searched = document.getElementById("artists").getElementsByTagName("input")[0];
     searched.addEventListener("keyup", async e => {
 
+        let artist = document.getElementById("artist");
+        let block = "";
         let response = await fetch(urlArtists + "&q=" + e.target.value + "&limit=3", {
             headers: {
                 "Content-Type": "application/json",
@@ -362,8 +364,6 @@ function addSelectedGenres() {
     
     
     })();
-
-    });
 
     /*let response = await fetch(urlArtists + "&q=" + searched + "&limit=3", {
         headers: {
