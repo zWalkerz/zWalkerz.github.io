@@ -336,9 +336,36 @@ function addSelectedGenres() {
 
     let artist = document.getElementById("artist");
     let block = "";
-    let searched = document.getElementById("artists").getElementsByTagName("input")[0].value;
+    let searched = document.getElementById("artists").getElementsByTagName("input")[0];
 
-    let response = await fetch(urlArtists + "&q=" + searched + "&limit=3", {
+    searched.addEventListener("keyup", e => {
+
+        let response = await fetch(urlArtists + "&q=" + e.target.value + "&limit=3", {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+            },
+        });
+    
+        let json = await response.json();
+    
+        json.artists.items.forEach(e => {
+    
+            block = block + "<option>"+e.name+"</option>";
+    
+        });
+    
+        artist.innerHTML = block;
+        $('#artist').selectpicker('refresh');
+    
+     
+    
+    
+    })();
+
+    });
+
+    /*let response = await fetch(urlArtists + "&q=" + searched + "&limit=3", {
         headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + token,
@@ -359,7 +386,7 @@ function addSelectedGenres() {
  
 
 
-})();
+})(); */
 
 function addSelectedArtists() {
 
