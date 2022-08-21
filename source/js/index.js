@@ -363,7 +363,7 @@ function addSelectedGenres() {
      
     
     
-    })();
+    });
 
 
 function addSelectedArtists() {
