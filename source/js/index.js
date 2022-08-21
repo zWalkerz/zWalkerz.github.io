@@ -334,7 +334,7 @@ function addSelectedGenres() {
 
     $('#artist').selectpicker('refresh') ? addSelectedArtists() : console.log("Error");
 
-    });
+    })();
 
 
     searched = document.getElementById("artists").getElementsByTagName("input")[0];
@@ -365,28 +365,6 @@ function addSelectedGenres() {
     
     })();
 
-    /*let response = await fetch(urlArtists + "&q=" + searched + "&limit=3", {
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-        },
-    });
-
-    let json = await response.json();
-
-    json.artists.items.forEach(e => {
-
-        block = block + "<option>"+e.name+"</option>";
-
-    });
-
-    artist.innerHTML = block;
-    $('#artist').selectpicker('refresh');
-
- 
-
-
-})(); */
 
 function addSelectedArtists() {
 
