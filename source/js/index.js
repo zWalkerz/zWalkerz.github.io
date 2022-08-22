@@ -363,7 +363,7 @@ function addSelectedGenres() {
 
     for (i = 0; i < selected.length; i++) {
 
-        searched.value = searched.value + ", " + selected[i];
+        searched.value = searched.value + selected[i] + ", ";
 
     }
 
