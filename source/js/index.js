@@ -360,6 +360,7 @@ function addSelectedGenres() {
 (function () {
 
     let searched = document.getElementById("artist");
+    searched.value = "";
     let selected = user.artists;
 
     for (i = 0; i < selected.length; i++) {
