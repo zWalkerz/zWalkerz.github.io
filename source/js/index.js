@@ -347,7 +347,7 @@ function addSelectedGenres() {
     
         json.artists.items.forEach(e => {
     
-            block = block + "<option value = " + e.name;
+            block = block + "<option value = " + e.name + ">";
             console.log(e.name)
     
         });
