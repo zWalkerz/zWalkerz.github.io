@@ -369,6 +369,52 @@ function addSelectedGenres() {
     }
 
 })();
+
+function send(){
+
+    let artist_flag = false;
+    let genre_flag = false;
+
+    let genre_list = document.getElementsByClassName("filter-option-inner-inner")[0].innerHTML;
+    let artist_list = document.getElementById("artist").value;
+
+    if(genre_list != "Scegli almeno un genere" || genre_list != ""){
+        genre_list = genre_list.replace(/\s/g, "");  // / \s / e' per ricercare un pattern (gli spazi \s), g è per una ricerca globale
+        let subs = genre_list.split(",");
+        subs.forEach(e => {
+    
+            user.genres.push(e);
+    
+        });
+
+        genre_flag = true;
+    
+    }
+
+    if(checkArtist(artist_list)){
+
+        artist_list = artist_list.replace(/\s/g, "");  // / \s / e' per ricercare un pattern (gli spazi \s), g è per una ricerca globale
+        let subs = artist_list.split(",");
+        subs.forEach(e => {
+    
+            user.artists.push(e);
+    
+        });
+
+        artist_list = true;
+
+    }
+
+    message(genre_flag, artist_list);
+}
+
+function checkArtist(list) {
+
+    
+
+
+}
+
 /**
  * It adds a song to the playlist that is currently being edited.
  * @param song - {name: "song name", artist: "artist name", album: "album name", duration: "duration",

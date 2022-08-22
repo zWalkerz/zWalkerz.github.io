@@ -69,8 +69,11 @@ async function fetchingArtists(artist) {
 
 }
 
-//UPDATE DEL PROFILO - Inserisco le informazioni sul profilo e stampo un avviso
 
+/**
+ * It adds the artist to the user's list of artists
+ * @param e - The event object
+ */
 function addInfo(e) {
 
     let user = accounts.find(e => e.token == token);
@@ -79,6 +82,8 @@ function addInfo(e) {
 
         user.artists.push(e.target.parentNode.childNodes[5].innerHTML);
         window.localStorage.setItem('accounts', JSON.stringify(accounts));
+        
+        /* A function that shows a message for 2 seconds. */
         msg = document.getElementById("alert");
         msg.style.opacity = "100%";
         setTimeout(function(){
