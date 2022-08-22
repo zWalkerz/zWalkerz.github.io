@@ -330,19 +330,11 @@ function addSelectedGenres() {
 
 }
 
-(async function(){
 
-    $('#artist').selectpicker('refresh');
-    addSelectedArtists();
-
-
-    })();
-
-
-    searched = document.getElementById("artists").getElementsByTagName("input")[0];
+    searched = document.getElementById("artist");
     searched.addEventListener("input", async e => {
 
-        let artist = document.getElementById("artist");
+        let data = document.getElementById("artist_data");
         let block = "";
         let response = await fetch(urlArtists + "&q=" + e.target.value + "&limit=3", {
             headers: {
@@ -355,31 +347,27 @@ function addSelectedGenres() {
     
         json.artists.items.forEach(e => {
     
-            block = block + "<option>"+e.name+"</option>";
+            block = block + "<option value = " + e.name;
     
         });
     
-        artist.innerHTML = block;
-        $('#artist').selectpicker('refresh');
-    
-     
-    
+        data.innerHTML = block;    
     
     });
 
 
-function addSelectedArtists() {
+(function () {
 
     let searched = document.getElementById("artist");
     let selected = user.artists;
 
-    for(i = 0; i < selected.length; i++) {
+    for (i = 0; i < selected.length; i++) {
 
-        searched.value += selected[i];
+        searched.value = searched.value + ", " + selected[i];
 
     }
 
-}
+})();
 /**
  * It adds a song to the playlist that is currently being edited.
  * @param song - {name: "song name", artist: "artist name", album: "album name", duration: "duration",
