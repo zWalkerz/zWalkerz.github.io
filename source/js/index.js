@@ -434,6 +434,78 @@ function checkArtist(list) {
 
 }
 
+function message(genre_flag, artist_flag) {
+
+    if(genre_flag && artist_flag) {
+
+        msg = document.getElementById("alert");
+        msg.innerHTML = "Genres and artists updated";
+        msg.style.opacity = "100%";
+        setTimeout(function(){
+
+            msg.style.opacity = "0%";
+
+        }, 2000);
+
+    } else if(genre_flag) {
+
+        msg = document.getElementById("alert");
+        msg.innerHTML = "Genres updated";
+
+        let no_artist = function() {
+
+            msg.style.opacity = "100%";
+            msg.classlist.remove("alert-success");
+            msg.classlist.add("alert-danger");
+            msg.innerHTML = "Artists not updated. Select only the ones suggested"; 
+
+            setTimeout(function(){
+
+                msg.style.opacity = "0%";
+    
+            }, 2000);
+
+            }
+
+        setTimeout(function(){
+
+            msg.style.opacity = "0%";
+            no_artist();
+
+        }, 2000);
+
+    } else if(artist_flag) {
+
+        msg = document.getElementById("alert");
+        msg.innerHTML = "Artist updated";
+
+        let no_genres = function() {
+
+            msg.style.opacity = "100%";
+            msg.classlist.remove("alert-success");
+            msg.classlist.add("alert-danger");
+            msg.innerHTML = "Genres not updated, something went wrong"; 
+
+            setTimeout(function(){
+
+                msg.style.opacity = "0%";
+    
+            }, 2000);
+
+            }
+
+        setTimeout(function(){
+
+            msg.style.opacity = "0%";
+            no_genres();
+
+        }, 2000);
+
+    }
+
+
+}
+
 /**
  * It adds a song to the playlist that is currently being edited.
  * @param song - {name: "song name", artist: "artist name", album: "album name", duration: "duration",
