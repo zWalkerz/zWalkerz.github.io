@@ -351,7 +351,7 @@ function addSelectedGenres() {
     
         });
     
-        data.innerHTML = block;    
+        data.innerHTML += block;    
     
     });
 
@@ -401,17 +401,36 @@ function send(){
     
         });
 
-        artist_list = true;
+        artist_flag = true;
 
     }
 
-    message(genre_flag, artist_list);
+    message(genre_flag, artist_flag);
 }
 
 function checkArtist(list) {
 
-    
+    let words = list.split(","); 
+    let data = document.getElementById("artist_data").children;
+    let array_data = [];
 
+    for(i = 0; i < data.length; i++) {
+
+        array_data[i] = data[i].value;
+
+    }
+
+    words.forEach(e => {
+
+        if(array_data.indexOf(e) == -1){
+
+            return false;
+
+        }
+
+    })
+
+    return true;
 
 }
 
