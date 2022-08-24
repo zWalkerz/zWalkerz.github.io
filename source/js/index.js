@@ -341,7 +341,7 @@ function addSelectedGenres() {
 
 async function artistFetch(searched) {
 
-    return await fetch(urlArtists + "&q=" + searched + "&limit=3", {
+    return fetch(urlArtists + "&q=" + searched + "&limit=3", {
         headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + token,
@@ -355,7 +355,7 @@ async function artistFetch(searched) {
 
         let artist = document.getElementById("artist");
         let block = "";
-        let response = artistFetch(e.target.value);
+        let response = await artistFetch(e.target.value);
     
         let json = await response.json();
     
@@ -385,7 +385,7 @@ async function addSelectedArtists() {
     for(i = 0; i < selected.length; i++) {
 
         
-        let response = artistFetch(selected[i]);
+        let response = await artistFetch(selected[i]);
     
         let json = await response.json();
     
