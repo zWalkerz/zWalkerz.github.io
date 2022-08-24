@@ -385,9 +385,6 @@ function artistFetch(searched) {
         artist.innerHTML = block;
  
     
-     
-    
-    
     });
 
 
