@@ -352,14 +352,32 @@ function artistFetch(searched) {
     searched.addEventListener("input", async e => {
 
         let artist = document.getElementById("artist");
-        let block = artist.innerHTML;
+        let block = [];
+
+        let selected =  document.getElementById("artists").querySelectorAll(".selected>.text");
+
+        for(let i = 0; i < selected.length; i++) {
+
+            block += "<option>" + selected[i].innerHTML + "</option>";
+
+        }
+
+        let toSelect = document.getElementById("artists").getElementsByClassName("text");
+        let selected_array = [...selected];
+
+        for(let i = 0; i < toSelect.length; i++) {
+    
+            selected_array.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
+    
+        }
+
         let response = await artistFetch(e.target.value);
     
         let json = await response.json();
     
         json.artists.items.forEach(e => {
 
-            block = block + "<option>"+e.name+"</option>";
+            block = block + "<option>" + e.name + "</option>";
     
         });
     
