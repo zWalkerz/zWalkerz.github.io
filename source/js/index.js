@@ -381,8 +381,6 @@ async function addSelectedArtists() {
     let block = "";
     let artist = document.getElementById("artist");
 
-    console.log(selected);
-
     for(i = 0; i < selected.length; i++) {
 
         
@@ -390,13 +388,10 @@ async function addSelectedArtists() {
     
         let json = await response.json();
     
-        console.log(selected[i]);
-        console.log(selected);
+        console.log(selected, i);
 
         json.artists.items.forEach(e => {
     
-            console.log(selected);
-
             if(selected[i].indexOf(e.name) > -1) {
             block = block + "<option>"+e.name+"</option>";
             }
