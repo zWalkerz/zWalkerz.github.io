@@ -401,6 +401,9 @@ async function addSelectedArtists() {
 
     artist.innerHTML = block;
 
+    $('#artist').selectpicker('refresh');
+
+
     let toSelect = document.getElementById("artists").getElementsByClassName("text");
 
     for(let i = 0; i < toSelect.length; i++) {
@@ -408,9 +411,6 @@ async function addSelectedArtists() {
         selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
 
     }
-
-    $('#artist').selectpicker('refresh');
-
 
 
 }
