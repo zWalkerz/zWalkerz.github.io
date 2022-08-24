@@ -339,18 +339,23 @@ function addSelectedGenres() {
 
     })();
 
+async function artistFetch(searched) {
+
+    return await fetch(urlArtists + "&q=" + searched + "&limit=3", {
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        },
+    });
+
+}
 
     searched = document.getElementById("artists").getElementsByTagName("input")[0];
-    searched.addEventListener("input", async e => {
+    searched.addEventListener("input", e => {
 
         let artist = document.getElementById("artist");
         let block = "";
-        let response = await fetch(urlArtists + "&q=" + e.target.value + "&limit=3", {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + token,
-            },
-        });
+        let response = artistFetch(e.target.value);
     
         let json = await response.json();
     
@@ -369,20 +374,37 @@ function addSelectedGenres() {
     });
 
 
-function addSelectedArtists() {
+async function addSelectedArtists() {
 
-    let searched = document.getElementById("artists").getElementsByTagName("input")[0];
+    let toSelect = document.getElementById("artists").getElementsByClassName("text");
     let selected = user.artists;
+    let block = "";
+    let artist = document.getElementById("artist");
+
 
     for(i = 0; i < selected.length; i++) {
 
-        searched.value = selected[i];
-        searched.dispatchEvent(new Event('input', {bubbles:true}));
-        let toSelect = document.getElementById("genres").getElementsByClassName("text")[0];
-        toSelect[i].parentNode.click();
-
+        
+        let response = artistFetch(selected[i]);
+    
+        let json = await response.json();
+    
+        json.artists.items.forEach(e => {
+    
+            block = block + "<option>"+e.name+"</option>";
+    
+        });
 
     }
+
+    artist.innerHTML = block;
+
+    for(i = 0; i < toSelect.length; i++) {
+
+        selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
+
+    }
+
 
 }
 
