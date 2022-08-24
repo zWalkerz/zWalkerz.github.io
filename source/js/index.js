@@ -335,6 +335,7 @@ function addSelectedGenres() {
 
     $('#artist').selectpicker('refresh');
     addSelectedArtists();
+    $('#artist').selectpicker('refresh');
 
 
     })();
@@ -354,7 +355,7 @@ async function artistFetch(searched) {
     searched.addEventListener("input", async e => {
 
         let artist = document.getElementById("artist");
-        let block = "";
+        let block = artist.innerHTML;
         let response = await artistFetch(e.target.value);
     
         let json = await response.json();
@@ -390,8 +391,9 @@ async function addSelectedArtists() {
     
         json.artists.items.forEach(e => {
     
+            if(selected[i].indexOf(e.name) > -1) {
             block = block + "<option>"+e.name+"</option>";
-    
+            }
         });
 
     }
