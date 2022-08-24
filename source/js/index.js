@@ -189,7 +189,7 @@ search.addEventListener("keyup", e => {
         filter = e.target.value.toUpperCase();
         tracks = document.getElementById("four").querySelectorAll(".tracks>.track");
 
-        for (i = 0; i < tracks.length; i++) {
+        for (let i = 0; i < tracks.length; i++) {
 
             flag = false;
             title = tracks[i].getElementsByClassName("track__title")[0];
@@ -212,7 +212,7 @@ search.addEventListener("keyup", e => {
 
             if(tracks[i].nextSibling.children.length != 0){
 
-            for(j = 0; j < tracks[i].nextSibling.children.length && !flag; j++){
+            for(let j = 0; j < tracks[i].nextSibling.children.length && !flag; j++){
 
                 if(tracks[i].nextSibling.children[j].getElementsByClassName("track__title")[0].innerHTML.toUpperCase().indexOf(filter) > -1){
 
@@ -322,7 +322,7 @@ function addSelectedGenres() {
     let toSelect = document.getElementById("genres").getElementsByClassName("text");
     let selected = user.genres;
 
-    for(i = 0; i < toSelect.length; i++) {
+    for(let i = 0; i < toSelect.length; i++) {
 
         selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
 
@@ -381,7 +381,7 @@ async function addSelectedArtists() {
     let block = "";
     let artist = document.getElementById("artist");
 
-    for(i = 0; i < selected.length; i++) {
+    for(let i = 0; i < selected.length; i++) {
 
         
         let response = await artistFetch(selected[i]);
@@ -403,7 +403,7 @@ async function addSelectedArtists() {
 
     let toSelect = document.getElementById("artists").getElementsByClassName("text");
 
-    for(i = 0; i < toSelect.length; i++) {
+    for(let i = 0; i < toSelect.length; i++) {
 
         selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
 
@@ -456,7 +456,7 @@ function checkArtist(list) {
     let data = document.getElementById("artist_data").children;
     let array_data = [];
 
-    for(i = 0; i < data.length; i++) {
+    for(let i = 0; i < data.length; i++) {
 
         array_data[i] = data[i].value;
 
@@ -893,7 +893,7 @@ function deleteGlobalShared(e) {
     let toDelete;
     let section = document.getElementById("four");
     let list = section.childNodes;
-    for (var i = 1; i < list.length; i++) {
+    for (let i = 1; i < list.length; i++) {
 
         if (list[i].firstChild.textContent == e) {
 
