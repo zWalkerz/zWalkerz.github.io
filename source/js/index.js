@@ -331,7 +331,7 @@ function addSelectedGenres() {
 }
 
 
-(async function(){
+(function(){
 
     $('#artist').selectpicker('refresh');
     addSelectedArtists();
