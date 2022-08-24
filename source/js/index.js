@@ -374,7 +374,7 @@ function artistFetch(searched) {
 
 async function addSelectedArtists() {
 
-    $('.#artist').selectpicker('render');
+    $('.#artist').selectpicker('refresh');
 
     let selected = user.artists;
     let block = "";
