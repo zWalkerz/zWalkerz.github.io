@@ -402,9 +402,8 @@ margin-top: 50px;
 
 	opacity: 0%;
 	transition: opacity 0.5s ease-in-out;
-  display: fixed;
+  position: fixed;
   left: 50%;
-  transform: translate(50%, 0);
   text-align: center;
 
 }
