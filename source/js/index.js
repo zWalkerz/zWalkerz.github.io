@@ -383,7 +383,7 @@ function artistFetch(searched) {
         });
  
         artist.innerHTML = block;
-        $('#artist').selectpicker('refresh');
+ 
     
      
     
