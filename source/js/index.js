@@ -349,7 +349,7 @@ function artistFetch(searched) {
 }
 
     searched = document.getElementById("artists").getElementsByTagName("input")[0];
-    searched.addEventListener("input", async e => {
+    searched.addEventListener("input", e => {
 
         let artist = document.getElementById("artist");
         let block = [];
@@ -371,6 +371,7 @@ function artistFetch(searched) {
     
         }
 
+        (async function (){
         let response = await artistFetch(e.target.value);
     
         let json = await response.json();
@@ -380,7 +381,7 @@ function artistFetch(searched) {
             block = block + "<option>" + e.name + "</option>";
     
         });
-    
+    })();
         artist.innerHTML = block;
         $('#artist').selectpicker('refresh');
     
