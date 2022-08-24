@@ -374,7 +374,7 @@ function artistFetch(searched) {
 
 async function addSelectedArtists() {
 
-    $('.#artist').selectpicker('refresh');
+    $('#artist').selectpicker('refresh');
 
     let selected = user.artists;
     let block = "";
@@ -400,7 +400,7 @@ async function addSelectedArtists() {
 
     artist.innerHTML = block;
 
-    $('#artist').selectpicker('render');
+    $('#artist').selectpicker('refresh');
 
 
     let toSelect = document.getElementById("artists").getElementsByClassName("text");
