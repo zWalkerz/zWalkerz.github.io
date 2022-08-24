@@ -376,7 +376,6 @@ async function artistFetch(searched) {
 
 async function addSelectedArtists() {
 
-    let toSelect = document.getElementById("artists").getElementsByClassName("text");
     let selected = user.artists;
     let block = "";
     let artist = document.getElementById("artist");
@@ -398,6 +397,8 @@ async function addSelectedArtists() {
     }
 
     artist.innerHTML = block;
+
+    let toSelect = document.getElementById("artists").getElementsByClassName("text");
 
     for(i = 0; i < toSelect.length; i++) {
 
