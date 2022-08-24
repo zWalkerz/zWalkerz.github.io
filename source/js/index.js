@@ -349,7 +349,7 @@ function artistFetch(searched) {
 }
 
     searched = document.getElementById("artists").getElementsByTagName("input")[0];
-    searched.addEventListener("input", e => {
+    searched.addEventListener("input", async e => {
 
         let artist = document.getElementById("artist");
         let block = [];
