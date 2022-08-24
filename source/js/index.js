@@ -356,7 +356,7 @@ function artistFetch(searched) {
 
         let selected =  document.getElementById("artists").querySelectorAll(".selected>.text");
 
-        console.log(selected);
+        console.log(selected)
         for(let i = 0; i < selected.length; i++) {
 
             block += "<option>" + selected[i].innerHTML + "</option>";
@@ -372,7 +372,6 @@ function artistFetch(searched) {
     
         }
 
-        (async function (){
         let response = await artistFetch(e.target.value);
     
         let json = await response.json();
@@ -382,7 +381,7 @@ function artistFetch(searched) {
             block = block + "<option>" + e.name + "</option>";
     
         });
-    })();
+ 
         artist.innerHTML = block;
         $('#artist').selectpicker('refresh');
     
