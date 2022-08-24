@@ -333,10 +333,7 @@ function addSelectedGenres() {
 
 (function(){
 
-    $('#artist').selectpicker('refresh');
     addSelectedArtists();
-    $('#artist').selectpicker('refresh');
-
 
     })();
 
@@ -377,6 +374,9 @@ function artistFetch(searched) {
 
 async function addSelectedArtists() {
 
+    $('#artist').selectpicker('refresh');
+
+
     let selected = user.artists;
     let block = "";
     let artist = document.getElementById("artist");
@@ -408,6 +408,9 @@ async function addSelectedArtists() {
         selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
 
     }
+
+    $('#artist').selectpicker('refresh');
+
 
 
 }
