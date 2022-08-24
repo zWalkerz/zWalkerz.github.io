@@ -246,17 +246,9 @@
 
               <div class="info_user">Favourite artists:</div>
                 
-              <input type="text" class="label" id ="artist" spellcheck="false" list = "artist_data">
+              <select class="my-select" id="artist" multiple data-live-search="true" title ="Scegli almeno un artista">
 
-              <datalist id="artist_data">
-                <option value="Edge">
-                <option value="Firefox">
-                <option value="Chrome">
-                <option value="Opera">
-                <option value="Safari">
-              </datalist>
-
-            </div>
+              </select>
 
             <button onclick = send(); class="btn btn-outline-success btn-lg px-5 send" type="submit">Done!</button>
 

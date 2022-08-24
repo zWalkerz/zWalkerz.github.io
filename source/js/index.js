@@ -331,10 +331,19 @@ function addSelectedGenres() {
 }
 
 
-    searched = document.getElementById("artist");
+(async function(){
+
+    $('#artist').selectpicker('refresh');
+    addSelectedArtists();
+
+
+    })();
+
+
+    searched = document.getElementById("artists").getElementsByTagName("input")[0];
     searched.addEventListener("input", async e => {
 
-        let data = document.getElementById("artist_data");
+        let artist = document.getElementById("artist");
         let block = "";
         let response = await fetch(urlArtists + "&q=" + e.target.value + "&limit=3", {
             headers: {
@@ -345,30 +354,37 @@ function addSelectedGenres() {
     
         let json = await response.json();
     
-        json.artists.items.forEach(artist_name => {
+        json.artists.items.forEach(e => {
     
-            block = block + "<option value = '" + artist_name.name + "'/>";
+            block = block + "<option>"+e.name+"</option>";
     
         });
     
-        data.innerHTML += block;    
+        artist.innerHTML = block;
+        $('#artist').selectpicker('refresh');
+    
+     
+    
     
     });
 
 
-(function () {
+function addSelectedArtists() {
 
-    let searched = document.getElementById("artist");
-    searched.value = "";
+    let searched = document.getElementById("artists").getElementsByTagName("input")[0];
     let selected = user.artists;
 
-    for (i = 0; i < selected.length; i++) {
+    for(i = 0; i < selected.length; i++) {
 
-        searched.value = searched.value + selected[i] + ", ";
+        searched.value = selected[i];
+        searched.dispatchEvent(new Event('input', {bubbles:true}));
+        let toSelect = document.getElementById("genres").getElementsByClassName("text")[0];
+        toSelect[i].parentNode.click();
+
 
     }
 
-})();
+}
 
 function send(){
 
