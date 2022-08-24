@@ -340,7 +340,7 @@ function addSelectedGenres() {
 
     })();
 
-async function artistFetch(searched) {
+function artistFetch(searched) {
 
     return fetch(urlArtists + "&q=" + searched + "&limit=3", {
         headers: {
