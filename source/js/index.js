@@ -350,14 +350,14 @@ function artistFetch(searched) {
 
 (function () {
 
-var selected;
+var selected = [];
 
 $("#artists select").on("changed.bs.select", 
       function() {
     
     $('#artist').selectpicker('refresh');
-     selected = $("#artists select").val();
-
+     actuallySelected = $("#artists select").val();
+     selected = [...new Set(selected.concat(actuallySelected))]
 });
 
 
