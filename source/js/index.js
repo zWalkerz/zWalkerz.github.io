@@ -402,11 +402,14 @@ function artistFetch(searched) {
 
         $('#artist').selectpicker('refresh');
 
+        console.log(selected)
+
         let toSelect = document.getElementById("artists").getElementsByClassName("text");
         for (let i = 0; i < toSelect.length; i++) {
 
+            
             selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
-
+            console.log(toSelect[i])
         }
 
     });
