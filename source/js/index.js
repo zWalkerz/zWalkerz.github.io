@@ -181,7 +181,7 @@ search.addEventListener("keyup", e => {
             (async () => { addWrap = await fetchTrack(e.target.value); })();
         }
     } else if (tab.id == "shared-ones") {
-        
+
         /* Searching for the tracks in the playlist and if it finds the track it will display it. */
 
         let flag
@@ -196,42 +196,42 @@ search.addEventListener("keyup", e => {
             txtValue = title.innerHTML;
 
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                
+
                 tracks[i].style.display = "";
                 tracks[i].nextSibling.style.display = "";
                 flag = true;
             }
 
             if (tracks[i].getElementsByTagName("input")[1].value.toUpperCase().indexOf(filter) > -1) {
-                
+
                 tracks[i].style.display = "";
                 tracks[i].nextSibling.style.display = "";
                 flag = true;
             }
 
 
-            if(tracks[i].nextSibling.children.length != 0){
+            if (tracks[i].nextSibling.children.length != 0) {
 
-            for(let j = 0; j < tracks[i].nextSibling.children.length && !flag; j++){
+                for (let j = 0; j < tracks[i].nextSibling.children.length && !flag; j++) {
 
-                if(tracks[i].nextSibling.children[j].getElementsByClassName("track__title")[0].innerHTML.toUpperCase().indexOf(filter) > -1){
+                    if (tracks[i].nextSibling.children[j].getElementsByClassName("track__title")[0].innerHTML.toUpperCase().indexOf(filter) > -1) {
 
-                    tracks[i].style.display = "";
-                    tracks[i].nextSibling.style.display = "";
-                    flag = true;
+                        tracks[i].style.display = "";
+                        tracks[i].nextSibling.style.display = "";
+                        flag = true;
+                    }
+
+
                 }
-
-
             }
-        }
 
-            if(!flag){
+            if (!flag) {
 
                 tracks[i].style.display = "none";
                 tracks[i].nextSibling.style.display = "none";
 
             }
-        
+
 
         }
     }
@@ -288,7 +288,7 @@ async function fetchTrack(track) {
     }
 }
 
-(async function(){
+(async function () {
 
     let genre = document.getElementById("genre");
     let block = "";
@@ -304,14 +304,14 @@ async function fetchTrack(track) {
 
     json.genres.forEach(e => {
 
-        block = block + "<option>"+e+"</option>";
+        block = block + "<option>" + e + "</option>";
 
     });
 
     genre.innerHTML = block;
     $('#genre').selectpicker('refresh') ? addSelectedGenres() : console.log("Error");
 
- 
+
 
 
 })();
@@ -322,7 +322,7 @@ function addSelectedGenres() {
     let toSelect = document.getElementById("genres").getElementsByClassName("text");
     let selected = user.genres;
 
-    for(let i = 0; i < toSelect.length; i++) {
+    for (let i = 0; i < toSelect.length; i++) {
 
         selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
 
@@ -331,11 +331,11 @@ function addSelectedGenres() {
 }
 
 
-(function(){
+(function () {
 
     addSelectedArtists();
 
-    })();
+})();
 
 function artistFetch(searched) {
 
@@ -350,35 +350,50 @@ function artistFetch(searched) {
 
 (function () {
 
-var selected = [];
+    var selected = [];
 
-$("#artists select").on("changed.bs.select", 
-      function() {
-    
-    $('#artist').selectpicker('refresh');
-     actuallySelected = $("#artists select").val();
-     selected = [...new Set(selected.concat(actuallySelected))]
-});
+    $("#artists select").on("changed.bs.select",
+        function () {
+
+            $('#artist').selectpicker('refresh');
+            actuallySelected = $("#artists select").val();
+            selected = [...new Set(selected.concat(actuallySelected))]
+            
+        });
 
 
-$('#artists .form-control').on('input', async function (e) {
+    $('#artists .form-control').on('input', async function (e) {
 
         let artist = document.getElementById("artist");
-        let block = [];
-		let response = await artistFetch(e.target.value);
+        let block;
+        selected.forEach(e => {
+
+            block += "<option>" + e + "</option>";
+
+
+        })
+
+        let response = await artistFetch(e.target.value);
         let json = await response.json();
-    
+
         json.artists.items.forEach(e => {
 
             block = block + "<option>" + e.name + "</option>";
-    
-        });
- 
-        artist.innerHTML = block;
-	 
-    $('#artist').selectpicker('refresh');
 
-});
+        });
+
+        artist.innerHTML = block;
+
+        $('#artist').selectpicker('refresh');
+
+        let toSelect = document.getElementById("artists").getElementsByClassName("text");
+        for(let i = 0; i < toSelect.length; i++) {
+
+            selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
+    
+        }
+    
+    });
 
 })();
 
@@ -390,19 +405,19 @@ async function addSelectedArtists() {
     let block = "";
     let artist = document.getElementById("artist");
 
-    for(let i = 0; i < selected.length; i++) {
+    for (let i = 0; i < selected.length; i++) {
 
-        
+
         let response = await artistFetch(selected[i]);
-    
+
         let json = await response.json();
-    
+
         console.log(selected, i);
 
         json.artists.items.forEach(e => {
-    
-            if(selected[i].indexOf(e.name) > -1) {
-            block = block + "<option>"+e.name+"</option>";
+
+            if (selected[i].indexOf(e.name) > -1) {
+                block = block + "<option>" + e.name + "</option>";
             }
         });
 
@@ -415,7 +430,7 @@ async function addSelectedArtists() {
 
     let toSelect = document.getElementById("artists").getElementsByClassName("text");
 
-    for(let i = 0; i < toSelect.length; i++) {
+    for (let i = 0; i < toSelect.length; i++) {
 
         selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
 
@@ -424,7 +439,7 @@ async function addSelectedArtists() {
 
 }
 
-function send(){
+function send() {
 
     let artist_flag = false;
     let genre_flag = false;
@@ -432,27 +447,27 @@ function send(){
     let genre_list = document.getElementsByClassName("filter-option-inner-inner")[0].innerHTML;
     let artist_list = document.getElementById("artist").value;
 
-    if(genre_list != "Scegli almeno un genere" || genre_list != ""){
+    if (genre_list != "Scegli almeno un genere" || genre_list != "") {
         genre_list = genre_list.replace(/\s/g, "");  // / \s / e' per ricercare un pattern (gli spazi \s), g è per una ricerca globale
         let subs = genre_list.split(",");
         subs.forEach(e => {
-    
+
             user.genres.push(e);
-    
+
         });
 
         genre_flag = true;
-    
+
     }
 
-    if(checkArtist(artist_list)){
+    if (checkArtist(artist_list)) {
 
         artist_list = artist_list.replace(/\s/g, "");  // / \s / e' per ricercare un pattern (gli spazi \s), g è per una ricerca globale
         let subs = artist_list.split(",");
         subs.forEach(e => {
-    
+
             user.artists.push(e);
-    
+
         });
 
         artist_flag = true;
@@ -464,11 +479,11 @@ function send(){
 
 function checkArtist(list) {
 
-    let words = list.split(","); 
+    let words = list.split(",");
     let data = document.getElementById("artist_data").children;
     let array_data = [];
 
-    for(let i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
 
         array_data[i] = data[i].value;
 
@@ -476,7 +491,7 @@ function checkArtist(list) {
 
     words.forEach(e => {
 
-        if(array_data.indexOf(e) == -1){
+        if (array_data.indexOf(e) == -1) {
 
             return false;
 
@@ -490,65 +505,65 @@ function checkArtist(list) {
 
 function message(genre_flag, artist_flag) {
 
-    if(genre_flag && artist_flag) {
+    if (genre_flag && artist_flag) {
 
         msg = document.getElementById("alert");
         msg.innerHTML = "Genres and artists updated";
         msg.style.opacity = "100%";
-        setTimeout(function(){
+        setTimeout(function () {
 
             msg.style.opacity = "0%";
 
         }, 2000);
 
-    } else if(genre_flag) {
+    } else if (genre_flag) {
 
         msg = document.getElementById("alert");
         msg.innerHTML = "Genres updated";
 
-        let no_artist = function() {
+        let no_artist = function () {
 
             msg.style.opacity = "100%";
             msg.classlist.remove("alert-success");
             msg.classlist.add("alert-danger");
-            msg.innerHTML = "Artists not updated. Select only the ones suggested"; 
+            msg.innerHTML = "Artists not updated. Select only the ones suggested";
 
-            setTimeout(function(){
+            setTimeout(function () {
 
                 msg.style.opacity = "0%";
-    
+
             }, 2000);
 
-            }
+        }
 
-        setTimeout(function(){
+        setTimeout(function () {
 
             msg.style.opacity = "0%";
             no_artist();
 
         }, 2000);
 
-    } else if(artist_flag) {
+    } else if (artist_flag) {
 
         msg = document.getElementById("alert");
         msg.innerHTML = "Artist updated";
 
-        let no_genres = function() {
+        let no_genres = function () {
 
             msg.style.opacity = "100%";
             msg.classlist.remove("alert-success");
             msg.classlist.add("alert-danger");
-            msg.innerHTML = "Genres not updated, something went wrong"; 
+            msg.innerHTML = "Genres not updated, something went wrong";
 
-            setTimeout(function(){
+            setTimeout(function () {
 
                 msg.style.opacity = "0%";
-    
+
             }, 2000);
 
-            }
+        }
 
-        setTimeout(function(){
+        setTimeout(function () {
 
             msg.style.opacity = "0%";
             no_genres();
@@ -784,21 +799,21 @@ function addShared(e) {
 
     accounts.forEach(person => {
 
-            person.playlists.forEach(e => {
+        person.playlists.forEach(e => {
 
-                if (e.name == toAdd) {
+            if (e.name == toAdd) {
 
                 /* Checking if the playlist name is already in the user's playlist. If it is not, it will add it to the
                 user's playlist. */
-                    if(user.playlists.some(playlist => playlist.name == toAdd) == false){
+                if (user.playlists.some(playlist => playlist.name == toAdd) == false) {
 
                     user.playlists.push(toAdd)
                     window.localStorage.setItem("accounts", JSON.stringify(accounts));
-                    }
-
                 }
 
-            })
+            }
+
+        })
 
     });
 
@@ -815,23 +830,23 @@ function viewShared(e) {
 
     accounts.forEach(person => {
 
-            person.playlists.forEach(e => {
+        person.playlists.forEach(e => {
 
-                if (e.name == toView) {
+            if (e.name == toView) {
 
-                    let block = document.createElement("div");
-                    e.songs.forEach(song => {
+                let block = document.createElement("div");
+                e.songs.forEach(song => {
 
-                        block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name + "</div><div class='label track__release_date'><span>" + song.release_date + "</span></div><div class='label track__explicit'><span>" + song.duration + "</span> </div></div>";
-                    }
-
-                    );
-
-
-                    toFill.innerHTML = block.innerHTML;
-
-
+                    block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name + "</div><div class='label track__release_date'><span>" + song.release_date + "</span></div><div class='label track__explicit'><span>" + song.duration + "</span> </div></div>";
                 }
+
+                );
+
+
+                toFill.innerHTML = block.innerHTML;
+
+
+            }
 
         });
 
