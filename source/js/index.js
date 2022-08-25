@@ -358,7 +358,7 @@ function artistFetch(searched) {
             $('#artist').selectpicker('refresh');
             actuallySelected = $("#artists select").val();
             selected = [...new Set(selected.concat(actuallySelected))]
-            selected = selected.filter(e => {
+            /*selected = selected.filter(e => { //TODO
 
                 for (let i = 0; i < document.querySelectorAll("#artists .selected > .text").length; i++) {
 
@@ -375,7 +375,7 @@ function artistFetch(searched) {
 
             console.log(selected)
 
-        });
+        }); */
 
 
     $('#artists .form-control').on('input', async function (e) {
