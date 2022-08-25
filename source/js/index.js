@@ -348,32 +348,24 @@ function artistFetch(searched) {
 
 }
 
-    searched = document.getElementById("artists").getElementsByTagName("input")[0];
-    searched.addEventListener("input", async e => {
+(function () {
+
+var selected;
+
+$("#artists select").on("changed.bs.select", 
+      function() {
+    
+    $('#artist').selectpicker('refresh');
+     selected = $("#artists select").val();
+
+});
+
+
+$('#artists .form-control').on('input', async function (e) {
 
         let artist = document.getElementById("artist");
         let block = [];
-
-        let selected =  document.getElementById("artists").querySelectorAll(".selected>.text");
-
-        console.log(selected)
-        for(let i = 0; i < selected.length; i++) {
-
-            block += "<option>" + selected[i].innerHTML + "</option>";
-
-        }
-
-        let toSelect = document.getElementById("artists").getElementsByClassName("text");
-        let selected_array = [...selected];
-
-        for(let i = 0; i < toSelect.length; i++) {
-    
-            selected_array.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
-    
-        }
-
-        let response = await artistFetch(e.target.value);
-    
+		let response = await artistFetch(e.target.value);
         let json = await response.json();
     
         json.artists.items.forEach(e => {
@@ -383,10 +375,12 @@ function artistFetch(searched) {
         });
  
         artist.innerHTML = block;
- 
-    
-    });
+	 
+    $('#artist').selectpicker('refresh');
 
+});
+
+})();
 
 async function addSelectedArtists() {
 
