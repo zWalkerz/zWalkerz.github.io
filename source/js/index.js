@@ -374,8 +374,8 @@ function artistFetch(searched) {
             });
 
             console.log(selected)
-
-        }); */
+*/
+        }); 
 
 
     $('#artists .form-control').on('input', async function (e) {
