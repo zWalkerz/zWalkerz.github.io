@@ -358,7 +358,23 @@ function artistFetch(searched) {
             $('#artist').selectpicker('refresh');
             actuallySelected = $("#artists select").val();
             selected = [...new Set(selected.concat(actuallySelected))]
-            
+            selected = selected.filter(e => {
+
+                for (let i = 0; i < document.querySelectorAll("#artists .selected > .text").length; i++) {
+
+                    if (e == document.querySelectorAll("#artists .selected > .text")[i].innerHTML) {
+
+                        return true
+                    }
+
+                }
+
+                return false
+
+            });
+
+            console.log(selected)
+
         });
 
 
@@ -387,12 +403,12 @@ function artistFetch(searched) {
         $('#artist').selectpicker('refresh');
 
         let toSelect = document.getElementById("artists").getElementsByClassName("text");
-        for(let i = 0; i < toSelect.length; i++) {
+        for (let i = 0; i < toSelect.length; i++) {
 
             selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
-    
+
         }
-    
+
     });
 
 })();
