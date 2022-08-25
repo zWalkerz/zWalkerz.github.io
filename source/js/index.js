@@ -358,24 +358,23 @@ function artistFetch(searched) {
             $('#artist').selectpicker('refresh');
             actuallySelected = $("#artists select").val();
             selected = [...new Set(selected.concat(actuallySelected))]
-            /*selected = selected.filter(e => { //TODO
 
-                for (let i = 0; i < document.querySelectorAll("#artists .selected > .text").length; i++) {
+            selected = selected.filter(e => {
+
+                for (i = 0; i < document.querySelectorAll("#artists .selected > .text").length; i++) {
 
                     if (e == document.querySelectorAll("#artists .selected > .text")[i].innerHTML) {
 
-                        return true
+                        console.log(e == document.querySelectorAll("#artists .selected > .text")[i].innerHTML, e, document.querySelectorAll("#artists .selected > .text")[i].innerHTML);
+                        return true;
+
                     }
-
                 }
+                return false;
 
-                return false
-
-            });
-
+            })
             console.log(selected)
-*/
-        }); 
+        });
 
 
     $('#artists .form-control').on('input', async function (e) {
@@ -388,6 +387,7 @@ function artistFetch(searched) {
 
 
         })
+        console.log(selected)
 
         let response = await artistFetch(e.target.value);
         let json = await response.json();
