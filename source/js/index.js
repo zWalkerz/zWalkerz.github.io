@@ -365,7 +365,7 @@ function artistFetch(searched) {
 
             });
 
-            artistsSelected.appendChild(block);
+            artistsSelected.innerHTML += block.innerHTML;
             
         });
 
