@@ -349,21 +349,21 @@ function artistFetch(searched) {
 }
 
 (function () {
+
     $('#artist').selectpicker('refresh');
 
     $("#artists select").on("changed.bs.select",
         function () {
 
-            let artistsSelected = document.getElementById("selectedArtists");
-            let block;
             $('#artist').selectpicker('refresh');
-            let selected = $("#artists select").val();
 
-            console.log(selected);
+            let artistsSelected = document.getElementById("selectedArtists");
+            let block = "";
+            let selected = $("#artists select").val();
 
             selected.forEach(e => {
 
-            block += "<li><a class = 'dropdown-item' href='#'>" + e + "</a></li> <i class='bi bi-dash'></i>"
+            block += "<li><a class = 'dropdown-item' href='#'>" + e + "</a> <i class='bi bi-dash'></i></li>"
 
             });
 
