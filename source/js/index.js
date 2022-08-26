@@ -436,7 +436,7 @@ function removeArtist(e) {
 
     })
     
-    localStorage.setItem("accounts", JSON.stringify(user))
+    window.localStorage.setItem("accounts", JSON.stringify(accounts));
 
 }
 
