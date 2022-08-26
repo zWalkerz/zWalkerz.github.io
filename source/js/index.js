@@ -349,6 +349,7 @@ function artistFetch(searched) {
 }
 
 (function () {
+    $('#artist').selectpicker('refresh');
 
     $("#artists select").on("changed.bs.select",
         function () {
