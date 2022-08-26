@@ -331,12 +331,6 @@ function addSelectedGenres() {
 }
 
 
-(function () {
-
-    addSelectedArtists();
-
-})();
-
 function artistFetch(searched) {
 
     return fetch(urlArtists + "&q=" + searched + "&limit=3", {
