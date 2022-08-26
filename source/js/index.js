@@ -397,6 +397,7 @@ function artistFetch(searched) {
 
     let artistsSelected = document.getElementById("selectedArtists");
     let toAdd = user.artists; 
+    let block = "";
 
     toAdd.forEach(e => {
 
