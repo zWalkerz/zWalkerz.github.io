@@ -350,6 +350,8 @@ function artistFetch(searched) {
 
 (function () {
 
+    var selected = [];
+
     $('#artist').selectpicker('refresh');
 
     $("#artists select").on("changed.bs.select",
@@ -359,16 +361,18 @@ function artistFetch(searched) {
 
             let artistsSelected = document.getElementById("selectedArtists");
             let block = "";
-            let selected = $("#artists select").val();
+            let actuallySelected = $("#artists select").val();
+
+            selected = [...new Set(selected.concat(actuallySelected))];
 
             selected.forEach(e => {
 
-            block += "<li><a class = 'dropdown-item' href='#'>" + e + "</a> <a href = '#'><i class='bi bi-dash-lg'></i></a></li>"
+            block += "<li><a class = 'dropdown-item' href='#'>" + e + "</a> <a href = '#'><i class='bi bi-dash-lg' onclick='removeArtist(this)' ></i></a></li>"
 
             });
 
 
-            artistsSelected.innerHTML += block;
+            artistsSelected.innerHTML = block;
             
         });
 
@@ -395,10 +399,31 @@ function artistFetch(searched) {
 
 })();
 
-async function addSelectedArtists() {
+async function addSelectedArtists(e) {
 
 
 
+}
+
+/**
+ * It removes the artist from the user's list of artists
+ */
+function removeArtist() {
+
+    let parent = e.closest("li");
+    let toDelete = parent.children[0].innerHTML;
+
+    user.artists.forEach(function (e, index) {
+
+        if (e.name == toDelete) {
+
+            user.artists.splice(index, 1);
+
+        }
+
+    })
+    
+    localStorage.setItem("accounts", JSON.stringify(user))
 
 }
 
