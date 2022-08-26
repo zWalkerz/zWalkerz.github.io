@@ -359,12 +359,15 @@ function artistFetch(searched) {
             $('#artist').selectpicker('refresh');
             let selected = $("#artists select").val();
 
+            console.log(selected);
+
             selected.forEach(e => {
 
             block += "<li><a class = 'dropdown-item' href='#'>" + e + "</a></li>"
 
             });
 
+            
             artistsSelected.innerHTML += block.innerHTML;
             
         });
