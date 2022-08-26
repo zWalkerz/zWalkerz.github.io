@@ -363,7 +363,7 @@ function artistFetch(searched) {
 
             selected.forEach(e => {
 
-            block += "<li><a class = 'dropdown-item' href='#'>" + e + "</a> <i class='bi bi-dash'></i></li>"
+            block += "<li><a class = 'dropdown-item' href='#'>" + e + "</a> <a href = '#'><i class='bi bi-dash-lg'></i></a></li>"
 
             });
 
