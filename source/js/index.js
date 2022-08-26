@@ -168,7 +168,7 @@ tab is the "manage-playlist" one. If it is, it calls the fetchTrack function and
 the input as a parameter. If it is not, it filters the tracks in the "shared-ones" tab. */
 
 let search = document.getElementById("form1");
-search.addEventListener("keyup", e => {
+search.addEventListener("input", e => {
 
 
     let tab = document.querySelector(".tab-pane.active");
@@ -350,30 +350,22 @@ function artistFetch(searched) {
 
 (function () {
 
-    var selected = [];
-
     $("#artists select").on("changed.bs.select",
         function () {
 
+            let artistsSelected = document.getElementById("selectedArtists");
+            let block;
             $('#artist').selectpicker('refresh');
-            actuallySelected = $("#artists select").val();
-            selected = [...new Set(selected.concat(actuallySelected))]
+            let selected = $("#artists select").val();
 
-            selected = selected.filter(e => {
+            selected.forEach(e => {
 
-                for (i = 0; i < document.querySelectorAll("#artists .selected > .text").length; i++) {
+            block += "<li><a class = 'dropdown-item' href='#'>" + e + "</a></li>"
 
-                    if (e == document.querySelectorAll("#artists .selected > .text")[i].innerHTML) {
+            });
 
-                        console.log(e == document.querySelectorAll("#artists .selected > .text")[i].innerHTML, e, document.querySelectorAll("#artists .selected > .text")[i].innerHTML);
-                        return true;
-
-                    }
-                }
-                return false;
-
-            })
-            console.log(selected)
+            artistsSelected.appendChild(block);
+            
         });
 
 
@@ -381,13 +373,6 @@ function artistFetch(searched) {
 
         let artist = document.getElementById("artist");
         let block;
-        selected.forEach(e => {
-
-            block += "<option>" + e + "</option>";
-
-
-        })
-        console.log(selected)
 
         let response = await artistFetch(e.target.value);
         let json = await response.json();
@@ -401,16 +386,6 @@ function artistFetch(searched) {
         artist.innerHTML = block;
 
         $('#artist').selectpicker('refresh');
-
-        console.log(selected)
-
-        let toSelect = document.getElementById("artists").getElementsByClassName("text");
-        for (let i = 0; i < toSelect.length; i++) {
-
-            
-            selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
-            console.log(toSelect[i])
-        }
 
     });
 
