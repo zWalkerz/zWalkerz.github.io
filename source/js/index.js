@@ -399,11 +399,21 @@ function artistFetch(searched) {
 
 })();
 
-async function addSelectedArtists(e) {
+(function() {
+
+    let artistsSelected = document.getElementById("selectedArtists");
+    let toAdd = user.artists; 
+
+    toAdd.forEach(e => {
+
+        block += "<li><a class = 'dropdown-item' href='#'>" + e + "</a> <a href = '#'><i class='bi bi-dash-lg' onclick='removeArtist(this)' ></i></a></li>"
+
+    })
+
+    artistsSelected.innerHTML = block;
 
 
-
-}
+})();
 
 /**
  * It removes the artist from the user's list of artists

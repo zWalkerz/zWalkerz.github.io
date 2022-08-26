@@ -414,6 +414,11 @@ margin-top: 50px;
 
 }
 
+#secondDrop li {
+
+white-space: nowrap;
+}
+
 #artists .bi {
 
   color: #dd3636
