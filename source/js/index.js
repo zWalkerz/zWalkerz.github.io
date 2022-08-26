@@ -393,42 +393,7 @@ function artistFetch(searched) {
 
 async function addSelectedArtists() {
 
-    $('#artist').selectpicker('refresh');
 
-    let selected = user.artists;
-    let block = "";
-    let artist = document.getElementById("artist");
-
-    for (let i = 0; i < selected.length; i++) {
-
-
-        let response = await artistFetch(selected[i]);
-
-        let json = await response.json();
-
-        console.log(selected, i);
-
-        json.artists.items.forEach(e => {
-
-            if (selected[i].indexOf(e.name) > -1) {
-                block = block + "<option>" + e.name + "</option>";
-            }
-        });
-
-    }
-
-    artist.innerHTML = block;
-
-    $('#artist').selectpicker('refresh');
-
-
-    let toSelect = document.getElementById("artists").getElementsByClassName("text");
-
-    for (let i = 0; i < toSelect.length; i++) {
-
-        selected.some(e => e == toSelect[i].innerHTML) ? toSelect[i].parentNode.click() : null;
-
-    }
 
 
 }
