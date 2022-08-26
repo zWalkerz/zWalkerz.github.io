@@ -84,11 +84,11 @@ function addInfo(e) {
         window.localStorage.setItem('accounts', JSON.stringify(accounts));
         
         /* A function that shows a message for 2 seconds. */
-        msg = document.getElementById("alert");
-        msg.style.opacity = "100%";
+        border = e.parent;
+        border.style.border = "2px solid rgba(44, 255, 0, 1)";
         setTimeout(function(){
 
-            msg.style.opacity = "0%";
+            border.style.border = "2px solid rgba(44, 255, 0, 0)";
 
         }, 2000);
 

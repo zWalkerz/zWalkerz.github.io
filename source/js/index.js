@@ -413,7 +413,7 @@ function artistFetch(searched) {
 /**
  * It removes the artist from the user's list of artists
  */
-function removeArtist() {
+function removeArtist(e) {
 
     let parent = e.closest("li");
     let toDelete = parent.children[0].innerHTML;

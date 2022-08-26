@@ -69,6 +69,8 @@ background-color: #181818 !important;
 	margin: 15px;
 	position: relative;
 	min-width: 190px;
+	border: 1px solid rgba(44, 255, 0, 0);
+	transition: border 0.5s ease-in-out;
 }
 .artist:hover .overlayer {
 	visibility: visible;
@@ -171,14 +173,6 @@ margin: auto !important;
 	visibility:hidden;
 
 }*/
-
-.alert{
-
-	opacity: 0%;
-	transition: opacity 0.5s ease-in-out;
-
-}
-
 
 small.form-text {
     color: red;
