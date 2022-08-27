@@ -260,6 +260,7 @@ search.addEventListener("input", e => {
 function editData(e) {
 
     let editing = e.parentNode.querySelector(".info_user").innerHTML.toLowerCase();
+    editing = editing.substring(0, editing.length-1);
     let toEdit = e.parentNode.querySelector("input");
     let data = prompt("Enter a value for the " + editing);
 
@@ -298,7 +299,7 @@ function checkData(data, type) {
         email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/i,
     };
 
-        return patterns[type.substring(0, type.length-1)].test(data);
+        return patterns[type].test(data);
 
 }
 
