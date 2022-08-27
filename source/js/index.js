@@ -1013,7 +1013,7 @@ function editing() {
 
         );
 
-        section.innerHTML = block.innerHTML;
+        section.innerHTML = block;
     }
 
 
