@@ -1036,6 +1036,7 @@ function removeSong(e) {
     let parent = e.closest(".track");
     let toDelete = parent.children[1].innerHTML;
     let playlist = JSON.parse(sessionStorage.getItem("editing"));
+    parent.remove();
 
     user.playlists.forEach(e => {
 
