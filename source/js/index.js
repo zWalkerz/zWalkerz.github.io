@@ -40,7 +40,7 @@ valid. If it's not, it redirects the user to the login page.  */
     accounts = JSON.parse(window.localStorage.getItem("accounts"));
     user = accounts.find((e) => e.token == token);
 
-    if(user.completed = "no") {
+    if(user.completed == "no") {
 
         alert("Completare il profilo");
         window.location.replace("complete/index.htm");
