@@ -1021,7 +1021,7 @@ function editing() {
 
 }
 
-function removeSong(this) {
+function removeSong(e) {
 
     let parent = e.closest(".track");
     let toDelete = parent.children[1].innerHTML;
