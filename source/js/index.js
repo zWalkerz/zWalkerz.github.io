@@ -247,13 +247,13 @@ search.addEventListener("input", e => {
 
 (function () {
 
-    let username = document.querySelector("#five > #username > input").value;
-    let email = document.querySelector("#five > #email > input").value;
-    let password = document.querySelector("#five > #password > input").value;
+    let username = document.querySelector("#five > #username > input");
+    let email = document.querySelector("#five > #email > input");
+    let password = document.querySelector("#five > #password > input");
 
-    username = user.username
-    email = user.email 
-    password = user.password;
+    username.value = user.username
+    email.value = user.email 
+    password.value = user.password;
 
 })();
 
