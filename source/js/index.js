@@ -251,9 +251,9 @@ search.addEventListener("input", e => {
     let email = document.querySelector("#five > #email > input").value;
     let password = document.querySelector("#five > #password > input").value;
 
-    username = user.username;
-    email = user.email;
-    password = user.password; 
+    user.username = username
+    user.email = email 
+    user.password = password;
 
 })();
 
@@ -303,6 +303,17 @@ function checkData(data, type) {
 }
 
 
+function zero(e) {
+
+    if(e < 10) {
+
+        return "0"+e;
+
+    }
+    return e;
+
+}
+
 /**
  * It takes a track name as input, it fetches the track from the Spotify API, it creates a json object
  * with the track's name, album art, release date and explicit status, and it updates the page with the
@@ -330,7 +341,7 @@ async function fetchTrack(track) {
             art: json.tracks.items[0].album.images[0].url,
             release_date: json.tracks.items[0].album.release_date,
             explicit: json.tracks.items[0].explicit,
-            duration: Math.floor(json.tracks.items[0].duration_ms / 1000 / 60) + ":" + Math.floor(json.tracks.items[0].duration_ms / 1000 % 60),
+            duration: Math.floor(json.tracks.items[0].duration_ms / 1000 / 60) + ":" + zero(Math.floor(json.tracks.items[0].duration_ms / 1000 % 60)),
 
         };
 
