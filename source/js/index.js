@@ -1052,6 +1052,16 @@ function removeSong(e) {
 
     })}
     });
+
+    playlist.songs.forEach(function (song, index) {
+
+        if (song.name == toDelete) {
+
+            playlist.songs.splice(index, 1);
+
+        }
+
+    })
     
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
 
