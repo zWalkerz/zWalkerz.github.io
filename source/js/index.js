@@ -431,7 +431,7 @@ function artistFetch(searched) {
             $('#artist').selectpicker('refresh');
 
             let artistsSelected = document.getElementById("selectedArtists");
-            let block = "";
+            let block = artistsSelected.innerHTML;
             let actuallySelected = $("#artists select").val();
 
             selected = [...new Set(selected.concat(actuallySelected))];
