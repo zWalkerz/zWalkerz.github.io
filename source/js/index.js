@@ -245,6 +245,63 @@ search.addEventListener("input", e => {
     }
 });
 
+(function () {
+
+    let username = document.querySelector("#five > #username > input").value;
+    let email = document.querySelector("#five > #email > input").value;
+    let password = document.querySelector("#five > #password > input").value;
+
+    username = user.username;
+    email = user.email;
+    password = user.password; 
+
+})();
+
+function editData(e) {
+
+    let editing = e.parentNode.querySelector(".info_user").innerHTML.toLowerCase();
+    let toEdit = e.parentNode.querySelector("input");
+    let data = prompt("Enter a value for the " + editing);
+
+    if(checkData(data, editing)) {
+    toEdit.value = data;
+
+    if(editing == "username") {
+
+        user.username = data;
+
+    } else if (editing == "password") {
+
+        user.password = data;
+
+    } else if (editing == "email") {
+
+        user.email = data;
+
+    }
+
+    localStorage.setItem("accounts", JSON.stringify(accounts));
+} else {
+
+    alert("Wrong value")
+
+}
+
+}
+
+
+function checkData(data, type) {
+
+    const patterns = {
+        username: /^[a-z\d]{5,12}$/i,
+        password: /^[\d\w@-]{8,20}$/i,
+        email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/i,
+    };
+
+        return patterns[type.substring(0, type.length-1)].test(data);
+
+}
+
 
 /**
  * It takes a track name as input, it fetches the track from the Spotify API, it creates a json object
@@ -446,31 +503,29 @@ function send() {
     let genre_flag = false;
 
     let genre_list = document.getElementsByClassName("filter-option-inner-inner")[0].innerHTML;
-    let artist_list = document.getElementById("artist").value;
+    let artist_list = document.getElementById("selectedArtists");
 
-    if (genre_list != "Scegli almeno un genere" || genre_list != "") {
+    if (genre_list != "Scegli almeno un genere") {
+        let newGenres = [];
         genre_list = genre_list.replace(/\s/g, "");  // / \s / e' per ricercare un pattern (gli spazi \s), g è per una ricerca globale
         let subs = genre_list.split(",");
         subs.forEach(e => {
 
-            user.genres.push(e);
+            newGenres.push(e);
 
         });
+
+        user.genres = newGenres;
 
         genre_flag = true;
 
     }
 
-    if (checkArtist(artist_list)) {
+    if (artist_list.childElementCount > 0) {
 
-        artist_list = artist_list.replace(/\s/g, "");  // / \s / e' per ricercare un pattern (gli spazi \s), g è per una ricerca globale
-        let subs = artist_list.split(",");
-        subs.forEach(e => {
+        artist_list = [...artist_list.querySelectorAll(".dropdown-item")].map(e => e.innerHTML)
 
-            user.artists.push(e);
-
-        });
-
+        user.artists = artist_list;
         artist_flag = true;
 
     }
@@ -478,31 +533,6 @@ function send() {
     message(genre_flag, artist_flag);
 }
 
-function checkArtist(list) {
-
-    let words = list.split(",");
-    let data = document.getElementById("artist_data").children;
-    let array_data = [];
-
-    for (let i = 0; i < data.length; i++) {
-
-        array_data[i] = data[i].value;
-
-    }
-
-    words.forEach(e => {
-
-        if (array_data.indexOf(e) == -1) {
-
-            return false;
-
-        }
-
-    })
-
-    return true;
-
-}
 
 function message(genre_flag, artist_flag) {
 
@@ -527,7 +557,7 @@ function message(genre_flag, artist_flag) {
             msg.style.opacity = "100%";
             msg.classlist.remove("alert-success");
             msg.classlist.add("alert-danger");
-            msg.innerHTML = "Artists not updated. Select only the ones suggested";
+            msg.innerHTML = "Artists not updated, something went wrong";
 
             setTimeout(function () {
 
@@ -625,9 +655,9 @@ function newPlaylist() {
 
     playlist = {
 
-        name: prompt("Inserisci il nome della playlist"),
-        desc: prompt("Inserisci una descrizione della playlist"),
-        tag: prompt("Inserisci una serie di tag per la playlist"),
+        name: prompt("Enter the name of the playlist"),
+        desc: prompt("Enter the description of the playlist"),
+        tag: prompt("Enter some tags starting with #"),
         songs: []
 
     };
@@ -635,13 +665,13 @@ function newPlaylist() {
     if (playlist.name == null || playlist.desc == null) {
 
         error = true;
-        alert("Nome e descrizione devono contenere almeno un valore")
+        alert("Name and description must contain a value")
         return
 
     } else if (checkTag(playlist.tag) == false) {
 
         error = true;
-        alert("I tag devono succedere un cancelletto (#) e non possono iniziare con numeri o caratteri alfanumerici");
+        alert("Tags must follow an hashtag '#' and cannot start with a number or an alphanumeric value");
         return
     }
 
@@ -979,7 +1009,7 @@ function editing() {
         block.setAttribute("class", "track");
         currentPlaylist.songs.forEach(e => {
 
-            block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='label track__release_date'><span>" + e.release_date + "</span></div><div class='label track__duration'><span>" + e.duration + "</span> </div></div>";
+            block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='label track__release_date'><span>" + e.release_date + "</span></div><div class='label track__duration'><span>" + e.duration + "</span> </div></div> <a href = '#'> <i class='bi bi-dash-lg' onclick='removeSong(this)' ></i></a>";
         }
 
         );
@@ -988,6 +1018,31 @@ function editing() {
     }
 
 
+
+}
+
+function removeSong(this) {
+
+    let parent = e.closest(".track");
+    let toDelete = parent.children[1].innerHTML;
+    let playlist = JSON.parse(sessionStorage.getItem("editing"));
+
+    user.playlists.forEach(e => {
+
+        if(e.name == playlist.name) {
+
+    e.songs.forEach(function (song, index) {
+
+        if (song.name == toDelete) {
+
+            e.songs.splice(index, 1);
+
+        }
+
+    })}
+    });
+    
+    window.localStorage.setItem("accounts", JSON.stringify(accounts));
 
 }
 

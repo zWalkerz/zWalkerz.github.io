@@ -84,7 +84,7 @@ function addInfo(e) {
         window.localStorage.setItem('accounts', JSON.stringify(accounts));
         
         /* A function that shows a message for 2 seconds. */
-        border = e.target.parentNode;
+        border = e.parentNode;
         border.style.border = "2px solid rgba(44, 255, 0, 1)";
         setTimeout(function(){
 
