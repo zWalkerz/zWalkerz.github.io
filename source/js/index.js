@@ -844,29 +844,35 @@ function addShared(e) {
 
     let parent = e.closest(".track");
     let toAdd = parent.getElementsByClassName("track__title")[0].innerHTML;
+    let sharedPlaylists = sessionStorage.getItem("globalShared");
 
-    accounts.forEach(person => {
+    sharedPlaylists.forEach(playlist => {
 
-        person.playlists.forEach(e => {
+        if(playlist.name == toAdd) {
 
-            if (e.name == toAdd) {
+            toAdd = playlist;
+            
+            if(user.playlists.some(e => e != toAdd)) {
 
-                /* Checking if the playlist name is already in the user's playlist. If it is not, it will add it to the
-                user's playlist. */
-                if (user.playlists.some(playlist => playlist.name == toAdd) == false) {
-
-                    user.playlists.push(toAdd)
-                    window.localStorage.setItem("accounts", JSON.stringify(accounts));
-                }
+                user.playlists.push(toAdd);
 
             }
 
-        })
+            }
 
-    });
+        });
+
+        user.playlists.forEach(e => {
+
+            let block = document.createElement("div");
+            block.setAttribute("class", "track");
+            block.innerHTML = "<div class='track__title'>" + e.name + "</div> <input type='text' class='label' value='" + e.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + e.tag + "' readonly spellcheck='false'><div class ='controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
+            let playlists = document.getElementById("two");
+            playlists.appendChild(block);
+    
+        });
 
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
-    globalShared();
 
 }
 
