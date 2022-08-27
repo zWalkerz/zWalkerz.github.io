@@ -799,9 +799,9 @@ function sharePlaylist(e) {
 
         })
 
-        let alreadyShared = sessionStorage.getItem("globalShared");
+        let alreadyShared = JSON.parse(sessionStorage.getItem("globalShared"));
 
-        if(globalShared.some(e => e.name == shared.name)) {
+        if(alreadyShared.some(e => e.name == shared.name)) {
 
             alert("A playlist with the same name is already shared");
 
@@ -875,6 +875,10 @@ function addShared(e) {
             
                 });
         
+
+            } else {
+
+                alert("You already have a playlist with the same name!")
 
             }
 
