@@ -1004,6 +1004,7 @@ function editing() {
     }
     else {
 
+        let block = "";
         title.innerHTML = "Current playlist: " + currentPlaylist.name;
         currentPlaylist.songs.forEach(e => {
 
