@@ -799,6 +799,14 @@ function sharePlaylist(e) {
 
         })
 
+        let alreadyShared = sessionStorage.getItem("globalShared");
+
+        if(globalShared.some(e => e.name == shared.name)) {
+
+            alert("A playlist with the same name is already shared");
+
+        } else{
+
         let block = document.createElement("div");
         block.setAttribute("class", "track");
         block.innerHTML = "<div class='track__title'>" + shared.name + "</div> <input type='text' class='label' value='" + shared.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + shared.tag.join() + "' readonly spellcheck='false'><div class ='controls'> <button onclick='noShare(this);' class='btn btn-outline-success' type='submit'>No share</button></div>"
@@ -811,6 +819,8 @@ function sharePlaylist(e) {
     }
 
     globalShared()
+
+}
 
 }
 
@@ -852,7 +862,7 @@ function addShared(e) {
 
             toAdd = playlist;
             
-            if(user.playlists.some(e => e.name != toAdd.name) || user.playlists.length == 0) {
+            if(user.playlists.some(e => e.name.trim() != toAdd.name.trim()) || user.playlists.length == 0) {
 
                 user.playlists.push(toAdd);
                 user.playlists.forEach(e => {
@@ -907,11 +917,10 @@ function viewShared(e) {
 
     });
 }
+
 /**
- * It updates the globally shared playlists page
+ * It takes the shared playlists from all the accounts and displays them on the page
  */
-
-
 function globalShared() {
 
     let updated;
@@ -923,6 +932,8 @@ function globalShared() {
 
         e.shared.forEach(el => {
 
+
+            /* Checking if the element is already in the array. */
             if (!updated.some(ell => JSON.stringify(ell) == JSON.stringify(el))) {
 
                 count++;
