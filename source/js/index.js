@@ -251,9 +251,9 @@ search.addEventListener("input", e => {
     let email = document.querySelector("#five > #email > input").value;
     let password = document.querySelector("#five > #password > input").value;
 
-    user.username = username
-    user.email = email 
-    user.password = password;
+    username = user.username
+    email = user.email 
+    password = user.password;
 
 })();
 
