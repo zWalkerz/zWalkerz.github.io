@@ -494,10 +494,11 @@ function removeArtist(e) {
 
     let parent = e.closest("li");
     let toDelete = parent.children[0].innerHTML;
+    parent.remove();
 
     user.artists.forEach(function (e, index) {
 
-        if (e.name == toDelete) {
+        if (e == toDelete) {
 
             user.artists.splice(index, 1);
 
