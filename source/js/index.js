@@ -431,12 +431,15 @@ function artistFetch(searched) {
             $('#artist').selectpicker('refresh');
 
             let artistsSelected = document.getElementById("selectedArtists");
-            let block = artistsSelected.innerHTML;
+            let block = "";
+            
             let actuallySelected = $("#artists select").val();
 
-            selected = [...new Set(selected.concat(actuallySelected))];
+            user.artists = [...new Set(user.artists.concat(selected.concat(actuallySelected)))];
 
-            selected.forEach(e => {
+            
+
+            user.artists.forEach(e => {
 
             block += "<li><a class = 'dropdown-item' href='#'>" + e + "</a> <a href = '#'><i class='bi bi-dash-lg' onclick='removeArtist(this)' ></i></a></li>"
 
