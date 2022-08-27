@@ -844,7 +844,7 @@ function addShared(e) {
 
     let parent = e.closest(".track");
     let toAdd = parent.getElementsByClassName("track__title")[0].innerHTML;
-    let sharedPlaylists = sessionStorage.getItem("globalShared");
+    let sharedPlaylists = JSON.parse(sessionStorage.getItem("globalShared"));
 
     sharedPlaylists.forEach(playlist => {
 
