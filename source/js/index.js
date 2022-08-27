@@ -506,7 +506,6 @@ function removeArtist(e) {
 
     })
     
-    window.localStorage.setItem("accounts", JSON.stringify(accounts));
 
 }
 
@@ -532,6 +531,8 @@ function send() {
 
         genre_flag = true;
 
+        window.localStorage.setItem("accounts", JSON.stringify(accounts));
+
     }
 
     if (artist_list.childElementCount > 0) {
@@ -540,6 +541,9 @@ function send() {
 
         user.artists = artist_list;
         artist_flag = true;
+
+        window.localStorage.setItem("accounts", JSON.stringify(accounts));
+
 
     }
 
