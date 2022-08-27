@@ -1009,7 +1009,7 @@ function editing() {
         block.setAttribute("class", "track");
         currentPlaylist.songs.forEach(e => {
 
-            block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='label track__release_date'><span>" + e.release_date + "</span></div><div class='label track__duration'><span>" + e.duration + "</span> </div></div> <a href = '#'> <i class='bi bi-dash-lg' onclick='removeSong(this)' ></i></a>";
+            block.innerHTML += "<div class='track__art'> <img src= " + e.art + "></div><div class='track__title'>" + e.name + "</div><div class='label track__release_date'><span>" + e.release_date + "</span></div><div class='label track__duration'><span>" + e.duration + "</span> </div></div> <a href = '#'> <i class='bi bi-dash-lg' onclick='removeSong(this)' ></i></a>";
         }
 
         );
