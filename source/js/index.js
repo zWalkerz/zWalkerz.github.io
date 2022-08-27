@@ -1064,7 +1064,7 @@ function removeSong(e) {
     })
     
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
-    windows.sessionStorage.setItem("editing", JSON.stringify(playlist));
+    window.sessionStorage.setItem("editing", JSON.stringify(playlist));
 
 }
 
