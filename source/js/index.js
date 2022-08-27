@@ -852,9 +852,19 @@ function addShared(e) {
 
             toAdd = playlist;
             
-            if(user.playlists.some(e => e != toAdd)) {
+            if(user.playlists.some(e => e.name != toAdd.name) || user.playlists.length == 0) {
 
                 user.playlists.push(toAdd);
+                user.playlists.forEach(e => {
+
+                    let block = document.createElement("div");
+                    block.setAttribute("class", "track");
+                    block.innerHTML = "<div class='track__title'>" + e.name + "</div> <input type='text' class='label' value='" + e.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + e.tag + "' readonly spellcheck='false'><div class ='controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
+                    let playlists = document.getElementById("two");
+                    playlists.appendChild(block);
+            
+                });
+        
 
             }
 
@@ -862,15 +872,6 @@ function addShared(e) {
 
         });
 
-        user.playlists.forEach(e => {
-
-            let block = document.createElement("div");
-            block.setAttribute("class", "track");
-            block.innerHTML = "<div class='track__title'>" + e.name + "</div> <input type='text' class='label' value='" + e.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + e.tag + "' readonly spellcheck='false'><div class ='controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
-            let playlists = document.getElementById("two");
-            playlists.appendChild(block);
-    
-        });
 
     window.localStorage.setItem("accounts", JSON.stringify(accounts));
 
