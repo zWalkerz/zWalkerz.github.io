@@ -84,14 +84,13 @@ function addInfo(e) {
         window.localStorage.setItem('accounts', JSON.stringify(accounts));
         
         /* A function that shows a message for 2 seconds. */
-        border = e.target.parent;
-        console.log(e, e.target.parent)
+        border = e.target.parentNode;
         border.style.border = "2px solid rgba(44, 255, 0, 1)";
         setTimeout(function(){
 
             border.style.border = "2px solid rgba(44, 255, 0, 0)";
 
-        }, 2000);
+        }, 1000);
 
     
     }
