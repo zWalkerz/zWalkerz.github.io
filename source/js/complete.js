@@ -60,7 +60,7 @@ async function fetchingArtists(artist) {
     json.artists.items.forEach(element => {
 
 
-        block = block + "<div class='artist'> <div class='overlayer' onclick='addInfo(event)'> </div> <img src='" + element.images[0].url + "' alt=''> <small>" + element.name + "</small> </div>";
+        block = block + "<div class='artist'> <div class='overlayer' onclick='addInfo(this)'> </div> <img src='" + element.images[0].url + "' alt=''> <small>" + element.name + "</small> </div>";
         document.getElementsByClassName("artists")[0].innerHTML = block;
 
     });
@@ -76,11 +76,9 @@ async function fetchingArtists(artist) {
  */
 function addInfo(e) {
 
-    let user = accounts.find(e => e.token == token);
+    if(!user.artists.some(element => e.parentNode.querySelector("small").innerHTML == element )) {
 
-    if(!user.artists.some(element => e.target.parentNode.childNodes[5].innerHTML == element )) {
-
-        user.artists.push(e.target.parentNode.childNodes[5].innerHTML);
+        user.artists.push(e.parentNode.querySelector("small").innerHTML);
         window.localStorage.setItem('accounts', JSON.stringify(accounts));
         
         /* A function that shows a message for 2 seconds. */
