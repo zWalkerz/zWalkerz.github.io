@@ -907,7 +907,7 @@ function viewShared(e) {
 
     accounts.forEach(person => {
 
-        if (person.username == user.usernam) {
+        if (person.username == user.username) {
 
             person.playlists.forEach(e => {
 
