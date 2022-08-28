@@ -894,6 +894,11 @@ function addShared(e) {
 
 }
 
+/**
+ * It takes the name of the playlist that the user clicked on, and then it finds the playlist in the
+ * accounts array, and then it fills the next sibling of the playlist(a space dedicated for a dropdown menu) with the songs in the playlist
+ * @param e - the object that triggered the function
+ */
 function viewShared(e) {
 
     let parent = e.closest(".track");
@@ -902,25 +907,29 @@ function viewShared(e) {
 
     accounts.forEach(person => {
 
-        person.playlists.forEach(e => {
+        if (person.username == user.usernam) {
 
-            if (e.name == toView) {
+            person.playlists.forEach(e => {
 
-                let block = document.createElement("div");
-                e.songs.forEach(song => {
+                if (e.name == toView) {
 
-                    block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name + "</div><div class='label track__release_date'><span>" + song.release_date + "</span></div><div class='label track__explicit'><span>" + song.duration + "</span> </div></div>";
+                    let block = document.createElement("div");
+                    e.songs.forEach(song => {
+
+                        block.innerHTML += "<div class = 'track'> <div class='track__art'> <img src= " + song.art + "></div><div class='track__title'>" + song.name + "</div><div class='label track__release_date'><span>" + song.release_date + "</span></div><div class='label track__explicit'><span>" + song.duration + "</span> </div></div>";
+                    }
+
+                    );
+
+
+                    toFill.innerHTML = block.innerHTML;
+
+
                 }
 
-                );
+            });
 
-
-                toFill.innerHTML = block.innerHTML;
-
-
-            }
-
-        });
+        }
 
     });
 }
