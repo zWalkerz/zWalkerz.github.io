@@ -59,10 +59,10 @@ async function fetchingArtists(artist) {
 
     json.artists.items.forEach(element => {
 
-
+        if(element.images.length > 0){
         block = block + "<div class='artist'> <div class='overlayer' onclick='addInfo(this)'> </div> <img src='" + element.images[0].url + "' alt=''> <small>" + element.name + "</small> </div>";
         document.getElementsByClassName("artists")[0].innerHTML = block;
-
+        }
     });
 
     document.getElementsByClassName("artists")[0].style.visibility = "visible";
