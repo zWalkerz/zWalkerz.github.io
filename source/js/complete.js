@@ -37,8 +37,8 @@ var user;
 /* Adding an event listener to the artist input field. */
 artist = document.getElementById("artist");
 artist.addEventListener('input', e => {
-    if(e.target.value.replace(/\s/g, "").length != 0){
-    fetchingArtists(e.target.value);
+    if(e.value.replace(/\s/g, "").length != 0){
+    fetchingArtists(e.value);
     }
 
 });
@@ -82,7 +82,7 @@ function addInfo(e) {
         window.localStorage.setItem('accounts', JSON.stringify(accounts));
         
         /* A function that shows a message for 2 seconds. */
-        border = e.target.parentNode;
+        border = e.parentNode;
         border.style.border = "2px solid rgba(44, 255, 0, 1)";
         setTimeout(function(){
 
