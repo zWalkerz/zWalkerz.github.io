@@ -37,8 +37,8 @@ var user;
 /* Adding an event listener to the artist input field. */
 artist = document.getElementById("artist");
 artist.addEventListener('input', e => {
-    if(e.value.replace(/\s/g, "").length != 0){
-    fetchingArtists(e.value);
+    if(e.target.value.replace(/\s/g, "").length != 0){
+    fetchingArtists(e.target.value);
     }
 
 });
