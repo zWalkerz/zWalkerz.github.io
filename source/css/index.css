@@ -425,8 +425,14 @@ white-space: nowrap;
 
 }
 
-#manage-playlist .bi {
+#manage-playlist .tracks .bi {
 
   color: #dd3636
+
+}
+
+.section-title .bi {
+
+  color: white;
 
 }
