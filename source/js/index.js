@@ -1077,6 +1077,7 @@ function editDetails() {
             if(e.name == toEdit) {
 
                 e.name = title;
+                actuallyEditing.name = title;
 
             }
 
@@ -1097,6 +1098,7 @@ function editDetails() {
             if(e.name == toEdit) {
 
                 e.desc = desc;
+                actuallyEditing.desc = desc;
 
             }
 
@@ -1119,6 +1121,7 @@ function editDetails() {
                 if(e.name == toEdit) {
     
                     e.tag = tagTest[1].join();
+                    actuallyEditing.tag = tagTest[1].join();
     
                 }
     
@@ -1132,7 +1135,7 @@ function editDetails() {
 
 
     localStorage.setItem("accounts", JSON.stringify(accounts));
-
+    sessionStorage.setItem("editing", JSON.stringify(actuallyEditing));
     let block = "";
 
     user.playlists.forEach(e => {
