@@ -682,6 +682,8 @@ function newPlaylist() {
     }
 
     if (user.playlists.some(e => e.name == playlist.name) == false) {
+        
+        playlist.tag = tagTest[1];
         let block = document.createElement("div");
         block.setAttribute("class", "track");
         block.innerHTML = "<div class='track__title'>" + playlist.name + "</div> <input type='text' class='label' value='" + playlist.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + tagTest[1].join() + "' readonly spellcheck='false'><div class = 'controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
@@ -1033,7 +1035,7 @@ function editing() {
     }
     else if (currentPlaylist.songs.length == 0) {
 
-        title.innerHTML = "Current playlist: " + currentPlaylist.name;
+        title.innerHTML = "Current playlist: " + currentPlaylist.name + "<a href = '#'><i class='bi bi-pencil' onclick = 'editDetails();'></i></a>";
         section.innerHTML = "<div class='track'><span class = 'label'>No songs</span></div>";
 
     }
