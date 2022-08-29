@@ -7,16 +7,6 @@ var accounts;
 var user;
 var token;
 
-var playlist = {
-
-    name: null,
-    desc: null,
-    tag: null
-
-};
-
-
-
 
 /* It's a self-invoking function that checks if the user is logged in and if the session is still
 valid. If it's not, it redirects the user to the login page.  */
@@ -88,11 +78,7 @@ valid. If it's not, it redirects the user to the login page.  */
 })();
 
 
-
-
-
-/* Creating a div element for each element in the array. */
-
+/* The above code is creating a list of shared playlists. */
 var count = 0;
 
 (function () {
@@ -673,7 +659,7 @@ function Add(song) {
  */
 function newPlaylist() {
 
-    playlist = {
+    let playlist = {
 
         name: prompt("Enter the name of the playlist"),
         desc: prompt("Enter the description of the playlist"),
@@ -682,15 +668,15 @@ function newPlaylist() {
 
     };
 
+    let tagTest = checkTag(playlist.tag);
+
     if (playlist.name == null || playlist.desc == null) {
 
-        error = true;
         alert("Name and description must contain a value")
         return
 
-    } else if (checkTag(playlist.tag) == false) {
+    } else if (tagTest == false) {
 
-        error = true;
         alert("Tags must follow an hashtag '#' and cannot start with a number or an alphanumeric value");
         return
     }
@@ -698,14 +684,12 @@ function newPlaylist() {
     if (user.playlists.some(e => e.name == playlist.name) == false) {
         let block = document.createElement("div");
         block.setAttribute("class", "track");
-        block.innerHTML = "<div class='track__title'>" + playlist.name + "</div> <input type='text' class='label' value='" + playlist.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + playlist.tag.join() + "' readonly spellcheck='false'><div class = 'controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
+        block.innerHTML = "<div class='track__title'>" + playlist.name + "</div> <input type='text' class='label' value='" + playlist.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + tagTest[1].join() + "' readonly spellcheck='false'><div class = 'controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div>"
         let playlists = document.getElementById("two");
         playlists.appendChild(block)
 
         user.playlists.push(JSON.parse(JSON.stringify(playlist)));
         localStorage.setItem("accounts", JSON.stringify(accounts));
-
-        console.log(accounts);
 
     } else {
 
@@ -726,8 +710,8 @@ function checkTag(e) {
 
     if (e != null) {
 
-        playlist.tag = e;
-        return true
+        let result = [true, e];
+        return result
 
     } else {
 
@@ -1076,8 +1060,87 @@ function editDetails() {
     let editing = JSON.parse(sessionStorage.getItem("editing"));
     let toEdit = editing.name;
 
-    
+    let choose = prompt("What are you editing? Write: \n - Name; \n - Description; \n - Tags;")
+    if(choose.trim().toLowerCase() == "name") {
 
+        let title = prompt("Playlist's new name: ");
+        if(title == null){
+
+            alert("It must contains a value;")
+            return;
+
+        } else {
+        user.playlists.forEach(e => {
+
+            if(e.name == toEdit) {
+
+                e.name = title;
+
+            }
+
+        })
+    }
+
+    } else if (choose.trim().toLowerCase() == "description") {
+
+        let desc = prompt("Playlist's new description: ");
+        if(desc == null) {
+
+            alert("It must contain a value");
+            return;
+
+        } else {
+        user.playlists.forEach(e => {
+
+            if(e.name == toEdit) {
+
+                e.desc = desc;
+
+            }
+
+        })
+    }
+
+    } else if(choose.trim().toLowerCase() == "tags") {
+
+        let tags = prompt("Playlist's new tags. They must start with a #");
+        let tagTest = checkTag(tags);
+
+        if(tagTest == false){
+
+            alert("Tags must follow an hashtag '#' and cannot start with a number or an alphanumeric value");
+
+        } else {
+
+            user.playlists.forEach(e => {
+
+                if(e.name == toEdit) {
+    
+                    e.tag = tagTest[1].join();
+    
+                }
+    
+            })
+
+
+        }
+
+
+    }
+
+
+    localStorage.setItem("accounts", JSON.stringify(accounts));
+
+    let block = "";
+
+    user.playlists.forEach(e => {
+
+        block += "<div class = 'track'> <div class='track__title'>" + e.name + "</div> <input type='text' class='label' value='" + e.desc + "' readonly spellcheck='false'><input type='text' class='label' value='" + e.tag + "' readonly spellcheck='false'><div class ='controls'> <button onclick='editPlaylist(this);' class='btn btn-outline-success' type='submit'>Edit</button> <button onclick='deletePlaylist(this);' class='btn btn-outline-success' type='submit'>Delete</button> <button onclick='sharePlaylist(this);' class='btn btn-outline-success' type='submit'>Share</button></div> </div>";
+
+    });
+
+    let playlists = document.getElementById("two");
+    playlists.innerHTML = block;
 
 
 }
