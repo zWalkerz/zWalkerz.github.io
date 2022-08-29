@@ -31,6 +31,11 @@ var user;
         window.location.replace("../index.htm");
 
     }
+    
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+        $('#genre').selectpicker('mobile');
+        $('#artist').selectpicker('mobile');
+      }
 
 })();
 

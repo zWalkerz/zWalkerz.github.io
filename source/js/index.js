@@ -47,6 +47,10 @@ valid. If it's not, it redirects the user to the login page.  */
 
 
 
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+        $('#genre').selectpicker('mobile');
+        $('#artist').selectpicker('mobile');
+      }
 
 })();
 
@@ -373,8 +377,6 @@ async function fetchTrack(track) {
 
     genre.innerHTML = block;
     $('#genre').selectpicker('refresh') ? addSelectedGenres() : console.log("Error");
-
-
 
 
 })();
