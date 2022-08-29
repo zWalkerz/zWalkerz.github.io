@@ -85,6 +85,8 @@ var count = 0;
     let section = document.getElementById("four");
 
     accounts.forEach(e => {
+
+        console.log(e, e.shared)
         e.shared.forEach(el => {
 
             count++;
