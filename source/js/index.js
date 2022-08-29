@@ -682,7 +682,7 @@ function newPlaylist() {
     }
 
     if (user.playlists.some(e => e.name == playlist.name) == false) {
-        
+
         playlist.tag = tagTest[1];
         let block = document.createElement("div");
         block.setAttribute("class", "track");
@@ -1059,8 +1059,8 @@ function editing() {
 
 function editDetails() {
 
-    let editing = JSON.parse(sessionStorage.getItem("editing"));
-    let toEdit = editing.name;
+    let actuallyEditing = JSON.parse(sessionStorage.getItem("editing"));
+    let toEdit = actuallyEditing.name;
 
     let choose = prompt("What are you editing? Write: \n - Name; \n - Description; \n - Tags;")
     if(choose.trim().toLowerCase() == "name") {
@@ -1143,6 +1143,7 @@ function editDetails() {
 
     let playlists = document.getElementById("two");
     playlists.innerHTML = block;
+    editing();
 
 
 }
