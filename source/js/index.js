@@ -46,12 +46,6 @@ valid. If it's not, it redirects the user to the login page.  */
     }
 
 
-
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
-        $('#genre').selectpicker('mobile');
-        $('#artist').selectpicker('mobile');
-      }
-
 })();
 
 
