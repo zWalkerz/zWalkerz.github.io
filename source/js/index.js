@@ -16,12 +16,12 @@ valid. If it's not, it redirects the user to the login page.  */
 
     if (!window.localStorage.getItem("accounts")) {
 
-        alert("Registrarsi prima");
+        alert("Sign-up!");
         window.location.replace("signup/index.htm");
 
     } else if (!window.localStorage.getItem("token")) {
 
-        alert("Effettuare login");
+        alert("Log-in first!");
         window.location.replace("login/index.htm");
 
     }
@@ -32,7 +32,7 @@ valid. If it's not, it redirects the user to the login page.  */
 
     if(user.completed == "no") {
 
-        alert("Completare il profilo");
+        alert("Complete your profile");
         window.location.replace("complete/index.htm");
 
 
@@ -40,7 +40,7 @@ valid. If it's not, it redirects the user to the login page.  */
 
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
-        alert("La tua sessione e' scaduta, effettuare nuovamente login");
+        alert("Session is expired");
         window.location.replace("login/index.htm");
 
     }
@@ -86,7 +86,6 @@ var count = 0;
 
     accounts.forEach(e => {
 
-        console.log(e, e.shared)
         e.shared.forEach(el => {
 
             count++;
@@ -351,7 +350,7 @@ async function fetchTrack(track) {
 
     } else {
 
-        alert("Il brano cercato non esiste");
+        alert("The song you're searching doesn't exists");
         return
 
     }
@@ -699,7 +698,7 @@ function newPlaylist() {
 
     } else {
 
-        alert("La playlist esiste già");
+        alert("Playlist already exists!");
 
     }
 }
@@ -781,7 +780,7 @@ function sharePlaylist(e) {
     let parent = e.closest(".track");
     let toShare = parent.getElementsByClassName("track__title")[0].innerHTML;
     if (user.shared.some(e => e.name.trim() == toShare.trim()) == false) {
-        /* Checking if the playlist name is the same as the one to share. */
+        /* Checking if the user is not trying to share two playlists with the same name */
         user.playlists.forEach(function (e) {
 
             if (e.name == toShare) {
@@ -1009,6 +1008,10 @@ function deleteGlobalShared(e) {
 
 }
 
+/**
+ * It finds the playlist that the user wants to edit, and then sends it to the editing page
+ * @param e - the event that was triggered
+ */
 function editPlaylist(e) {
 
     let parent = e.closest(".track");
@@ -1024,6 +1027,9 @@ function editPlaylist(e) {
 
 }
 
+/**
+ * It displays the songs in the playlist that is currently being edited
+ */
 function editing() {
 
     let currentPlaylist = JSON.parse(window.sessionStorage.getItem("editing"));
@@ -1061,6 +1067,9 @@ function editing() {
 
 }
 
+/**
+ * It edits the playlist's details
+ */
 function editDetails() {
 
     let actuallyEditing = JSON.parse(sessionStorage.getItem("editing"));
@@ -1154,6 +1163,10 @@ function editDetails() {
 
 }
 
+/**
+ * It removes a song from the playlist
+ * @param e - the element that was clicked
+ */
 function removeSong(e) {
 
     let parent = e.closest(".track");
@@ -1191,6 +1204,10 @@ function removeSong(e) {
 
 }
 
+/**
+ * It removes the token from the local storage and clears the session storage, then redirects the user
+ * to the login page
+ */
 function logout() {
 
     if (confirm("You're going to logout. Click 'Ok' for going on.")) {
