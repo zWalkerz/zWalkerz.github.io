@@ -674,7 +674,7 @@ function newPlaylist() {
 
     let tagTest = checkTag(playlist.tag);
 
-    if (playlist.name == null || playlist.desc == null) {
+    if (playlist.name == "" || playlist.desc == "") {
 
         alert("Name and description must contain a value")
         return
