@@ -157,13 +157,10 @@ tabs.forEach(tab => {
 
 });
 
-})();
 
 /* Adding an event listener to the search input. When the user types something, it checks if the active
 tab is the "manage-playlist" one. If it is, it calls the fetchTrack function and passes the value of
 the input as a parameter. If it is not, it filters the tracks in the "shared-ones" tab. */
-
-(function () {
 
 let search = document.getElementById("form1");
 search.addEventListener("input", e => {
