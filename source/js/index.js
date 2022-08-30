@@ -1086,8 +1086,31 @@ function editDetails() {
 
             if(e.name == toEdit) {
 
+                let list1 = document.getElementById("three").querySelectorAll(".track__title");
+                let list2 = document.getElementById("two").querySelectorAll(".track__title");
+
+                list1.forEach(names => {
+
+                    if(names.innerHTML == e.name) {
+
+                        names.parentNode.querySelector(".controls").children[0].click();
+
+                    }
+
+                })
+
                 e.name = title;
                 actuallyEditing.name = title;
+
+                list2.forEach(names => {
+
+                    if(names.innerHTML == e.name) {
+
+                        names.parentNode.querySelector(".controls").children[2].click();
+
+                    }
+
+                })
 
             }
 
@@ -1107,8 +1130,32 @@ function editDetails() {
 
             if(e.name == toEdit) {
 
+
+                let list1 = document.getElementById("three").querySelectorAll(".track__title");
+                let list2 = document.getElementById("two").querySelectorAll(".track__title");
+
+                list1.forEach(names => {
+
+                    if(names.innerHTML == e.name) {
+
+                        names.parentNode.querySelector(".controls").children[0].click();
+
+                    }
+
+                })
+
                 e.desc = desc;
                 actuallyEditing.desc = desc;
+
+                list2.forEach(names => {
+
+                    if(names.innerHTML == e.name) {
+
+                        names.parentNode.querySelector(".controls").children[2].click();
+
+                    }
+
+                })
 
             }
 
@@ -1129,9 +1176,32 @@ function editDetails() {
             user.playlists.forEach(e => {
 
                 if(e.name == toEdit) {
+
+                    let list1 = document.getElementById("three").querySelectorAll(".track__title");
+                    let list2 = document.getElementById("two").querySelectorAll(".track__title");
+    
+                    list1.forEach(names => {
+    
+                        if(names.innerHTML == e.name) {
+    
+                            names.parentNode.querySelector(".controls").children[0].click();
+    
+                        }
+    
+                    })
     
                     e.tag = tagTest[1];
                     actuallyEditing.tag = tagTest[1];
+
+                    list2.forEach(names => {
+
+                        if(names.innerHTML == e.name) {
+    
+                            names.parentNode.querySelector(".controls").children[2].click();
+    
+                        }
+    
+                    })
     
                 }
     
