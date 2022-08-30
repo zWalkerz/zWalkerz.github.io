@@ -1102,16 +1102,6 @@ function editDetails() {
                 e.name = title;
                 actuallyEditing.name = title;
 
-                list2.forEach(names => {
-
-                    if(names.innerHTML == e.name) {
-
-                        names.parentNode.querySelector(".controls").children[2].click();
-
-                    }
-
-                })
-
             }
 
         })
@@ -1146,16 +1136,6 @@ function editDetails() {
 
                 e.desc = desc;
                 actuallyEditing.desc = desc;
-
-                list2.forEach(names => {
-
-                    if(names.innerHTML == e.name) {
-
-                        names.parentNode.querySelector(".controls").children[2].click();
-
-                    }
-
-                })
 
             }
 
@@ -1192,16 +1172,6 @@ function editDetails() {
     
                     e.tag = tagTest[1];
                     actuallyEditing.tag = tagTest[1];
-
-                    list2.forEach(names => {
-
-                        if(names.innerHTML == e.name) {
-    
-                            names.parentNode.querySelector(".controls").children[2].click();
-    
-                        }
-    
-                    })
     
                 }
     
@@ -1226,6 +1196,8 @@ function editDetails() {
     let playlists = document.getElementById("two");
     playlists.innerHTML = block;
     editing();
+
+    //TODO
 
 
 }
