@@ -127,6 +127,9 @@ var count = 0;
 
 /* Adding an event listener to each tab. When a tab is clicked, it checks the id of the tab and changes
 the placeholder of the search bar accordingly. */
+
+(function () {
+
 tabs = document.querySelectorAll(".nav-link");
 tabs.forEach(tab => {
 
@@ -155,11 +158,13 @@ tabs.forEach(tab => {
 
 });
 
-
+})();
 
 /* Adding an event listener to the search input. When the user types something, it checks if the active
 tab is the "manage-playlist" one. If it is, it calls the fetchTrack function and passes the value of
 the input as a parameter. If it is not, it filters the tracks in the "shared-ones" tab. */
+
+(function () {
 
 let search = document.getElementById("form1");
 search.addEventListener("input", e => {
@@ -230,6 +235,7 @@ search.addEventListener("input", e => {
         }
     }
 });
+})();
 
 (function () {
 
@@ -1064,7 +1070,7 @@ function editDetails() {
     if(choose.trim().toLowerCase() == "name") {
 
         let title = prompt("Playlist's new name: ");
-        if(title == null){
+        if(title == ""){
 
             alert("It must contains a value;")
             return;
@@ -1085,7 +1091,7 @@ function editDetails() {
     } else if (choose.trim().toLowerCase() == "description") {
 
         let desc = prompt("Playlist's new description: ");
-        if(desc == null) {
+        if(desc == "") {
 
             alert("It must contain a value");
             return;
