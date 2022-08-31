@@ -1064,13 +1064,13 @@ function editing() {
 
 }
 
+
 /**
- * It edits the playlist's details
+ * It edits the details of a playlist.
  */
 function editDetails() {
 
     let actuallyEditing = JSON.parse(sessionStorage.getItem("editing"));
-    let toEdit = actuallyEditing.name;
 
     let choose = prompt("What are you editing? Write: \n - Name; \n - Description; \n - Tags;")
     if(choose.trim().toLowerCase() == "name") {
@@ -1084,10 +1084,9 @@ function editDetails() {
         } else {
         user.playlists.forEach(e => {
 
-            if(e.name == toEdit) {
+            if(e.name == actuallyEditing.name) {
 
                 let list1 = document.getElementById("three").querySelectorAll(".track__title");
-                let list2 = document.getElementById("two").querySelectorAll(".track__title");
 
                 list1.forEach(names => {
 
@@ -1118,11 +1117,10 @@ function editDetails() {
         } else {
         user.playlists.forEach(e => {
 
-            if(e.name == toEdit) {
+            if(e.name == actuallyEditing.name) {
 
 
                 let list1 = document.getElementById("three").querySelectorAll(".track__title");
-                let list2 = document.getElementById("two").querySelectorAll(".track__title");
 
                 list1.forEach(names => {
 
@@ -1155,10 +1153,9 @@ function editDetails() {
 
             user.playlists.forEach(e => {
 
-                if(e.name == toEdit) {
+                if(e.name == actuallyEditing.name) {
 
                     let list1 = document.getElementById("three").querySelectorAll(".track__title");
-                    let list2 = document.getElementById("two").querySelectorAll(".track__title");
     
                     list1.forEach(names => {
     
@@ -1197,7 +1194,18 @@ function editDetails() {
     playlists.innerHTML = block;
     editing();
 
-    //TODO
+    let list2 = document.getElementById("two").querySelectorAll(".track__title");
+
+    list2.forEach(names => {
+    
+        if(names.innerHTML == actuallyEditing.name) {
+
+            names.parentNode.querySelector(".controls").children[2].click();
+
+        }
+
+    })
+
 
 
 }
