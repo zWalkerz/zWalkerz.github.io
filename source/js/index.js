@@ -353,6 +353,7 @@ async function fetchTrack(track) {
     }
 }
 
+/* Fetching the genres from the API and adding them to the selectpicker. */
 (async function () {
 
     let genre = document.getElementById("genre");
@@ -380,6 +381,9 @@ async function fetchTrack(track) {
 })();
 
 
+/**
+ * It selects the genres that the user has previously selected
+ */
 function addSelectedGenres() {
 
     let toSelect = document.getElementById("genres").getElementsByClassName("text");
@@ -394,6 +398,12 @@ function addSelectedGenres() {
 }
 
 
+/**
+ * It takes a string as an argument, and returns a fetch request to the Spotify API with the string as
+ * a search parameter
+ * @param searched - the artist name that the user searched for
+ * @returns the fetch request.
+ */
 function artistFetch(searched) {
 
     return fetch(urlArtists + "&q=" + searched + "&limit=3", {
@@ -405,6 +415,8 @@ function artistFetch(searched) {
 
 }
 
+/* The above code is a function that is called when the user selects an artist from the dropdown menu.
+It then adds the artist from a dropdown to another related to the user's list of artists. */
 (function () {
 
     var selected = [];
@@ -444,7 +456,7 @@ function artistFetch(searched) {
 
         let response = await artistFetch(e.target.value);
         let json = await response.json();
-
+        if(json.artists != undefined) {
         json.artists.items.forEach(e => {
 
             block = block + "<option>" + e.name + "</option>";
@@ -455,10 +467,13 @@ function artistFetch(searched) {
 
         $('#artist').selectpicker('refresh');
 
+    }
+
     });
 
 })();
 
+/* The above code selects on page load all the artists previously selected by the user. */
 (function() {
 
     let artistsSelected = document.getElementById("selectedArtists");
@@ -498,6 +513,9 @@ function removeArtist(e) {
 
 }
 
+/**
+ * It takes the selected genres and artists from the dropdown menus and saves them in the user object
+ */
 function send() {
 
     let artist_flag = false;
@@ -540,6 +558,11 @@ function send() {
 }
 
 
+/**
+ * It displays a message to the user depending on the success of the save request
+ * @param genre_flag - a boolean that is true if the genres were updated successfully
+ * @param artist_flag - a boolean that is true if the artist was updated successfully
+ */
 function message(genre_flag, artist_flag) {
 
     if (genre_flag && artist_flag) {
