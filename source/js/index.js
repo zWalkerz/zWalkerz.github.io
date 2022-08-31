@@ -233,6 +233,7 @@ search.addEventListener("input", e => {
 });
 })();
 
+/* It updates the value of the elements on page load */
 (function () {
 
     let username = document.querySelector("#five > #username > input");
@@ -245,6 +246,12 @@ search.addEventListener("input", e => {
 
 })();
 
+/**
+ * It takes the value of the input field, and then prompts the user to enter a new value for the field.
+ * If the value is valid, it changes the value of the input field, and then changes the value of the
+ * user object
+ * @param e - the object that triggered the function
+ */
 function editData(e) {
 
     let editing = e.parentNode.querySelector(".info_user").innerHTML.toLowerCase();
@@ -279,6 +286,13 @@ function editData(e) {
 }
 
 
+/**
+ * It takes two arguments, the first is the data to be checked, the second is the type of data to be
+ * checked. It then returns true or false depending on whether the data matches the pattern
+ * @param data - The data to be checked.
+ * @param type - The type of data you want to check.
+ * @returns the result of the test method.
+ */
 function checkData(data, type) {
 
     const patterns = {
@@ -292,6 +306,11 @@ function checkData(data, type) {
 }
 
 
+/**
+ * If the number is less than 10, add a zero to the front of it.
+ * @param e - The object
+ * @returns the new value of the variable e.
+ */
 function zero(e) {
 
     if(e < 10) {
@@ -453,10 +472,9 @@ It then adds the artist from a dropdown to another related to the user's list of
 
         let artist = document.getElementById("artist");
         let block;
-
+        if(e.target.value != "") {
         let response = await artistFetch(e.target.value);
         let json = await response.json();
-        if(json.artists != undefined) {
         json.artists.items.forEach(e => {
 
             block = block + "<option>" + e.name + "</option>";
@@ -466,8 +484,8 @@ It then adds the artist from a dropdown to another related to the user's list of
         artist.innerHTML = block;
 
         $('#artist').selectpicker('refresh');
-
     }
+
 
     });
 
@@ -874,7 +892,7 @@ function addShared(e) {
 
             toAdd = playlist;
             
-            if(user.playlists.some(e => e.name.trim() != toAdd.name.trim()) || user.playlists.length == 0) {
+            if(user.playlists.some(e => e.name.trim() == toAdd.name.trim()) == false || user.playlists.length == 0) {
 
                 user.playlists.push(toAdd);
                 user.playlists.forEach(e => {
