@@ -110,13 +110,10 @@ async function refresh(user) {
         if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
             console.log("Token scaduto");
-           // accounts = accounts.filter(e => e == user);
             let getNewToken = await getToken();
             let token = await getNewToken.json();
             user.token = token.access_token;
             user.today = Math.floor(Date.now()/1000);
-            //accounts.push(user);
-
             window.localStorage.setItem('accounts', JSON.stringify(accounts));
             window.localStorage.setItem('token', token.access_token);
             return true;
