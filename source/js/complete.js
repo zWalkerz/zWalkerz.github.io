@@ -13,7 +13,7 @@ var user;
     
     if(!window.localStorage.getItem("accounts")){
 
-        alert("Browser incompatibile");
+        alert("Big error, no accounts stored");
         window.location.replace("../signup/index.htm");
 
     }
@@ -22,12 +22,12 @@ var user;
     user = accounts.find((e) => e.token == token);
     if ((Math.floor(Date.now() / 1000) - user.today) >= user.expires_in) {
 
-        alert("La tua sessione e' scaduta, effettuare nuovamente login");
+        alert("Session expired. Login again.");
         window.location.replace("login.htm");
 
     } else if(user.completed == "yes"){
 
-        alert("Il tuo profilo e' gia' stato completato");
+        alert("Your profile is already completed");
         window.location.replace("../index.htm");
 
     }
@@ -133,7 +133,7 @@ function send(){
 
     let list = document.getElementsByClassName("filter-option-inner-inner")[0].innerHTML;
     let user = accounts.find(e => e.token == token);
-    if(list != "Scegli almeno un genere"){
+    if(list != "Select at least one genre"){
     list = list.replace(/\s/g, "");  // / \s / e' per ricercare un pattern (gli spazi \s), g è per una ricerca globale
     let subs = list.split(",");
     subs.forEach(e => {
@@ -170,7 +170,7 @@ function checkData(user) {
         user.completed = "yes";
         window.localStorage.setItem("accounts", JSON.stringify(accounts));
 
-        alert("Profilo completo!");
+        alert("Profile completed!");
         window.location.replace("../index.htm");
 
     }

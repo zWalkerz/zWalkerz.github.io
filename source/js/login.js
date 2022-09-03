@@ -77,7 +77,7 @@ async function login() {
     } 
 
     if (accounts.find(u => u.email == user.email && u.password == user.password) == undefined) {
-        alert("Nome utente e password errati")
+        alert("Wrong username and password ")
     } else {
         foundUser = accounts.find(u => u.email == user.email && u.password == user.password);
         if (await refresh(foundUser) == true) {
