@@ -48,8 +48,10 @@ artist.addEventListener('input', e => {
 
 })();
 
-//STAMPA FETCH - Aggiungo in modo dinamico gli elementi trovati da fetch 
-
+/**
+ * It fetches the data from the API and displays it on the page
+ * @param artist - The name of the artist you want to search for.
+ */
 async function fetchingArtists(artist) {
 
     let response = await fetch(urlArtists + "&q=" + artist + "&limit=3", {
@@ -100,8 +102,8 @@ function addInfo(e) {
 
 }
 
-//FETCH GENERI - Faccio un fetch dei generi ed inserisco dinamicamente un blocco HTML nel select, poi inizializzo il plugin di select
-
+/* It's an IIFE (Immediately Invoked Function Expression) that fetches the genres from the API and adds
+them to the select. */
 (async function(){
 
     let genre = document.getElementById("genre");
@@ -127,8 +129,9 @@ function addInfo(e) {
 
 })();
 
-//UPDATE PROFILO - Prendo i dati nel div del select, li suddivido e salvo, dopodichè completo il profilo
-
+/**
+ * It takes the selected genres from the dropdown menu and adds them to the user's genres array
+ */
 function send(){
 
     let list = document.getElementsByClassName("filter-option-inner-inner")[0].innerHTML;
@@ -148,6 +151,11 @@ checkData(user);
 
 }
 
+/**
+ * It checks if the user has filled the form, if so it sets the user's completed property to "yes" and
+ * redirects him to the index page.
+ * @param user - the user object
+ */
 function checkData(user) {
 
     let flag = true
