@@ -36,6 +36,8 @@ var user;
 })();
 
 /* Adding an event listener to the artist input field. */
+
+(function () {
 artist = document.getElementById("artist");
 artist.addEventListener('input', e => {
     if(e.target.value.replace(/\s/g, "").length != 0){
@@ -43,6 +45,8 @@ artist.addEventListener('input', e => {
     }
 
 });
+
+})();
 
 //STAMPA FETCH - Aggiungo in modo dinamico gli elementi trovati da fetch 
 
