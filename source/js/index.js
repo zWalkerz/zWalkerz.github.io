@@ -1010,23 +1010,14 @@ function globalShared() {
 
 function deleteGlobalShared(e) {
 
-    /* It's filtering the globalShared array, and returning only the elements that are in the user's shared
-    array. */
 
     let updated = JSON.parse(window.sessionStorage.getItem("globalShared"));
 
-    updated = updated.filter(e => {
+   /* Filtering the updated array to only include playlists that haven't the same name as the object passed. */
+    updated = updated.filter(playlist => playlist.name != e);
 
-        if (user.shared.some(el => JSON.stringify(el) == JSON.stringify(e))) {
 
-            return true
-
-        }
-
-        return false
-
-    })
-
+/* Finding the element to delete. */
     let toDelete;
     let section = document.getElementById("four");
     let list = section.childNodes;
