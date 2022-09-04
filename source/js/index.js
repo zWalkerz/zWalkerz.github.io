@@ -817,8 +817,8 @@ function sharePlaylist(e) {
 
     let parent = e.closest(".track");
     let toShare = parent.getElementsByClassName("track__title")[0].innerHTML;
+/* Checking if the user has already shared the playlist */
     if (user.shared.some(e => e.name.trim() == toShare.trim()) == false) {
-        /* Checking if the user is not trying to share two playlists with the same name */
         user.playlists.forEach(function (e) {
 
             if (e.name == toShare) {
@@ -831,6 +831,7 @@ function sharePlaylist(e) {
 
         let alreadyShared = JSON.parse(sessionStorage.getItem("globalShared"));
 
+/* Checking if the playlist is already shared by someone else . */
         if(alreadyShared.some(e => e.name == shared.name)) {
 
             alert("A playlist with the same name is already shared");
