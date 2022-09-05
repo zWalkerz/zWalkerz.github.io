@@ -438,13 +438,13 @@ white-space: nowrap;
 
 }
 
-.delete {
+.section-title .delete {
 
 border: solid 2px red;
 
 }
 
-.delete:hover {
+.section-title .delete:hover {
 
   background-color: red;
   
