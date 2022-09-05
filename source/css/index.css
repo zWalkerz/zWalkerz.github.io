@@ -437,3 +437,15 @@ white-space: nowrap;
   color: white;
 
 }
+
+.delete {
+
+border: solid 2px red;
+
+}
+
+.delete:hover {
+
+  background-color: red;
+  
+  }
