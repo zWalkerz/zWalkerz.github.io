@@ -1305,6 +1305,7 @@ function deleteUser() {
     if (confirm("You're going to delete your account. Click 'Ok' to confirm.")) {
 
         accounts = accounts.filter(e => e.email != user.email);
+        window.localStorage.setItem("accounts", JSON.stringify(accounts));
         window.localStorage.removeItem("token");
         window.sessionStorage.clear();
         window.location.replace("login/index.htm")
