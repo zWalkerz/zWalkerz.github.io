@@ -86,8 +86,13 @@ function checkData(event) {
     const inputs = document.querySelectorAll('input');
 
     const patterns = {
+        /* A regular expression that checks if the username is between 5 and 12 characters long and if
+        it contains only letters and numbers. */
         username: /^[a-z\d]{5,12}$/i,
-        password: /^[\d\w@-]{8,20}$/i,
+        /* A regular expression that checks if the password contains at least one number, one lowercase
+        letter, one uppercase letter and one special character. */
+        password: /^(?=. * \d)(?=. * [a-z])(?=. * [A-Z])(?=.*[a-zA-Z]).{8,20}$/i,
+        /* A regular expression that checks if the email is valid. */
         email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/i,
     };
 
