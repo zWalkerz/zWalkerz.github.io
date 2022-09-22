@@ -1021,11 +1021,14 @@ function deleteGlobalShared(e) {
     let list = section.childNodes;
     for (let i = 1; i < list.length; i++) {
 
-        if (list[i].firstChild.textContent == e) {
+        if (list[i].classList.contains("track")) {
 
-            toDelete = list[i];
-            break;
+            if (list[i].querySelector(".track__title").innerHTML == e) {
 
+                toDelete = list[i];
+                break;
+
+            }
         }
 
     }
@@ -1102,6 +1105,7 @@ function editing() {
 function editDetails() {
 
     let actuallyEditing = JSON.parse(sessionStorage.getItem("editing"));
+    let temporary = user.shared;
 
     let choose = prompt("What are you editing? Write: \n - Name; \n - Description; \n - Tags;")
     if(choose.trim().toLowerCase() == "name") {
@@ -1228,11 +1232,13 @@ function editDetails() {
     let list2 = document.getElementById("two").querySelectorAll(".track__title");
 
     list2.forEach(names => {
-    
-        if(names.innerHTML == actuallyEditing.name) {
 
-            names.parentNode.querySelector(".controls").children[2].click();
+        if (temporary.some(e => e.name == names.innerHTML)) {
+            if (names.innerHTML == actuallyEditing.name) {
 
+                names.parentNode.querySelector(".controls").children[2].click();
+
+            }
         }
 
     })
