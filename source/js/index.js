@@ -298,7 +298,7 @@ function checkData(data, type) {
 
     const patterns = {
         username: /^[a-z\d]{5,12}$/i,
-        password: /^(?=. * \d)(?=. * [a-z])(?=. * [A-Z])(?=.*[a-zA-Z]).{8,20}$/i,
+        password: /^(?=. * \d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/i,
         email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/i,
     };
 
